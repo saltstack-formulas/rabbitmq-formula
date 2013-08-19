@@ -1,8 +1,10 @@
+{% from "rabbitmq/package-map.jinja" import pkgs with context %}
+
 rabbitmq-server:
-{% if grains['os_family'] == 'Debian' %}
   pkg.installed:
-    - name: rabbitmq-server
+    - name: {{ pkgs['rabbitmq-server'] }}
   service:
     - running
     - enable: True
-{% endif %}
+    - watch:
+      - pkg: rabbitmq-server
