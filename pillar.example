@@ -1,4 +1,7 @@
 rabbitmq:
+  plugin:
+    rabbitmq_management:
+      - enabled
   policy:
     rabbitmq_policy:
       - name: HA
@@ -14,9 +17,7 @@ rabbitmq:
     user1:
       - password: password
       - force: True
-      - tags:
-          - monitoring
-          - user
+      - tags: monitoring, user
       - perms:
         - '/':
           - '.*'
