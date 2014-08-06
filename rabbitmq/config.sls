@@ -1,3 +1,14 @@
+{% for name, plugin in salt["pillar.get"]("rabbitmq:plugin", {}).iteritems() %}
+{{ name }}:
+  rabbitmq_plugin:
+    {% for value in plugin %}
+    - {{ value }}
+    {% endfor %}
+    - require:
+      - pkg: rabbitmq-server
+      - file: rabbitmq_binary_tool_plugins
+{% endfor %}
+
 {% for name, policy in salt["pillar.get"]("rabbitmq:policy", {}).iteritems() %}
 {{ name }}:
   rabbitmq_policy.present:
