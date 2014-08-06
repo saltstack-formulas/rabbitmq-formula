@@ -7,9 +7,9 @@ rabbitmq:
   vhost:
     virtual_host:
       - user: rabbit_user
-        - conf: .*
-        - write: .*
-        - read: .*
+      - conf: .*
+      - write: .*
+      - read: .*
   user:
     user1:
       - password: password
