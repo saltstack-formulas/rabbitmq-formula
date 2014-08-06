@@ -1,4 +1,7 @@
 rabbitmq:
+  plugin:
+    rabbitmq_management:
+      - enabled
   policy:
     rabbitmq_policy:
       - name: HA
