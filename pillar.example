@@ -17,9 +17,7 @@ rabbitmq:
     user1:
       - password: password
       - force: True
-      - tags:
-          - monitoring
-          - user
+      - tags: monitoring, user
       - perms:
         - '/':
           - '.*'
