@@ -29,10 +29,11 @@
       - service: rabbitmq-server
 {% endfor %}
 
-{% for name, policy in salt["pillar.get"]("rabbitmq:user", {}).iteritems() %}
-{{ name }}:
+{% for name, user in salt["pillar.get"]("rabbitmq:user", {}).iteritems() %}
+rabbitmq_user_{{ name }}:
   rabbitmq_user.present:
-    {% for value in policy %}
+    - name: {{ name }}
+    {% for value in user %}
     - {{ value }}
     {% endfor %}
     - require:
