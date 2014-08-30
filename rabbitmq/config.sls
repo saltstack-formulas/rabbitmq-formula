@@ -7,6 +7,8 @@
     - require:
       - pkg: rabbitmq-server
       - file: rabbitmq_binary_tool_plugins
+    - watch_in:
+      - service: rabbitmq-server
 {% endfor %}
 
 {% for name, policy in salt["pillar.get"]("rabbitmq:policy", {}).iteritems() %}
