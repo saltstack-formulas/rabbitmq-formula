@@ -21,12 +21,12 @@
       - service: rabbitmq-server
 {% endfor %}
 
+# need to create vhosts, then users, then add users to vhosts
+
 {% for name, policy in salt["pillar.get"]("rabbitmq:vhost", {}).iteritems() %}
-{{ name }}:
+rabbitmq_vhost_{{ name }}:
   rabbitmq_vhost.present:
-    {% for value in policy %}
-    - {{ value }}
-    {% endfor %}
+    - name: {{ name }}
     - require:
       - service: rabbitmq-server
 {% endfor %}
