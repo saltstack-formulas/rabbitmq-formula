@@ -8,7 +8,6 @@ Available states
 ================
 
 .. contents::
-:local:
 
 ``rabbitmq``
 ------------
