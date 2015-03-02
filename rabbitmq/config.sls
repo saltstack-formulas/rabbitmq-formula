@@ -4,6 +4,7 @@
     {% for value in plugin %}
     - {{ value }}
     {% endfor %}
+    - runas: root
     - require:
       - pkg: rabbitmq-server
       - file: rabbitmq_binary_tool_plugins
