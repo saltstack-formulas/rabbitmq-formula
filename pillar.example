@@ -10,7 +10,7 @@ rabbitmq:
       - definition: '{"ha-mode": "all"}'
   vhost:
     virtual_host:
-      - user: rabbit_user
+      - owner: rabbit_user
       - conf: .*
       - write: .*
       - read: .*
