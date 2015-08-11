@@ -2,6 +2,7 @@
 
 include:
   - .config
+  - .config_queue
 
 rabbitmq-server:
   pkg.installed:
@@ -18,7 +19,7 @@ rabbitmq-server:
 
 rabbitmq_binary_tool_env:
   file.symlink:
-    - makedirs : True
+    - makedirs: True
     - name: /usr/local/bin/rabbitmq-env
     - target: /usr/lib/rabbitmq/bin/rabbitmq-env
     - require:
@@ -26,7 +27,7 @@ rabbitmq_binary_tool_env:
 
 rabbitmq_binary_tool_plugins:
   file.symlink:
-    - makedirs : True
+    - makedirs: True
     - name: /usr/local/bin/rabbitmq-plugins
     - target: /usr/lib/rabbitmq/bin/rabbitmq-plugins
     - require:
