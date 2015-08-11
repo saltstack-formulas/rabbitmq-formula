@@ -2,6 +2,9 @@
 
 include:
   - .config
+  - .rabbit-management
+  - .config_queue
+
 
 rabbitmq-server:
   pkg.installed:
