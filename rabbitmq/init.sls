@@ -4,6 +4,8 @@ include:
   - .config
   - .rabbit-management
   - .config_queue
+  - .config_exchange
+  - .config_bindings
 
 
 rabbitmq-server:
