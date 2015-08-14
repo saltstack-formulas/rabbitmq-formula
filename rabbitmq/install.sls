@@ -1,3 +1,4 @@
+{% from "rabbitmq/package-map.jinja" import pkgs with context %}
 
 rabbitmq-server:
   pkg.installed:
@@ -29,4 +30,3 @@ rabbitmq_binary_tool_plugins:
       - pkg: rabbitmq-server
       - file: rabbitmq_binary_tool_env
 
-{% from "rabbitmq/package-map.jinja" import pkgs with context %}
