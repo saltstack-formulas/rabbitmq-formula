@@ -1,6 +1,5 @@
 include:
   - rabbitmq
-  - rabbitmq.config
   
 {% if grains['os_family'] == 'Debian' %}
 rabbitmq_repo:
