@@ -3,10 +3,14 @@
 include:
   - .config
   - .rabbit-management
+
+{% set module_list = salt['sys.list_modules']() %}
+{% if 'rabbitmqadmin' in module_list %}
+include:
+  - .config_bindings
   - .config_queue
   - .config_exchange
-  - .config_bindings
-
+{% endif %}
 
 rabbitmq-server:
   pkg.installed:
