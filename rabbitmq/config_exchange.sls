@@ -1,4 +1,4 @@
-{% for name, exchange in salt["pillar.get"]("rabbitmq:exchanges", {}).iteritems() %}
+{% for name, exchange in salt["pillar.get"]("rabbitmq:exchanges", {}).items() %}
 rabbitmq_exchange_{{ name }}:
   rabbitmq_exchange.present:
     - name: {{ exchange.name }}

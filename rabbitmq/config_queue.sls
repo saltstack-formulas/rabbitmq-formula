@@ -1,4 +1,4 @@
-{% for name, queue in salt["pillar.get"]("rabbitmq:queues", {}).iteritems() %}
+{% for name, queue in salt["pillar.get"]("rabbitmq:queues", {}).items() %}
 rabbitmq_queue_{{ name }}:
   rabbitmq_queue.present:
     - name: {{ queue.name }}
