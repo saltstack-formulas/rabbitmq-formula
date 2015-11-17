@@ -1,4 +1,4 @@
-{% for name, binding in salt["pillar.get"]("rabbitmq:bindings", {}).iteritems() %}
+{% for name, binding in salt["pillar.get"]("rabbitmq:bindings", {}).items() %}
 rabbitmq_binding_{{ name }}:
   rabbitmq_binding.present:
     - source: {{ binding.source }}
