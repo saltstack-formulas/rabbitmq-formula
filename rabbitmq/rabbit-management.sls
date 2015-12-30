@@ -2,13 +2,13 @@
 
 install_rabbit_management:
   cmd.run:
-    - name : curl -k -L http://localhost:15672/cli/rabbitmqadmin -o /usr/sbin/rabbitmqadmin
+    - name : curl -k -L http://localhost:15672/cli/rabbitmqadmin -o /usr/local/sbin/rabbitmqadmin
 
 
 
 chmod_rabbit_management:
   file.managed:
-  - name: /usr/sbin/rabbitmqadmin
+  - name: /usr/local/sbin/rabbitmqadmin
   - user: root
   - group: root
   - mode: 755
