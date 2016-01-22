@@ -9,11 +9,7 @@ rabbitmq:
       - pattern: '.*'
       - definition: '{"ha-mode": "all"}'
   vhost:
-    virtual_host:
-      - owner: rabbit_user
-      - conf: .*
-      - write: .*
-      - read: .*
+    vh_name: '/virtual/host'
   user:
     user1:
       - password: password
