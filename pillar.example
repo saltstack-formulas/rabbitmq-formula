@@ -1,5 +1,7 @@
 rabbitmq:
   version: "3.5.3-1"
+  enabled: True
+  running: True
   plugin:
     rabbitmq_management:
       - enabled
