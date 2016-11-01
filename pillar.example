@@ -1,5 +1,7 @@
 rabbitmq:
   version: "3.5.3-1"
+  enabled: True
+  running: True
   plugin:
     rabbitmq_management:
       - enabled
@@ -9,11 +11,7 @@ rabbitmq:
       - pattern: '.*'
       - definition: '{"ha-mode": "all"}'
   vhost:
-    virtual_host:
-      - owner: rabbit_user
-      - conf: .*
-      - write: .*
-      - read: .*
+    vh_name: '/virtual/host'
   user:
     user1:
       - password: password

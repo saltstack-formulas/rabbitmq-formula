@@ -16,8 +16,8 @@ rabbitmq-server:
     {%- endif %}
 
   service:
-    - running
-    - enable: True
+    - {{ "running" if salt['pillar.get']('rabbitmq:running', True) else "dead" }}
+    - enable: {{ salt['pillar.get']('rabbitmq:enabled', True) }}
     - watch:
       - pkg: rabbitmq-server
 
