@@ -1,3 +1,3 @@
 include:
-  - rabbitmq.install
-  - rabbitmq.config
+  - {{ slspath }}.install
+  - {{ slspath }}.config
