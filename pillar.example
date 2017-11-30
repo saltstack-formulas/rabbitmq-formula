@@ -9,6 +9,15 @@ rabbitmq:
       optional_groups:
         - ssl-cert
     group: rabbitmq
+  # Configuration for a rabbitmq cluster
+  cluster:
+    # Erlang cookie is mandatory
+    cookie: ZMLDKUZRBPUXWAPANSDR
+    # List of members and their aliases to be appended to /etc/hosts.
+    # This is mandatory for a RabbitMQ cluster to work as expected.
+    members:
+      rabbit1: rabbit1.my.node
+      rabbit2: rabbit2.my.node
   plugin:
     rabbitmq_management:
       - enabled
