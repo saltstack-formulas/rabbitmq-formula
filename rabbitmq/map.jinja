@@ -1,0 +1,15 @@
+{% import_yaml slspath+"/defaults.yaml" as defaults %}
+
+{% set rabbitmq = salt['pillar.get']('rabbitmq', default=defaults.rabbitmq, merge=True) %}
+
+{% set rabbitmq = salt['grains.filter_by']({
+    'Debian': {'pkg': 'rabbitmq-server'},
+    'Ubuntu': {'pkg': 'rabbitmq-server'},
+    'CentOS': {'pkg': 'rabbitmq-server'},
+    'Fedora': {'pkg': 'rabbitmq-server'},
+    'RedHat': {'pkg': 'rabbitmq-server'},
+    'Gentoo': {'pkg': 'net-misc/rabbitmq-server'}
+  }
+  ,grain="os"
+  ,merge=rabbitmq)
+%}

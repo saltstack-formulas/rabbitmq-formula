@@ -1,0 +1,4 @@
+rabbitmq:
+  config:
+    user: rabbitmq
+    group: rabbitmq

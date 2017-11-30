@@ -1,7 +1,14 @@
 rabbitmq:
-  version: "3.5.3-1"
+  version: "3.3.5-34.el7"
   enabled: True
   running: True
+  # Optional block: special configuration for user and group
+  config:
+    user: rabbitmq
+    user_properties:
+      optional_groups:
+        - ssl-cert
+    group: rabbitmq
   plugin:
     rabbitmq_management:
       - enabled
@@ -13,6 +20,16 @@ rabbitmq:
   vhost:
     vh_name: '/virtual/host'
   user:
+    admin:
+      - password: password
+      - force: True
+      - tags: monitoring, user, administrator
+      - perms:
+        - '/':
+          - '.*'
+          - '.*'
+          - '.*'
+      - runas: root
     user1:
       - password: password
       - force: True

@@ -1,4 +1,5 @@
-{% from "rabbitmq/package-map.jinja" import pkgs with context %}
+{% from "rabbitmq/map.jinja" import rabbitmq with context %}
+
 
 {% set module_list = salt['sys.list_modules']() %}
 {% if 'rabbitmqadmin' in module_list %}
@@ -8,9 +9,30 @@ include:
   - .config_exchange
 {% endif %}
 
+rabbitmq-user:
+  user.present:
+    - name: {{ rabbitmq.config.user }}
+    - fullname: RabbitMQ messaging server
+    - home: /var/lib/rabbitmq
+    - system: True
+    - shell: /sbin/nologin
+    - gid_from_name: rabbitmq
+    {%- for property, value in rabbitmq.config.user_properties.items() %}
+    - {{ property }}: {{ value }}
+    {%- endfor %}
+    - require:
+      - group: rabbitmq
+    - watch_in:
+      - service: rabbitmq-server
+
+rabbitmq-group:
+  group.present:
+    - name: {{ rabbitmq.config.group }}
+    - system: True
+
 rabbitmq-server:
   pkg.installed:
-    - name: {{ pkgs['rabbitmq-server'] }}
+    - name: {{ rabbitmq.pkg }}
     {%- if 'version' in salt['pillar.get']('rabbitmq', {}) %}
     - version: {{ salt['pillar.get']('rabbitmq:version') }}
     {%- endif %}
