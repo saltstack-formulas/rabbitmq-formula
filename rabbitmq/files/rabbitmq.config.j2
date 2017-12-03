@@ -315,6 +315,32 @@
    %%                         {certfile,   "/path/to/cert.pem"},
    %%                         {keyfile,    "/path/to/key.pem"}]}]},
 
+   {%- set mgmt_listener = salt['pillar.get']('rabbitmq:config:rabbitmq_management:listener') %}
+   {%- if mgmt_listener %}
+     {%- set opts = [] %}
+
+     {%- for setting, value in mgmt_listener.items() %}
+     {%- if setting == 'ssl_opts' %}
+
+       {%- set ssl_opts = [] %}
+       {%- for ssl_set, ssl_value in value.items() %}
+          {%- do ssl_opts.append('{' + ssl_set + ', "' + ssl_value + '"}') %}
+       {%- endfor %}
+       {%- do opts.append('{ssl_opts, [' + ssl_opts | join(',') + ']}') %}
+
+     {%- else %}
+       {%- if value is not string %}
+        {%- do opts.append('{' + setting + ', ' + value | string | lower + '}') %}
+       {%- else %}
+        {%- do opts.append('{' + setting + ', "' + value + '"}') %}
+       {%- endif %}
+     {%- endif %}
+
+     {%- endfor %}
+
+     {listener, [ {{ opts | join(',') }} ]}
+   {%- endif %}
+
    %% Configure how long aggregated data (such as message rates and queue
    %% lengths) is retained. Please read the plugin's documentation in
    %% https://www.rabbitmq.com/management.html#configuration for more

@@ -20,6 +20,16 @@ rabbitmq:
         cacertfile: /srv/certs/bundleca.pem
         certfile: /srv/certs/{{ grains['fqdn'] }}.pem
         keyfile: /srv/certs/{{ grains['fqdn'] }}.key
+    # Configuration for the management plugin
+    rabbitmq_management:
+      listener:
+        port: 15672
+        ip: '0.0.0.0'
+        ssl: true
+        ssl_opts:
+          cacertfile: /srv/certs/bundleca.pem
+          certfile: /srv/certs/{{ grains['fqdn'] }}.pem
+          keyfile: /srv/certs/{{ grains['fqdn'] }}.key
         
   # Configuration for a rabbitmq cluster
   cluster:
