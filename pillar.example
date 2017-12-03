@@ -9,6 +9,13 @@ rabbitmq:
       optional_groups:
         - ssl-cert
     group: rabbitmq
+    # Configuration for the AMQP broker
+    rabbit:
+      tcp_listeners:
+        '0.0.0.0': 5672
+        '127.0.0.1': 5671
+    
+
   # Configuration for a rabbitmq cluster
   cluster:
     # Erlang cookie is mandatory
