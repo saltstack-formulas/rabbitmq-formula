@@ -1,5 +1,5 @@
 rabbitmq:
-  version: "3.3.5-34.el7"
+  version: "3.6.6-1"
   enabled: True
   running: True
   # Optional block: special configuration for user and group
@@ -12,10 +12,10 @@ rabbitmq:
     # Configuration for the AMQP broker
     rabbit:
       tcp_listeners:
-        '0.0.0.0': 5671
+        '0.0.0.0': 5672
       # For SSL, both ssl_listeners and ssl_options must be present
       ssl_listeners:
-        '0.0.0.0': 5672
+        '0.0.0.0': 5671
       ssl_options:
         cacertfile: /srv/certs/bundleca.pem
         certfile: /srv/certs/{{ grains['fqdn'] }}.pem
