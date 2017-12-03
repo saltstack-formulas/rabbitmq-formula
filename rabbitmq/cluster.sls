@@ -52,6 +52,8 @@ rabbitmq-set-cookie:
     - contents_pillar: rabbitmq:cluster:cookie
     - watch_in:
       - service: rabbitmq-server
+    - require_in:
+      - pkg: rabbitmq-server
     - require:
       - user: rabbitmq-user
       - group: rabbitmq-group
