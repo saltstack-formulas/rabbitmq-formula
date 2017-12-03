@@ -1,3 +1,8 @@
+{% from "rabbitmq/map.jinja" import rabbitmq with context %}
+
+include:
+- .install
+
 {% for name, plugin in salt["pillar.get"]("rabbitmq:plugin", {}).items() %}
 {{ name }}:
   rabbitmq_plugin:

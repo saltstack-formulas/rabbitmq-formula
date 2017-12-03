@@ -1,3 +1,5 @@
+{% from "rabbitmq/map.jinja" import rabbitmq with context %}
+
 {%- set cluster = salt['pillar.get']('rabbitmq:cluster') %}
 {%- if cluster %}
 include:
@@ -21,16 +23,17 @@ rabbitmq-hosts-file:
 rabbitmq-config-dir:
   file.directory:
     - name: /etc/rabbitmq
-    - user: root
-    - group: root
-    - mode: 0655
+    - user: {{ rabbitmq.config.user }}
+    - group: {{ rabbitmq.config.group }}
+    # Setting gid sticky bit to avoid issues with plugin management.
+    - mode: 2755
 
 rabbitmq-config-file:
   file.managed:
     - name: /etc/rabbitmq/rabbitmq.config
     - source: salt://{{ slspath }}/files/rabbitmq.config.j2
-    - user: root
-    - group: root
+    - user: {{ rabbitmq.config.user }}
+    - group: {{ rabbitmq.config.group }}
     - mode: 0644
     - template: jinja
     - require:
@@ -43,12 +46,12 @@ rabbitmq-config-file:
 rabbitmq-set-cookie:
   file.managed:
     - name: /var/lib/rabbitmq/.erlang.cookie
-    - user: rabbitmq
-    - group: rabbitmq
+    - user: {{ rabbitmq.config.user }}
+    - group: {{ rabbitmq.config.group }}
     - mode: 0400
     - contents_pillar: rabbitmq:cluster:cookie
-    - require_in:
-      - pkg: rabbitmq-server
+    - watch_in:
+      - service: rabbitmq-server
     - require:
       - user: rabbitmq-user
       - group: rabbitmq-group
