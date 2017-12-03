@@ -1,4 +1,4 @@
-{% from "rabbitmq/package-map.jinja" import pkgs with context %}
+{% from "rabbitmq/map.jinja" import rabbitmq with context %}
 
 stop-rabbitmq-server:
   service.dead:
@@ -6,7 +6,7 @@ stop-rabbitmq-server:
 
 uninstall-rabbitmq-package:
   pkg.purged:
-    - name: {{ pkgs['rabbitmq-server'] }}
+    - name: {{ rabbitmq.pkg }}
     - require:
       - service: stop-rabbitmq-server
 
