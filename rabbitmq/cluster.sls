@@ -23,7 +23,7 @@ rabbitmq-config-dir:
     - name: /etc/rabbitmq
     - user: root
     - group: root
-    - mode: 0644
+    - mode: 0655
 
 rabbitmq-config-file:
   file.managed:
