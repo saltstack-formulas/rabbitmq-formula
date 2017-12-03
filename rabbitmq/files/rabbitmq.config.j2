@@ -30,13 +30,26 @@
     {% do entries.append('{"' + host + '", ' + port | string + '}') %} 
     {% endfor %}
     {{ entries | join(',') }}
-  {% endif %}
   ]},
+  {% endif %}
+
 
    %% SSL listeners are configured in the same fashion as TCP listeners,
    %% including the option to control the choice of interface.
    %%
    %% {ssl_listeners, [5671]},
+
+  {% set ssl_listeners = salt['pillar.get']('rabbitmq:config:rabbit:ssl_listeners', {}) %}
+  {% if ssl_listeners %}
+  {ssl_listeners, [
+    {% set entries = [] %}
+    {% for host, port in ssl_listeners.items() %}
+    {% do entries.append('{"' + host + '", ' + port | string + '}') %} 
+    {% endfor %}
+    {{ entries | join(',') }}
+  ]},
+  {% endif %}
+
 
    %% Log levels (currently just used for connection logging).
    %% One of 'info', 'warning', 'error' or 'none', in decreasing order
@@ -71,6 +84,17 @@
    %%                {keyfile,              "/path/to/server/key.pem"},
    %%                {verify,               verify_peer},
    %%                {fail_if_no_peer_cert, false}]},
+
+  {% set ssl_options = salt['pillar.get']('rabbitmq:config:rabbit:ssl_options', {}) %}
+  {% if ssl_options %}
+  {ssl_options, [
+    {% set entries = [] %}
+    {% for item, value in ssl_options.items() %}
+    {% do entries.append('{' + item + ', "' + value + '"}') %} 
+    {% endfor %}
+    {{ entries | join(',') }}
+  {% endif %}
+  ]},
 
    %% Choose the available SASL mechanism(s) to expose.
    %% The two default (built in) mechanisms are 'PLAIN' and
