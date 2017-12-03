@@ -10,11 +10,23 @@ rabbitmq_repo:
     - key_url: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
     - require_in:
       - pkg: rabbitmq-server
-{% elif grains['os'] == 'CentOS' and grains['osmajorrelease'][0] == '6' %}
+{% elif grains['osfinger'] == 'CentOS Linux-6' %}
 rabbitmq_repo:
   pkgrepo.managed:
     - humanname: RabbitMQ Packagecloud Repository
     - baseurl: https://packagecloud.io/rabbitmq/rabbitmq-server/el/6/$basearch
+    - gpgcheck: 1
+    - enabled: True
+    - gpgkey: https://packagecloud.io/gpg.key
+    - sslverify: 1
+    - sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+    - require_in:
+      - pkg: rabbitmq-server
+{% elif grains['osfinger'] == 'CentOS Linux-7' %}
+rabbitmq_repo:
+  pkgrepo.managed:
+    - humanname: RabbitMQ Packagecloud Repository
+    - baseurl: https://packagecloud.io/rabbitmq/rabbitmq-server/el/7/$basearch
     - gpgcheck: 1
     - enabled: True
     - gpgkey: https://packagecloud.io/gpg.key
