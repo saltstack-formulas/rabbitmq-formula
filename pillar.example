@@ -33,5 +33,18 @@ rabbitmq:
           - '.*'
           - '.*'
       - runas: root
+  config_files:
+    # config_files, if you need some stuffs set directly in configuration
+    # files, rather than via the light modules available.
+    rabbitmq.config:
+      # Need to add some template in rabbitmq/templates/rabbitmq.config
+      # templates not provided, as is probably too specific...
+      source: templates/relay-rabbitmq.config
+      context:
+        src_broker_uri: "amqp://user:pass@10.1.2.3"
+    rabbitmqcfg.json:
+      source: templates/relay-rabbitmqcfg.config
+      #context: is optional map passed to the jinja template...
+
 {#- vim:ft=sls
 -#}
