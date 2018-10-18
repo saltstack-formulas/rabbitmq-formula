@@ -1,5 +1,6 @@
 rabbitmq:
-  version: "3.6.6-1"
+  #version: "3.6.6-1"
+  version: "3.3.5-34.el7"
   enabled: True
   running: True
   # Optional block: special configuration for user and group
@@ -38,8 +39,8 @@ rabbitmq:
     # List of members and their aliases to be appended to /etc/hosts.
     # This is mandatory for a RabbitMQ cluster to work as expected.
     members:
-      rabbit1: rabbit1.my.node
-      rabbit2: rabbit2.my.node
+      rabbit1: rabbit1.dev.infra.network
+      rabbit2: rabbit2.dev.infra.network
   plugin:
     rabbitmq_management:
       - enabled
@@ -48,8 +49,15 @@ rabbitmq:
       - name: HA
       - pattern: '.*'
       - definition: '{"ha-mode": "all"}'
+
+    other_policy:
+      - vhost: '/other'
+      - name: HA-other
+      - pattern: '.*'
+      - definition: '{"ha-mode": "all"}'
   vhost:
     vh_name: '/virtual/host'
+    other_vhost: '/other'
   user:
     admin:
       - password: password

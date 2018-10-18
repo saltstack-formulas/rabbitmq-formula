@@ -18,17 +18,24 @@ include:
 {% endfor %}
 
 {% for name, policy in salt["pillar.get"]("rabbitmq:policy", {}).items() %}
+{%- set depend = {} %}
 {{ name }}:
   rabbitmq_policy.present:
-    {% for value in policy %}
+    {%- for value in policy %}
     - {{ value }}
+    {%- if 'vhost' in value.keys() %}
+    {% do depend.update(value) %}
+    {%- endif %}
     {% endfor %}
     - require:
       - service: rabbitmq-server
+      {%- if depend.get('vhost', None)  %}
+      - rabbitmq_vhost: rabbitmq_vhost_{{ depend.get('vhost') }}
+      {%- endif %}
 {% endfor %}
 
 {% for name, vhost in salt["pillar.get"]("rabbitmq:vhost", {}).items() %}
-rabbitmq_vhost_{{ name }}:
+rabbitmq_vhost_{{ vhost }}:
   rabbitmq_vhost.present:
     - name: {{ vhost }}
     - require:
