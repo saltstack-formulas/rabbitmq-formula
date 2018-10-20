@@ -12,20 +12,20 @@
       - service: rabbitmq-server
 {% endfor %}
 
+{% for name, vhost in salt["pillar.get"]("rabbitmq:vhost", {}).items() %}
+rabbitmq_vhost_{{ name }}:
+  rabbitmq_vhost.present:
+    - name: {{ vhost }}
+    - require:
+      - service: rabbitmq-server
+{% endfor %}
+
 {% for name, policy in salt["pillar.get"]("rabbitmq:policy", {}).items() %}
 {{ name }}:
   rabbitmq_policy.present:
     {% for value in policy %}
     - {{ value }}
     {% endfor %}
-    - require:
-      - service: rabbitmq-server
-{% endfor %}
-
-{% for name, vhost in salt["pillar.get"]("rabbitmq:vhost", {}).items() %}
-rabbitmq_vhost_{{ name }}:
-  rabbitmq_vhost.present:
-    - name: {{ vhost }}
     - require:
       - service: rabbitmq-server
 {% endfor %}
