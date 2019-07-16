@@ -24,7 +24,7 @@ rabbitmq_vhost_{{ name }}:
 {{ name }}:
   rabbitmq_policy.present:
     {% for value in policy %}
-    - {{ value | yaml }}
+    - {{ value | json }}
     {% endfor %}
     - require:
       - service: rabbitmq-server
@@ -35,7 +35,7 @@ rabbitmq_user_{{ name }}:
   rabbitmq_user.present:
     - name: {{ name }}
     {% for value in user %}
-    - {{ value | yaml }}
+    - {{ value | json }}
     {% endfor %}
     - require:
       - service: rabbitmq-server
