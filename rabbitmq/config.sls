@@ -40,3 +40,10 @@ rabbitmq_user_{{ name }}:
     - require:
       - service: rabbitmq-server
 {% endfor %}
+
+{% if "guest" not in salt["pillar.get"]("rabbitmq:user", {}).keys() %}
+rabbitmq_user_guest:
+  rabbitmq_user.absent:
+    - name: guest
+    - runas: root
+{% endif %}
