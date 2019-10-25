@@ -1,7 +1,8 @@
+---
 rabbitmq:
-  version: "3.5.3-1"
-  enabled: True
-  running: True
+  # version: "3.5.3-1"
+  enabled: true
+  running: true
   plugin:
     rabbitmq_management:
       - enabled
@@ -15,23 +16,23 @@ rabbitmq:
   user:
     user1:
       - password: password
-      - force: True
+      - force: true
       - tags: monitoring, user
       - perms:
-        - '/':
-          - '.*'
-          - '.*'
-          - '.*'
+          - '/':
+              - '.*'
+              - '.*'
+              - '.*'
       - runas: root
     user2:
       - password: password
-      - force: True
+      - force: true
       - tags: monitoring, user
       - perms:
-        - '/':
-          - '.*'
-          - '.*'
-          - '.*'
+          - '/':
+              - '.*'
+              - '.*'
+              - '.*'
       - runas: root
   config_files:
     # config_files, if you need some stuffs set directly in configuration
@@ -44,7 +45,4 @@ rabbitmq:
         src_broker_uri: "amqp://user:pass@10.1.2.3"
     rabbitmqcfg.json:
       source: templates/relay-rabbitmqcfg.config
-      #context: is optional map passed to the jinja template...
-
-{#- vim:ft=sls
--#}
+      # context: is optional map passed to the jinja template...
