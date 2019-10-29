@@ -1,8 +1,9 @@
 name: rabbitmq
-os: RedHat, Debian, Ubuntu, Gentoo
-os_family: RedHat, Debian, Gentoo
-version: 201607
+os: Debian, Ubuntu
+os_family: Debian
+version: 0.14.1
 release: 1
-minimum_version: 2015.8
-summary: Formula for installing RabbitMQ server
-description: Formula for installing RabbitMQ server
+minimum_version: 2017.7
+summary: rabbitmq formula
+description: Formula to install and configure RabbitMQ
+top_level_dir: rabbitmq
