@@ -2,12 +2,21 @@ include:
   - rabbitmq
 
 {% if grains['os_family'] == 'Debian' %}
+# TODO: install specific Erlang and RabbitMQ releases (see https://www.rabbitmq.com/install-debian.html)
+erlang_repo:
+  pkgrepo.managed:
+    - humanname: Erlang Bintray Repository
+    - name: deb https://dl.bintray.com/rabbitmq-erlang/debian {{ salt['grains.get']('oscodename') }} erlang
+    - file: /etc/apt/sources.list.d/erlang.list
+    - key_url: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+    - require_in:
+      - pkg: rabbitmq-server
 rabbitmq_repo:
   pkgrepo.managed:
-    - humanname: RabbitMQ Repository
-    - name: deb http://www.rabbitmq.com/debian/ testing main
+    - humanname: RabbitMQ Bintray Repository
+    - name: deb https://dl.bintray.com/rabbitmq/debian {{ salt['grains.get']('oscodename') }} main
     - file: /etc/apt/sources.list.d/rabbitmq.list
-    - key_url: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
+    - key_url: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
     - require_in:
       - pkg: rabbitmq-server
 {% elif grains['os'] == 'CentOS' and grains['osmajorrelease'][0] == '6' %}
