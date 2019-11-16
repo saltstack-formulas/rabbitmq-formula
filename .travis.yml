@@ -2,15 +2,16 @@
 # vim: ft=yaml
 ---
 ## Machine config
-dist: bionic
+os: 'linux'
+arch: 'amd64'
+dist: 'bionic'
 version: '~> 1.0'
-sudo: required
 services:
   - docker
 
 ## Language and cache config
-language: ruby
-cache: bundler
+language: 'ruby'
+cache: 'bundler'
 
 ## Script to run for the test stage
 script:
@@ -101,7 +102,6 @@ jobs:
                    @semantic-release/git@7
       deploy:
         provider: script
-        skip_cleanup: true
-        script:
-          # Run `semantic-release`
-          - npx semantic-release@15
+        cleanup: false
+        # Run `semantic-release`
+        script: 'npx semantic-release@15'
