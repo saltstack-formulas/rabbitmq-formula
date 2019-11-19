@@ -1,5 +1,23 @@
 # Changelog
 
+# [0.16.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.15.1...v0.16.0) (2019-11-19)
+
+
+### Bug Fixes
+
+* **latest:** ensure required Debian packages are installed ([89b470f](https://github.com/saltstack-formulas/rabbitmq-formula/commit/89b470f7124795353a5087ac872d1e8c510f240c))
+
+
+### Continuous Integration
+
+* **kitchen+travis:** add `latest` suite ([29fbcd2](https://github.com/saltstack-formulas/rabbitmq-formula/commit/29fbcd2f374bfd02742743587cda6bbcbe6389c7))
+* **travis:** apply changes from build config validation [skip ci] ([4a1dacb](https://github.com/saltstack-formulas/rabbitmq-formula/commit/4a1dacbff36199c3692336fe6ac2a29ceaae49a8))
+
+
+### Features
+
+* **travis:** apply changes from build config validation ([7d9533c](https://github.com/saltstack-formulas/rabbitmq-formula/commit/7d9533c31842f36b943e033bce6b9bc794121d1d))
+
 ## [0.15.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.15.0...v0.15.1) (2019-11-14)
 
 
