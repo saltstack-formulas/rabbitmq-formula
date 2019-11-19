@@ -192,3 +192,19 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/default
+  - name: latest
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - rabbitmq.latest
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - rabbitmq
+      pillars_from_files:
+        rabbitmq.sls: pillar.example
+    verifier:
+      inspec_tests:
+        - path: test/integration/default

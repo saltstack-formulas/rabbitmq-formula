@@ -2,6 +2,13 @@ include:
   - rabbitmq
 
 {% if grains['os_family'] == 'Debian' %}
+{%   set pkg_dep_pyver = '3' if grains.pythonversion[0] == 3 else '' %}
+rabbitmq_repo_pkg_deps:
+  pkg.installed:
+    - name: python{{ pkg_dep_pyver }}-apt
+    - require_in:
+      - pkgrepo: erlang_repo
+      - pkgrepo: rabbitmq_repo
 # TODO: install specific Erlang and RabbitMQ releases (see https://www.rabbitmq.com/install-debian.html)
 erlang_repo:
   pkgrepo.managed:
