@@ -13,6 +13,8 @@ rabbitmq:
       - definition: '{"ha-mode": "all"}'
   vhost:
     vh_name: '/virtual/host'
+  # default guest user will be removed unless this is set to false
+  remove_guest_user: true
   user:
     user1:
       - password: password

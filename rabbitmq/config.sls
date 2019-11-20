@@ -40,3 +40,9 @@ rabbitmq_user_{{ name }}:
     - require:
       - service: rabbitmq-server
 {% endfor %}
+
+{% if salt['pillar.get']('rabbitmq:remove_guest_user', True) %}
+rabbitmq_user_guest:
+  rabbitmq_user.absent:
+    - name: guest
+{% endif %}
