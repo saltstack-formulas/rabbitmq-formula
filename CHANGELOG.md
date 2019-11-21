@@ -1,5 +1,22 @@
 # Changelog
 
+# [0.17.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.16.0...v0.17.0) (2019-11-21)
+
+
+### Continuous Integration
+
+* **travis:** opt-in to `dpl v2` to complete build config validation [skip ci] ([ff04ee9](https://github.com/saltstack-formulas/rabbitmq-formula/commit/ff04ee9439d4884a5ced793ee978e056064908a8))
+
+
+### Features
+
+* **config.sls:** remove guest user by default ([4531ac4](https://github.com/saltstack-formulas/rabbitmq-formula/commit/4531ac48983f9ad7da51f4d6b562754483d9baad))
+
+
+### Tests
+
+* **rabbitmq_users_spec.rb:** fix rubocop violations ([57efa45](https://github.com/saltstack-formulas/rabbitmq-formula/commit/57efa458af19851ae030eb788f35fcf20bb157b6))
+
 # [0.16.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.15.1...v0.16.0) (2019-11-19)
 
 
