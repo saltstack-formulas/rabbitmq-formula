@@ -2,6 +2,29 @@
 Changelog
 =========
 
+`0.18.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.17.0...v0.18.0>`_ (2019-12-19)
+-------------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gemfile:** restrict ``train`` gem version until upstream fix [skip ci] (\ `e97c976 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/e97c976c4b3f3c38ff05886787289ca191912e73>`_\ )
+* **travis:** quote pathspecs used with ``git ls-files`` [skip ci] (\ `b350c17 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/b350c1704af7d624b2b975552a6ff01bac6b3aac>`_\ )
+* **travis:** run ``shellcheck`` during lint job [skip ci] (\ `b50083a <https://github.com/saltstack-formulas/rabbitmq-formula/commit/b50083a1f0b9489fade69da6027e00767ebd5225>`_\ )
+
+Features
+^^^^^^^^
+
+
+* config_files source can be a salt:// path (\ `69308a0 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/69308a071089e75d26915c0cd7e9e7aef7a9976a>`_\ )
+
+Tests
+^^^^^
+
+
+* add test for config_files (\ `2854d1b <https://github.com/saltstack-formulas/rabbitmq-formula/commit/2854d1bc112349f7344c153430c0c401e8654344>`_\ )
+
 `0.17.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.16.0...v0.17.0>`_ (2019-11-21)
 -------------------------------------------------------------------------------------------------------------
 
