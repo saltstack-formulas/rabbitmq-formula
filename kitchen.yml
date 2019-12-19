@@ -182,6 +182,7 @@ suites:
         base:
           '*':
             - rabbitmq
+            - rabbitmq.config_files
       pillars:
         top.sls:
           base:
@@ -189,6 +190,10 @@ suites:
               - rabbitmq
       pillars_from_files:
         rabbitmq.sls: pillar.example
+      dependencies:
+        - name: files
+          path: ./test/salt
+
     verifier:
       inspec_tests:
         - path: test/integration/default
@@ -198,6 +203,7 @@ suites:
         base:
           '*':
             - rabbitmq.latest
+            - rabbitmq.config_files
       pillars:
         top.sls:
           base:
@@ -205,6 +211,9 @@ suites:
               - rabbitmq
       pillars_from_files:
         rabbitmq.sls: pillar.example
+      dependencies:
+        - name: files
+          path: ./test/salt
     verifier:
       inspec_tests:
         - path: test/integration/default
