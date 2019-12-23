@@ -8,4 +8,10 @@ control 'rabbitmq configuration' do
     it { should be_file }
     its('content') { should include '# Config file for rabbitmq' }
   end
+
+  describe file('/etc/rabbitmq/rabbitmq-env.conf') do
+    it { should exist }
+    it { should be_file }
+    its('content') { should include 'RABBITMQ_MNESIA_BASE=/opt/rabbitmq' }
+  end
 end

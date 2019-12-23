@@ -46,3 +46,15 @@ rabbitmq_user_guest:
   rabbitmq_user.absent:
     - name: guest
 {% endif %}
+
+{%- if salt['pillar.get']('rabbitmq:env', None) %}
+rabbitmq_env-file:
+  file.managed:
+    - name: /etc/rabbitmq/rabbitmq-env.conf
+    - source: salt://{{ slspath }}/files/rabbitmq-env.conf
+    - template: jinja
+    - context:
+        env: {{ salt['pillar.get']('rabbitmq:env', {}) }}
+    - watch_in:
+      - service: rabbitmq-server
+{%- endif %}
