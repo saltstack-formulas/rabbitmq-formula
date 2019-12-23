@@ -166,15 +166,6 @@ provisioner:
   salt_copy_filter:
     - .kitchen
     - .git
-  # dependencies needed for tests
-  dependencies:
-    # extraneous files provided to the formula
-    - name: files
-      path: ./test/salt
-    # states used to prepare the system before tests
-    - name: states
-      path: ./test/salt
-
 
 verifier:
   # https://www.inspec.io/
@@ -200,6 +191,15 @@ suites:
               - rabbitmq
       pillars_from_files:
         rabbitmq.sls: pillar.example
+      # dependencies needed for tests
+      dependencies:
+        # extra files provided to the formula
+        - name: files
+          path: ./test/salt
+        # states used to prepare the system before tests
+        - name: states
+          path: ./test/salt
+
     verifier:
       inspec_tests:
         - path: test/integration/default
@@ -219,6 +219,14 @@ suites:
               - rabbitmq
       pillars_from_files:
         rabbitmq.sls: pillar.example
+      # dependencies needed for tests
+      dependencies:
+        # extra files provided to the formula
+        - name: files
+          path: ./test/salt
+        # states used to prepare the system before tests
+        - name: states
+          path: ./test/salt
     verifier:
       inspec_tests:
         - path: test/integration/default
