@@ -193,7 +193,6 @@ suites:
       dependencies:
         - name: files
           path: ./test/salt
-
     verifier:
       inspec_tests:
         - path: test/integration/default
