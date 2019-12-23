@@ -1,5 +1,24 @@
 # Changelog
 
+# [0.19.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.18.0...v0.19.0) (2019-12-23)
+
+
+### Continuous Integration
+
+* **kitchen:** add salt state to kitchen exec ([85e2e32](https://github.com/saltstack-formulas/rabbitmq-formula/commit/85e2e321c6c179f6eefdea226e64b2a1d4888028))
+* **kitchen:** standardise structure [skip ci] ([3eaab51](https://github.com/saltstack-formulas/rabbitmq-formula/commit/3eaab517a098ed2b9c27b1f996ac72b2293d92c7))
+* **travis:** use `major.minor` for `semantic-release` version [skip ci] ([2e6a92b](https://github.com/saltstack-formulas/rabbitmq-formula/commit/2e6a92becc13e421320b4963bdd4a45302bbc5dd))
+
+
+### Features
+
+* config state now also managed rabbitmq env file ([53f12d2](https://github.com/saltstack-formulas/rabbitmq-formula/commit/53f12d2f8053c0a4afe3f8fc3ef5006e453cc435))
+
+
+### Tests
+
+* **inspec:** test new rabbitmq-env file ([f7e5d39](https://github.com/saltstack-formulas/rabbitmq-formula/commit/f7e5d391d7537fe91a0b425043b7d83bfb247511))
+
 # [0.18.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.17.0...v0.18.0) (2019-12-19)
 
 
