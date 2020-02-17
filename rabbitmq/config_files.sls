@@ -1,3 +1,6 @@
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+
 # Should have a place to specify config directory per distrib?
 include:
   - .install
@@ -9,7 +12,7 @@ include:
     {%- if source.startswith('salt://') %}
     - source: {{ source }}
     {%- else %}
-    - source: salt://{{ slspath }}/{{ source }}
+    - source: salt://{{ tplroot }}/{{ source }}
     {% endif %}
     - template: jinja
     - context: {{ info.get('context', {})|json }}

@@ -1,3 +1,6 @@
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+
 {% for name, plugin in salt["pillar.get"]("rabbitmq:plugin", {}).items() %}
 {{ name }}:
   rabbitmq_plugin:
@@ -51,7 +54,7 @@ rabbitmq_user_guest:
 rabbitmq_env-file:
   file.managed:
     - name: /etc/rabbitmq/rabbitmq-env.conf
-    - source: salt://{{ slspath }}/files/rabbitmq-env.conf
+    - source: salt://{{ tplroot }}/files/rabbitmq-env.conf
     - template: jinja
     - context:
         env: {{ salt['pillar.get']('rabbitmq:env', {}) }}
