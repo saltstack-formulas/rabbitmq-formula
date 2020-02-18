@@ -2,6 +2,22 @@
 Changelog
 =========
 
+`0.19.1 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.19.0...v0.19.1>`_ (2020-02-18)
+-------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **slspath:** use ``tplroot`` to prevent path errors in ``Neon`` (\ `d4982df <https://github.com/saltstack-formulas/rabbitmq-formula/commit/d4982df5c573fd3cc91177f56ad914f6916f02b4>`_\ ), closes `/travis-ci.org/myii/rabbitmq-formula/jobs/651200625#L1830 <https://github.com//travis-ci.org/myii/rabbitmq-formula/jobs/651200625/issues/L1830>`_ `/travis-ci.org/myii/rabbitmq-formula/jobs/651200626#L1779 <https://github.com//travis-ci.org/myii/rabbitmq-formula/jobs/651200626/issues/L1779>`_
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **kitchen:** avoid using bootstrap for ``master`` instances [skip ci] (\ `e3c9993 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/e3c9993e8631ac5f188dbde91b609d3d5aa12167>`_\ )
+* **kitchen:** standardise structure [skip ci] (\ `977c8a0 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/977c8a02bbfcb8a6995fe54188481d3f9b02c4eb>`_\ )
+
 `0.19.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.18.0...v0.19.0>`_ (2019-12-23)
 -------------------------------------------------------------------------------------------------------------
 
