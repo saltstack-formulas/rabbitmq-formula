@@ -1,4 +1,10 @@
-{% from "rabbitmq/package-map.jinja" import pkgs with context %}
+# -*- coding: utf-8 -*-
+# vim: ft=sls
+
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- set sls_config_file = tplroot ~ '.config.file' %}
+{%- from tplroot ~ "/map.jinja" import rabbitmq with context %}
 
 {% set module_list = salt['sys.list_modules']() %}
 {% if 'rabbitmqadmin' in module_list %}
@@ -10,7 +16,7 @@ include:
 
 rabbitmq-server:
   pkg.installed:
-    - name: {{ pkgs['rabbitmq-server'] }}
+    - pkgs: {{ rabbitmq.pkgs }}
     {%- if 'version' in salt['pillar.get']('rabbitmq', {}) %}
     - version: {{ salt['pillar.get']('rabbitmq:version') }}
     {%- endif %}
