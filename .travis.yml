@@ -73,8 +73,8 @@ jobs:
     # Make sure the instances listed below match up with
     # the `platforms` defined in `kitchen.yml`
     # - env: INSTANCE=default-debian-10-master-py3
-    - env: INSTANCE=latest-debian-10-master-py3
-    - env: INSTANCE=default-ubuntu-1804-master-py3
+    # - env: INSTANCE=latest-debian-10-master-py3
+    # - env: INSTANCE=default-ubuntu-1804-master-py3
     # - env: INSTANCE=latest-ubuntu-1804-master-py3
     # - env: INSTANCE=default-centos-8-master-py3
     # - env: INSTANCE=latest-centos-8-master-py3
@@ -85,10 +85,10 @@ jobs:
     # - env: INSTANCE=default-amazonlinux-2-master-py3
     # - env: INSTANCE=latest-amazonlinux-2-master-py3
     # - env: INSTANCE=default-debian-10-2019-2-py3
-    # - env: INSTANCE=latest-debian-10-2019-2-py3
-    - env: INSTANCE=default-debian-9-2019-2-py3
+    - env: INSTANCE=latest-debian-10-2019-2-py3
+    # - env: INSTANCE=default-debian-9-2019-2-py3
     # - env: INSTANCE=latest-debian-9-2019-2-py3
-    - env: INSTANCE=default-ubuntu-1804-2019-2-py3
+    # - env: INSTANCE=default-ubuntu-1804-2019-2-py3
     # - env: INSTANCE=latest-ubuntu-1804-2019-2-py3
     # - env: INSTANCE=default-centos-8-2019-2-py3
     # - env: INSTANCE=latest-centos-8-2019-2-py3
@@ -104,7 +104,7 @@ jobs:
     # - env: INSTANCE=latest-arch-base-latest-2019-2-py2
     # - env: INSTANCE=default-fedora-30-2018-3-py3
     # - env: INSTANCE=latest-fedora-30-2018-3-py3
-    - env: INSTANCE=default-debian-9-2018-3-py2
+    # - env: INSTANCE=default-debian-9-2018-3-py2
     # - env: INSTANCE=latest-debian-9-2018-3-py2
     # - env: INSTANCE=default-ubuntu-1604-2018-3-py2
     # - env: INSTANCE=latest-ubuntu-1604-2018-3-py2
@@ -118,7 +118,7 @@ jobs:
     # - env: INSTANCE=latest-arch-base-latest-2018-3-py2
     # - env: INSTANCE=default-debian-8-2017-7-py2
     # - env: INSTANCE=latest-debian-8-2017-7-py2
-    - env: INSTANCE=default-ubuntu-1604-2017-7-py2
+    # - env: INSTANCE=default-ubuntu-1604-2017-7-py2
     # - env: INSTANCE=latest-ubuntu-1604-2017-7-py2
     # - env: INSTANCE=default-centos-6-2017-7-py2
     # - env: INSTANCE=latest-centos-6-2017-7-py2
