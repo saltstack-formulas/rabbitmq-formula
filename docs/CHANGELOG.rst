@@ -2,6 +2,29 @@
 Changelog
 =========
 
+`0.20.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.19.1...v0.20.0>`_ (2020-12-16)
+-------------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gemfile.lock:** add to repo with updated ``Gemfile`` [skip ci] (\ `5e215cd <https://github.com/saltstack-formulas/rabbitmq-formula/commit/5e215cd5df50402875ee7ea92de7677b62029b71>`_\ )
+* **gitlab-ci:** use GitLab CI as Travis CI replacement (\ `9ac7690 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/9ac76908833c7615cc2cd82cc7110c356673d171>`_\ )
+* **kitchen:** use ``saltimages`` Docker Hub where available [skip ci] (\ `fcdef3f <https://github.com/saltstack-formulas/rabbitmq-formula/commit/fcdef3ff327385b8cde4aae17cbd47514e761f4c>`_\ )
+* **kitchen+travis:** remove ``master-py2-arch-base-latest`` [skip ci] (\ `d4a6c8f <https://github.com/saltstack-formulas/rabbitmq-formula/commit/d4a6c8fadf3f8dacce099c7ae27194cfddba7fa5>`_\ )
+* **pre-commit:** add to formula [skip ci] (\ `2547b23 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/2547b23f55fd3927c5df12296a459584f4cae693>`_\ )
+* **pre-commit:** enable/disable ``rstcheck`` as relevant [skip ci] (\ `f04bfe6 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/f04bfe6f57d1c039d81c838b94db26b14f8549fe>`_\ )
+* **pre-commit:** finalise ``rstcheck`` configuration [skip ci] (\ `3e1b397 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/3e1b39778f4ff95b918cf571290ef18a4402e405>`_\ )
+* **travis:** add notifications => zulip [skip ci] (\ `232e38f <https://github.com/saltstack-formulas/rabbitmq-formula/commit/232e38fb5c561b29608d542b97991de6406d5e52>`_\ )
+* **workflows/commitlint:** add to repo [skip ci] (\ `cea9af8 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/cea9af8f419144a50f3cc5d83c9307d1c4018b92>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **suse:** basic suse support (\ `4a67836 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/4a67836fa02bec3efda06d2affae7f4940cad953>`_\ )
+
 `0.19.1 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.19.0...v0.19.1>`_ (2020-02-18)
 -------------------------------------------------------------------------------------------------------------
 
