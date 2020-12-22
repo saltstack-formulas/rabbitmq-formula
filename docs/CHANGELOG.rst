@@ -2,6 +2,23 @@
 Changelog
 =========
 
+`0.20.1 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.0...v0.20.1>`_ (2020-12-22)
+-------------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **commitlint:** ensure ``upstream/master`` uses main repo URL [skip ci] (\ `af49850 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/af49850d605468ec956c22895f92fe8084dac7c3>`_\ )
+* **gitlab-ci:** add ``rubocop`` linter (with ``allow_failure``\ ) [skip ci] (\ `4d549db <https://github.com/saltstack-formulas/rabbitmq-formula/commit/4d549db99d23f76b0922d0b98c9ad2d41dab8641>`_\ )
+
+Tests
+^^^^^
+
+
+* **_mapdata:** generate verification files (\ `2b9a968 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/2b9a968fb64a32c2d179e260e598f72f9c6e413b>`_\ )
+* **map:** verify ``map.jinja`` dump using ``_mapdata`` state (\ `4d0287d <https://github.com/saltstack-formulas/rabbitmq-formula/commit/4d0287d2849c09507944b95e8c86c3043273a785>`_\ )
+
 `0.20.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.19.1...v0.20.0>`_ (2020-12-16)
 -------------------------------------------------------------------------------------------------------------
 
