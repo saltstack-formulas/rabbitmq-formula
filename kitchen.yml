@@ -156,6 +156,7 @@ suites:
       state_top:
         base:
           '*':
+            - rabbitmq._mapdata
             - states.files
             - rabbitmq
             - rabbitmq.config_files
@@ -179,6 +180,7 @@ suites:
       state_top:
         base:
           '*':
+            - rabbitmq._mapdata
             - states.files
             - rabbitmq.latest
             - rabbitmq.config_files
