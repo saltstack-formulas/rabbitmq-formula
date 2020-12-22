@@ -1,0 +1,4 @@
+# yamllint disable rule:indentation rule:line-length
+# Debian-10
+---
+rabbitmq-server: rabbitmq-server

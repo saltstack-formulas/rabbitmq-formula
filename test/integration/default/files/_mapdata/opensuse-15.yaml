@@ -1,0 +1,4 @@
+# yamllint disable rule:indentation rule:line-length
+# Leap-15
+---
+rabbitmq-server: rabbitmq-server

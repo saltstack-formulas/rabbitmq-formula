@@ -1,0 +1,4 @@
+# yamllint disable rule:indentation rule:line-length
+# Ubuntu-18.04
+---
+rabbitmq-server: rabbitmq-server
