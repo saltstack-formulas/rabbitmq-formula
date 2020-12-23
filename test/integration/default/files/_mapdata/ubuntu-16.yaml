@@ -1,4 +1,6 @@
 # yamllint disable rule:indentation rule:line-length
 # Ubuntu-16.04
 ---
-rabbitmq-server: rabbitmq-server
+values:
+  pkgs:
+    rabbitmq-server: rabbitmq-server
