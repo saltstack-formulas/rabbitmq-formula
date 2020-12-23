@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.1...v0.20.2) (2020-12-23)
+
+
+### Code Refactoring
+
+* **map:** use top-level `values:` key in `map.jinja` dumps ([7cff4de](https://github.com/saltstack-formulas/rabbitmq-formula/commit/7cff4deae2177073bb325bcf9eeb88919f705fc5))
+
 ## [0.20.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.0...v0.20.1) (2020-12-22)
 
 
