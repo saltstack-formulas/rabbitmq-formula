@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.20.3](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.2...v0.20.3) (2021-01-14)
+
+
+### Bug Fixes
+
+* **_mapdata:** ensure map data is directly under `values` ([164fb62](https://github.com/saltstack-formulas/rabbitmq-formula/commit/164fb6263f4e741b574741e39801549b7837fdc8))
+
+
+### Tests
+
+* **_mapdata:** update for `_mapdata/init.sls` change ([dbadb4e](https://github.com/saltstack-formulas/rabbitmq-formula/commit/dbadb4e89d651cfef5ffa4a62e2a9b717f9ea38c))
+
 ## [0.20.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.1...v0.20.2) (2020-12-23)
 
 
