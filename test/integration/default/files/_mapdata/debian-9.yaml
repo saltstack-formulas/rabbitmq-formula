@@ -2,5 +2,4 @@
 # Debian-9
 ---
 values:
-  pkgs:
-    rabbitmq-server: rabbitmq-server
+  rabbitmq-server: rabbitmq-server

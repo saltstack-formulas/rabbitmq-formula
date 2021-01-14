@@ -2,5 +2,4 @@
 # Fedora-30
 ---
 values:
-  pkgs:
-    rabbitmq-server: rabbitmq-server
+  rabbitmq-server: rabbitmq-server

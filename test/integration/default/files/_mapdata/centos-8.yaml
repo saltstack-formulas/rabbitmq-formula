@@ -2,5 +2,4 @@
 # CentOS Linux-8
 ---
 values:
-  pkgs:
-    rabbitmq-server: rabbitmq-server
+  rabbitmq-server: rabbitmq-server
