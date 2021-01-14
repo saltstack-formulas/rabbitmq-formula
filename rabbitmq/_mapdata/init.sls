@@ -6,9 +6,7 @@
 {%- from tplroot ~ "/package-map.jinja" import pkgs with context %}
 
 {%- set _mapdata = {
-      "values": {
-        "pkgs": pkgs,
-      }
+      "values": pkgs,
     } %}
 {%- do salt["log.debug"]("### MAP.JINJA DUMP ###\n" ~ _mapdata | yaml(False)) %}
 
