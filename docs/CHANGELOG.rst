@@ -2,6 +2,32 @@
 Changelog
 =========
 
+`0.20.4 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.3...v0.20.4>`_ (2021-04-12)
+-------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **latest.sls:** change apt repository following bintray shutdown (\ `ac16a5f <https://github.com/saltstack-formulas/rabbitmq-formula/commit/ac16a5f3e08f539d944ea5ecf3de523a5c796301>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gemfile+lock:** use ``ssf`` customised ``kitchen-docker`` repo [skip ci] (\ `c456f53 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/c456f53235f12bfa7698b4462e6ddc39e79e3c1e>`_\ )
+* **kitchen+ci:** use latest pre-salted images (after CVE) [skip ci] (\ `9a6f0c6 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/9a6f0c6e5bcd8bf0b13b8b02f256a8f1e763109e>`_\ )
+* **kitchen+gitlab-ci:** use latest pre-salted images [skip ci] (\ `ebb55f3 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/ebb55f3aec4dedc56315e83f707a3144700bd3d1>`_\ )
+* **pre-commit:** update hook for ``rubocop`` [skip ci] (\ `04ddd76 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/04ddd762bc7e17820401694f0605d1238e7753a7>`_\ )
+
+Tests
+^^^^^
+
+
+* standardise use of ``share`` suite & ``_mapdata`` state [skip ci] (\ `2d82763 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/2d8276361caf62a89a4e40e18de8e0f783a6d917>`_\ )
+* **_mapdata:** add verification files for Fedora 32+33 & Ubuntu 20.04 (\ `f0b0182 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/f0b0182b2697a08ab4928037a3fcb1c8be40cf17>`_\ )
+* **share:** standardise with latest changes [skip ci] (\ `133ba1d <https://github.com/saltstack-formulas/rabbitmq-formula/commit/133ba1dee12c1d71ca12e3f7c6c4b6285a8fc07b>`_\ )
+
 `0.20.3 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.2...v0.20.3>`_ (2021-01-14)
 -------------------------------------------------------------------------------------------------------------
 
