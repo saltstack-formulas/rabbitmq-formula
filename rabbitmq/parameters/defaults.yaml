@@ -1,0 +1,54 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set default values.
+---
+values:
+  pkg:
+    name: rabbitmq-server
+    # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
+    use_upstream: repo    # use upstream repo (if applicable)
+  dir:
+    base: /usr/lib/rabbitmq
+    data: /var/lib/rabbitmq
+    cleanlist:
+      - /usr/local/bin/rabbitmq-env
+      - /usr/local/bin/rabbitmq-plugins
+  env:
+    name: /etc/rabbitmq/rabbitmq-env.conf
+    context:
+      rabbitmq_mnesia_base: /var/lib/rabbitmq
+      RABBITMQ_BASE: /var/lib/rabbitmq
+  config:
+    name: /etc/rabbitmq/rabbitmq.conf
+    locale: null
+    # see rabbitmq.conf.example from rabbitmq-server github docs
+    context: {}
+  service:
+    name: rabbitmq-server
+    enabled: true
+    running: true
+  plugin:
+    # http-based API for management, monitoring, browser ui, rabbitmqadm cli
+    # required by binding, exchange, and queue states
+    rabbitmq_management:
+      runas: root
+    rabbitmq_federation:
+      runas: root
+  policy:
+    rabbitmq_policy:
+      - name: HA
+      - pattern: '.*'
+      - definition: '{"ha-mode": "all"}'
+  vhost:
+    - '/virtual/host'
+
+  rootgroup: root
+  # default guest user will be removed unless this is set to false
+  remove_guest_user: true
+  user: {}
+
+  # Just here for testing
+  added_in_defaults: defaults_value
+  winner: defaults
+...

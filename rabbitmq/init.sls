@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# vim: ft=sls
+
 include:
-  - rabbitmq.install
-  - rabbitmq.config
+  - .package
+  - .rabbitmqadmin
+  - .config
+  - .service

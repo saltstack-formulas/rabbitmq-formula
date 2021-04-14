@@ -1,5 +1,0 @@
-# yamllint disable rule:indentation rule:line-length
-# Fedora-30
----
-values:
-  rabbitmq-server: rabbitmq-server

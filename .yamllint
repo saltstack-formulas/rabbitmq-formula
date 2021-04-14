@@ -18,6 +18,7 @@ ignore: |
   test/**/states/**/*.sls
   .kitchen/
   kitchen.vagrant.yml
+  pillar.example
 
 yaml-files:
   # Default settings
