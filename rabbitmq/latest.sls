@@ -26,6 +26,12 @@ rabbitmq_repo:
     - key_url: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
     - require_in:
       - pkg: rabbitmq-server
+remove_old_erlang_repo:
+  pkgrepo.absent:
+    - name: deb https://dl.bintray.com/rabbitmq-erlang/debian {{ salt['grains.get']('oscodename') }} erlang
+remove_old_rabbitmq_repo:
+  pkgrepo.absent:
+    - name: deb https://dl.bintray.com/rabbitmq/debian {{ salt['grains.get']('oscodename') }} main
 {% elif grains['os'] == 'CentOS' and grains['osmajorrelease'][0] == '6' %}
 rabbitmq_repo:
   pkgrepo.managed:
