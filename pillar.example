@@ -13,6 +13,7 @@ rabbitmq:
     # see rabbitmq.conf.example from rabbitmq-server github docs
     context: {}
   env:
+    locale_all: en_US.UTF-8
     context:
       rabbitmq_mnesia_base: /var/lib/rabbitmq
       RABBITMQ_BASE: /var/lib/rabbitmq

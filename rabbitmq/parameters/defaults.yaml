@@ -16,12 +16,12 @@ values:
       - /usr/local/bin/rabbitmq-plugins
   env:
     name: /etc/rabbitmq/rabbitmq-env.conf
+    locale_all: null
     context:
       rabbitmq_mnesia_base: /var/lib/rabbitmq
       RABBITMQ_BASE: /var/lib/rabbitmq
   config:
     name: /etc/rabbitmq/rabbitmq.conf
-    locale: null
     # see rabbitmq.conf.example from rabbitmq-server github docs
     context: {}
   service:
@@ -47,6 +47,13 @@ values:
   # default guest user will be removed unless this is set to false
   remove_guest_user: true
   user: {}
+
+  retry_option:
+    # https://docs.saltstack.com/en/latest/ref/states/requisites.html#retrying-states
+    attempts: 0
+    until: true
+    interval: 60
+    splay: 10
 
   # Just here for testing
   added_in_defaults: defaults_value

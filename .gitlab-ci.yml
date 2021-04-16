@@ -147,7 +147,7 @@ default-fedora-32-master-py3: {extends: '.test_instance'}
 # default-opensuse-tmbl-latest-master-py3: {extends: '.test_instance'}
 # default-amazonlinux-2-master-py3: {extends: '.test_instance'}
 # default-oraclelinux-8-master-py3: {extends: '.test_instance'}
-default-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# default-oraclelinux-7-master-py3: {extends: '.test_instance'}
 # gentoo-gentoo-stage3-latest-master-py3: {extends: '.test_instance'}
 # gentoo-gentoo-stage3-systemd-master-py3: {extends: '.test_instance'}
 # default-debian-10-3002-5-py3: {extends: '.test_instance'}
@@ -155,7 +155,7 @@ default-oraclelinux-7-master-py3: {extends: '.test_instance'}
 # default-ubuntu-2004-3002-5-py3: {extends: '.test_instance'}
 # default-ubuntu-1804-3002-5-py3: {extends: '.test_instance'}
 # default-ubuntu-1604-3002-5-py3: {extends: '.test_instance'}
-default-centos-8-3002-5-py3: {extends: '.test_instance'}
+# default-centos-8-3002-5-py3: {extends: '.test_instance'}
 ### default-centos-7-3002-5-py3: {extends: '.test_instance'}
 # default-fedora-33-3002-5-py3: {extends: '.test_instance'}
 # default-fedora-32-3002-5-py3: {extends: '.test_instance'}
