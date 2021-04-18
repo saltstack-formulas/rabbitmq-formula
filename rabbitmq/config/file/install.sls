@@ -63,3 +63,27 @@ rabbitmq-config-{{ filename }}-file-managed:
     - context: {{ info.get('context', {})|json }}
 
     {% endfor %}
+    {%- if grains.os_family == 'RedHat' %}
+
+rabbitmq-config-file-file-managed-limits:
+  file.managed:
+    - name: /etc/systemd/system/{{ rabbitmq.service.name }}.service.d/limits.conf
+    - user: root
+    - group: root
+    - makedirs: true
+    - contents:
+      - [Service]
+      - LimitNOFILE=infinity
+      - TimeoutSec=150
+    - require_in:
+      - service: rabbitmq-service-running-service-running
+
+        {%- if rabbitmq.env.locale_all %}
+  environ.setenv:
+    - name: LC_ALL
+    - value: {{ rabbitmq.env.locale_all }}
+    - update_minion: True
+    - require_in:
+      - service: rabbitmq-service-running-service-running
+        {%- endif %}
+    {%- endif %}
