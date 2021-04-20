@@ -2,11 +2,11 @@
 rabbitmq_user:
   user.present:
     - name: rabbitmq
-    - home: /opt/rabbitmq
+    - home: /var/lib/rabbitmq
 
 rabbitmq_dir:
   file.directory:
-    - name: /opt/rabbitmq
+    - name: /var/lib/rabbitmq
     - user: rabbitmq
     - group: rabbitmq
     - makedirs: true

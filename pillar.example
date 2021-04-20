@@ -1,22 +1,90 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
 ---
 rabbitmq:
-  # version: "3.5.3-1"
-  enabled: true
-  running: true
+  pkg:
+    # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
+    use_upstream: repo  # if available (i.e. packagecloud)
+  service:
+    enabled: true
+    running: true
+
+  config:
+    # see rabbitmq.conf.example from rabbitmq-server github docs
+    context: {}
   env:
-    rabbitmq_mnesia_base: /opt/rabbitmq
+    locale_all: en_US.UTF-8
+    context:
+      rabbitmq_mnesia_base: /var/lib/rabbitmq
+      RABBITMQ_BASE: /var/lib/rabbitmq
+  dir:
+    base: /var/lib/rabbitmq
+
+  vhost:
+    - test_vhost
+
+  binding:
+    my-new-binding:
+      - destination_type: queue
+      - destination: my-new-queue
+      - routing_key: a_routing_key_string
+      - user: saltstack
+      - passwd: 'password'
+      - vhost: test_vhost
+      - arguments:
+          - 'x-message-ttl': 8640000
+
+  queue:
+    my-new-queue:
+      - user: saltstack
+      - passwd: 'password'
+      - durable: true
+      - auto_delete: false
+      - vhost: test_vhost
+      - arguments:
+          - 'x-message-ttl': 8640000
+          - 'x-expires': 8640000
+          - 'x-dead-letter-exchange': 'my-new-exchange'
+
+  exchange:
+    my-new-exchange:
+      - user: saltstack
+      - passwd: 'password'
+      - type: fanout
+      - durable: true
+      - internal: false
+      - auto_delete: false
+      - vhost: test_vhost
+      - arguments:
+          - 'alternate-**exchange': 'amq.fanout'
+          - 'test-header': 'testing'
+
+  cluster:
+    rabbit@locahost:
+      - user: rabbit
+      - host: localhost
+      - ram_node: None
+      - runas: root
+
   plugin:
     rabbitmq_management:
-      - enabled
+      runas: root
+    rabbitmq_federation:
+      runas: root
+
   policy:
     rabbitmq_policy:
       - name: HA
       - pattern: '.*'
       - definition: '{"ha-mode": "all"}'
-  vhost:
-    vh_name: '/virtual/host'
-  # default guest user will be removed unless this is set to false
-  remove_guest_user: true
+
+  upstream:
+    upstream_1:
+      - uri: amqp://saltstack:password@localhost
+      - trust_user_id: true
+      - ack_mode: on-confirm
+      - max_hops: 1
+
   user:
     user1:
       - password: password
@@ -38,17 +106,51 @@ rabbitmq:
               - '.*'
               - '.*'
       - runas: root
-  config_files:
-    # config_files, if you need some stuffs set directly in configuration
-    # files, rather than via the light modules available.
-    rabbitmq.conf:
-      # source is relative to `rabbitmq` formula
-      # source: templates/rabbitmq.conf
-      # or absolute in salt fileserver
-      source: salt://files/rabbitmq/rabbitmq.conf
-      # an optional map can be passed to the jinja template
-      context:
-        src_broker_uri: "amqp://user:pass@10.1.2.3"
-#    rabbitmqcfg.json:
-#      source: templates/relay-rabbitmqcfg.config
-#      # context: is optional map passed to the jinja template...
+    saltstack:
+      - password: password
+      - force: false
+      - tags:
+          - administrator
+      - perms:
+          - test_vhost:
+              - '.*'
+              - '.*'
+              - '.*'
+      - runas: root
+
+  tofs:
+    # The files_switch key serves as a selector for alternative
+    # directories under the formula files directory. See TOFS pattern
+    # doc for more info.
+    # Note: Any value not evaluated by `config.get` will be used literally.
+    # This can be used to set custom paths, as many levels deep as required.
+    files_switch:
+      - any/path/can/be/used/here
+      - id
+      - roles
+      - osfinger
+      - os
+      - os_family
+    # All aspects of path/file resolution are customisable using the options below.
+    # This is unnecessary in most cases; there are sensible defaults.
+    # Default path: salt://< path_prefix >/< dirs.files >/< dirs.default >
+    #         I.e.: salt://rabbitmq/files/default
+    # path_prefix: template_alt
+    # dirs:
+    #   files: files_alt
+    #   default: default_alt
+    # The entries under `source_files` are prepended to the default source files
+    # given for the state
+    # source_files:
+    #   rabbitmq-config-file-file-managed:
+    #     - 'example_alt.tmpl'
+    #     - 'example_alt.tmpl.jinja'
+
+    # For testing purposes
+    source_files:
+      rabbitmq-config-file-file-managed:
+        - 'example.tmpl.jinja'
+
+  # Just for testing purposes
+  winner: pillar
+  added_in_pillar: pillar_value

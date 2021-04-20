@@ -56,9 +56,9 @@ class SystemResource < Inspec.resource(1)
     when 'gentoo'
       "#{inspec.platform[:release].split('.')[0]}-#{derive_gentoo_init_system}"
     when 'opensuse'
-      # rubocop:disable Style/NumericLiterals,Layout/LineLength
+      # rubocop:disable Style/NumericLiterals
       inspec.platform[:release].to_i > 20210101 ? 'tumbleweed' : inspec.platform[:release]
-      # rubocop:enable Style/NumericLiterals,Layout/LineLength
+      # rubocop:enable Style/NumericLiterals
     when 'windows_8.1_pro'
       '8.1'
     when 'windows_server_2019_datacenter'

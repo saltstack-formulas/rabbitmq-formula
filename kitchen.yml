@@ -308,50 +308,36 @@ verifier:
 
 suites:
   - name: default
+    excludes:
+      - gentoo-stage3-latest-master-py3
+      - gentoo-stage3-systemd-master-py3
+      - gentoo-stage3-latest-3002-5-py3
+      - gentoo-stage3-systemd-3002-5-py3
+      - gentoo-stage3-latest-3001-6-py3
+      - gentoo-stage3-systemd-3001-6-py3
+      - gentoo-stage3-latest-3000-8-py3
+      - gentoo-stage3-systemd-3000-8-py3
     provisioner:
-      dependencies:
-        - name: files
-          path: ./test/salt
-        - name: states
-          path: ./test/salt
       state_top:
         base:
           '*':
             - rabbitmq._mapdata
             - states.files
             - rabbitmq
-            - rabbitmq.config_files
       pillars:
         top.sls:
           base:
             '*':
               - rabbitmq
+              - define_roles
       pillars_from_files:
         rabbitmq.sls: pillar.example
-    verifier:
-      inspec_tests:
-        - path: test/integration/default
-  - name: latest
-    provisioner:
+        define_roles.sls: test/salt/pillar/define_roles.sls
       dependencies:
         - name: files
           path: ./test/salt
         - name: states
           path: ./test/salt
-      state_top:
-        base:
-          '*':
-            - rabbitmq._mapdata
-            - states.files
-            - rabbitmq.latest
-            - rabbitmq.config_files
-      pillars:
-        top.sls:
-          base:
-            '*':
-              - rabbitmq
-      pillars_from_files:
-        rabbitmq.sls: pillar.example
     verifier:
       inspec_tests:
         - path: test/integration/default
