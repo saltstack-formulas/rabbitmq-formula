@@ -1,5 +1,24 @@
 # Changelog
 
+# [1.0.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.4...v1.0.0) (2021-04-20)
+
+
+### Bug Fixes
+
+* **centos:** get service running to work ([ad5636a](https://github.com/saltstack-formulas/rabbitmq-formula/commit/ad5636ad17447b84b28e3d4fd4fb7145da83052b))
+* **centos:** get systemd service passing ([ee01836](https://github.com/saltstack-formulas/rabbitmq-formula/commit/ee0183684e5a36846d59e7880e48ddf27d8476c3))
+
+
+### Code Refactoring
+
+* **formula:** align to template formula ([d55402f](https://github.com/saltstack-formulas/rabbitmq-formula/commit/d55402f0b87889b9a47bd289148232de106302a4))
+
+
+### BREAKING CHANGES
+
+* **formula:** This formula has been refactored to align with
+template formula. States have changed, and some pillar data
+
 ## [0.20.4](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.3...v0.20.4) (2021-04-12)
 
 
