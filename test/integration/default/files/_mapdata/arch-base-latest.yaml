@@ -3,15 +3,51 @@
 ---
 values:
   added_in_defaults: defaults_value
-  added_in_lookup: lookup_value
   added_in_pillar: pillar_value
   arch: amd64
+  binding:
+    my-new-binding:
+    - destination_type: queue
+    - destination: my-new-queue
+    - routing_key: a_routing_key_string
+    - user: saltstack
+    - passwd: password
+    - vhost: test_vhost
+    - arguments:
+      - x-message-ttl: 8640000
+  cluster:
+    rabbit@locahost:
+    - user: rabbit
+    - host: localhost
+    - ram_node: None
+    - runas: root
   config:
-    name: /etc/rabbitmq-formula.conf
-  lookup:
-    added_in_lookup: lookup_value
-    master: template-master
-    winner: lookup
+    context: {}
+    name: /etc/rabbitmq/rabbitmq.conf
+  dir:
+    base: /var/lib/rabbitmq
+    cleanlist:
+    - /usr/local/bin/rabbitmq-env
+    - /usr/local/bin/rabbitmq-plugins
+    data: /var/lib/rabbitmq
+  env:
+    context:
+      RABBITMQ_BASE: /var/lib/rabbitmq
+      rabbitmq_mnesia_base: /var/lib/rabbitmq
+    locale_all: en_US.UTF-8
+    name: /etc/rabbitmq/rabbitmq-env.conf
+  exchange:
+    my-new-exchange:
+    - user: saltstack
+    - passwd: password
+    - type: fanout
+    - durable: true
+    - internal: false
+    - auto_delete: false
+    - vhost: test_vhost
+    - arguments:
+      - alternate-**exchange: amq.fanout
+      - test-header: testing
   map_jinja:
     sources:
     - Y:G@osarch
@@ -21,12 +57,41 @@ values:
     - C@rabbitmq:lookup
     - C@rabbitmq
     - Y:G@id
-  master: template-master
   pkg:
-    name: bash
+    name: rabbitmq
+    use_upstream: repo
+  plugin:
+    rabbitmq_federation:
+      runas: root
+    rabbitmq_management:
+      runas: root
+  policy:
+    rabbitmq_policy:
+    - name: HA
+    - pattern: .*
+    - definition: '{"ha-mode": "all"}'
+  queue:
+    my-new-queue:
+    - user: saltstack
+    - passwd: password
+    - durable: true
+    - auto_delete: false
+    - vhost: test_vhost
+    - arguments:
+      - x-message-ttl: 8640000
+      - x-expires: 8640000
+      - x-dead-letter-exchange: my-new-exchange
+  remove_guest_user: true
+  retry_option:
+    attempts: 0
+    interval: 60
+    splay: 10
+    until: true
   rootgroup: root
   service:
-    name: systemd-journald
+    enabled: true
+    name: rabbitmq-server
+    running: true
   tofs:
     files_switch:
     - any/path/can/be/used/here
@@ -38,4 +103,44 @@ values:
     source_files:
       rabbitmq-config-file-file-managed:
       - example.tmpl.jinja
+  upstream:
+    upstream_1:
+    - uri: amqp://saltstack:password@localhost
+    - trust_user_id: true
+    - ack_mode: on-confirm
+    - max_hops: 1
+  user:
+    saltstack:
+    - password: password
+    - force: false
+    - tags:
+      - administrator
+    - perms:
+      - test_vhost:
+        - .*
+        - .*
+        - .*
+    - runas: root
+    user1:
+    - password: password
+    - force: true
+    - tags: monitoring, user
+    - perms:
+      - /:
+        - .*
+        - .*
+        - .*
+    - runas: root
+    user2:
+    - password: password
+    - force: true
+    - tags: monitoring, user
+    - perms:
+      - /:
+        - .*
+        - .*
+        - .*
+    - runas: root
+  vhost:
+  - test_vhost
   winner: pillar
