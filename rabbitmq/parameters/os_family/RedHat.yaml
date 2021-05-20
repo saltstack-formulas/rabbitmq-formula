@@ -12,6 +12,8 @@
 # values: {}
 ---
 values:
+  pkg:
+    deps: []
   config:
     name: /etc/rabbitmq.conf
 ...

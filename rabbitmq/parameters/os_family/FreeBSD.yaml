@@ -13,4 +13,6 @@
 ---
 values:
   rootgroup: wheel
+  pkg:
+    deps: []
 ...

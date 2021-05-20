@@ -24,6 +24,8 @@ values:
   master: template-master
   pkg:
     name: bash
+    deps:
+      - libtinfo5
   rootgroup: root
   service:
     name: systemd-journald

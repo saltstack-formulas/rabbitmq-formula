@@ -14,6 +14,7 @@
 values:
   pkg:
     name: rabbitmq
+    deps: []
   service:
     name: rabbitmq-server
 ...
