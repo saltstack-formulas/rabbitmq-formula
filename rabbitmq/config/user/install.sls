@@ -14,6 +14,7 @@ include:
 
 rabbitmq-config-user-present-{{ name }}:
   rabbitmq_user.present:
+    - name: {{ name }}
     {% for value in user %}
     - {{ value | json }}
     {% endfor %}

@@ -74,7 +74,7 @@ rabbitmq-config-file-file-managed-limits:
     - contents:
       - [Service]
       - LimitNOFILE=infinity
-      - TimeoutSec=150
+      - TimeoutSec=100
     - require_in:
       - service: rabbitmq-service-running-service-running
 
