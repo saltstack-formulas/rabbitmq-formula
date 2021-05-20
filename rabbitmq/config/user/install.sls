@@ -14,9 +14,8 @@ include:
 
 rabbitmq-config-user-present-{{ name }}:
   rabbitmq_user.present:
-    {% for value in user %}
-    - {{ value | json }}
-    {% endfor %}
+    - name: {{ name }}
+    - {{ user|yaml }}
     - require:
       - sls: {{ sls_service_running }}
       - sls: {{ sls_config_vhost }}

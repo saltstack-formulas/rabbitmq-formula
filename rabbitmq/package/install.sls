@@ -8,6 +8,12 @@
 include:
   - {{ sls_repo_install }}
 
+    {%- if rabbitmq.pkg.deps %}
+rabbitmq-package-install-pkg-deps:
+  pkg.installed:
+    - names: {{ rabbitmq.pkg.deps|json }}
+    {%- endif %}
+
 rabbitmq-package-install-pkg-installed:
   pkg.installed:
     - env:

@@ -58,6 +58,7 @@ values:
     - C@rabbitmq
     - Y:G@id
   pkg:
+    deps: []
     name: rabbitmq-server
     use_upstream: repo
   plugin:
