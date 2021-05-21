@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.0.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.0.0...v1.0.1) (2021-05-21)
+
+
+### Bug Fixes
+
+* **user:** fix rendering error for user; fix ci ([346df02](https://github.com/saltstack-formulas/rabbitmq-formula/commit/346df024ce6a4afaf67f96ffd82021121de385ad))
+
+
+### Continuous Integration
+
+* add `arch-master` to matrix and update `.travis.yml` [skip ci] ([d46cd1d](https://github.com/saltstack-formulas/rabbitmq-formula/commit/d46cd1d40a108caec3fb849c9db00e9501e4a84c))
+* **kitchen+gitlab:** adjust matrix to add `3003` [skip ci] ([887ed24](https://github.com/saltstack-formulas/rabbitmq-formula/commit/887ed24bfce8a0638233280a9fcfaebfe06043aa))
+
+
+### Documentation
+
+* **map.jinja:** fix `rst-lint` violation [skip ci] ([93dd429](https://github.com/saltstack-formulas/rabbitmq-formula/commit/93dd429e19ebbe28ea152c78c97428e4a9e2c17c))
+* remove files which aren't formula-specific [skip ci] ([0122a74](https://github.com/saltstack-formulas/rabbitmq-formula/commit/0122a74653229c952665a497beac5b1bcc6634dc))
+
+
+### Tests
+
+* **_mapdata:** add verification file for `fedora-34` [skip ci] ([ede918c](https://github.com/saltstack-formulas/rabbitmq-formula/commit/ede918cd0bc0f19dc333395e1be4054e5c765968))
+* **_mapdata:** generate updated `map.jinja` verification files ([ab297a5](https://github.com/saltstack-formulas/rabbitmq-formula/commit/ab297a569e292fe09d0086ebfef2d455e3d71bd7))
+* **pillar:** remove unused test pillar files ([8f21f49](https://github.com/saltstack-formulas/rabbitmq-formula/commit/8f21f49488a11f8d7a5bb295b3db8aeb052c343f))
+
 # [1.0.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v0.20.4...v1.0.0) (2021-04-20)
 
 
