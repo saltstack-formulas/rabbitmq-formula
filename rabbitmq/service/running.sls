@@ -20,6 +20,8 @@ rabbitmq-service-running-service-running:
     - enable: True
     - watch:
       - sls: {{ sls_config_file }}
+    - onfail_in:
+      - cmd: rabbitmq-service-running-service-running
   cmd.run:
     - names:
       - localectl || true
@@ -30,5 +32,3 @@ rabbitmq-service-running-service-running:
       - hostname -s
       - hostname -A
       - ip addr
-    - onfail:
-      - service: rabbitmq-service-running-service-running
