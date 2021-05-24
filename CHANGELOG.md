@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.0.1...v1.0.2) (2021-05-24)
+
+
+### Bug Fixes
+
+* **latest.sls:** remove old apt repository following bintray shutdown ([2fbd40f](https://github.com/saltstack-formulas/rabbitmq-formula/commit/2fbd40f443ff96b0619b5256793d0d0f03a9d03a))
+
 ## [1.0.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.0.0...v1.0.1) (2021-05-21)
 
 
