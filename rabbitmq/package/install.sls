@@ -39,3 +39,11 @@ rabbitmq-package-install-pkg-binary-plugins:
     - onlyif: test -f {{ rabbitmq.dir.base }}/bin/rabbitmq-plugins
     - require:
       - pkg: rabbitmq-package-install-pkg-installed
+
+rabbitmq-package-remove-old-erlang-repo:
+  pkgrepo.absent:
+    - name: deb https://dl.bintray.com/rabbitmq-erlang/debian {{ salt['grains.get']('oscodename') }} erlang
+
+rabbitmq-package-remove-old-rabbitmq-repo:
+  pkgrepo.absent:
+    - name: deb https://dl.bintray.com/rabbitmq/debian {{ salt['grains.get']('oscodename') }} main
