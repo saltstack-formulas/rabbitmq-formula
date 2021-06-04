@@ -8,4 +8,4 @@ include:
   - .policy
   - .plugin
   - .upstream
-  # .cluster
+  # .cluster should be run once, not always

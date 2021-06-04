@@ -2,13 +2,22 @@
 # vim: ft=yaml
 ---
 rabbitmq:
+  cluster:
+    rabbitmq@locahost:
+      user: rabbitmq
+      host: rabbitmq  # short hostname of node to join to, not fqdn
+      ram_node: None
+      runas: rabbitmq
+      erlang_cookie:
+        name: /var/lib/rabbitmq/.erlang_cookie
+        value: shared-value-for-all-cluster-members
+
   pkg:
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
     use_upstream: repo  # if available (i.e. packagecloud)
   service:
     enabled: true
     running: true
-
   config:
     # see rabbitmq.conf.example from rabbitmq-server github docs
     context: {}
@@ -58,13 +67,6 @@ rabbitmq:
       - arguments:
           - 'alternate-**exchange': 'amq.fanout'
           - 'test-header': 'testing'
-
-  cluster:
-    rabbit@locahost:
-      - user: rabbit
-      - host: localhost
-      - ram_node: None
-      - runas: root
 
   plugin:
     rabbitmq_management:

@@ -67,7 +67,7 @@ now ``pre-commit`` will run automatically on each ``git commit``. ::
 Special notes
 -------------
 
-None
+The main state ``rabbitmq`` excludes ``rabbitmq.config.cluster`` (initial cluster setup) state.
 
 Available states
 ----------------
@@ -99,7 +99,13 @@ This state will install the rabbitmqadmin package only.
 ^^^^^^^^^^^^^^^^^^^
 
 This state will configure the rabbitmq service and has a dependency on ``rabbitmq.install``
-via include list. See ``pillar.example``.
+via include list. It excludes ``rabbitmq.config.cluster`` state
+
+``rabbitmq.config.cluster``
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For initial setup this state writes the erlang cookie, joins cluster, and restarts service.
+The erlang cookie comes from pillar data and must the identical for all cluster members
 
 ``rabbitmq.service``
 ^^^^^^^^^^^^^^^^^^^^
