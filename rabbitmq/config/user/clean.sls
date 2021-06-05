@@ -8,7 +8,7 @@
 include:
   - {{ sls_package_clean }}
 
-    {% for name in rabbitmq.user %}
+    {% for name, user in salt["pillar.get"]("rabbitmq:user", {}).items() %}
 
 rabbitmq-config-user-absent-{{ name }}:
   rabbitmq_user.absent:

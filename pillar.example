@@ -109,12 +109,16 @@ rabbitmq:
               - '.*'
       - runas: root
     airflow:
-      - password: password
-      - force: false
+      - password: airflow
+      - force: true
       - tags:
           - administrator
       - perms:
           - airflow:
+              - '.*'
+              - '.*'
+              - '.*'
+          - '/':
               - '.*'
               - '.*'
               - '.*'
