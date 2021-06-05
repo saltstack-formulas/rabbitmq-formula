@@ -3,13 +3,13 @@
 ---
 rabbitmq:
   cluster:
-    rabbitmq@locahost:
-      user: rabbitmq
+    rabbit@locahost:
+      user: rabbit    # 'user: rabbit' is confusing; its actually 'node: rabbit' but ...
       host: rabbitmq  # short hostname of node to join to, not fqdn
       ram_node: None
       runas: rabbitmq
       erlang_cookie:
-        name: /var/lib/rabbitmq/.erlang_cookie
+        name: /var/lib/rabbitmq/.erlang.cookie
         value: shared-value-for-all-cluster-members
 
   pkg:
