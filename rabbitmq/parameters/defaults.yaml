@@ -23,6 +23,8 @@ values:
       RABBITMQ_BASE: /var/lib/rabbitmq
   config:
     name: /etc/rabbitmq/rabbitmq.conf
+    user: rabbitmq
+    group: rabbitmq
     # see rabbitmq.conf.example from rabbitmq-server github docs
     context: {}
   service:

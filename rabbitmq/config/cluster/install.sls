@@ -11,15 +11,15 @@ include:
   - {{ sls_config_user }}
 
     {%- for name, cluster in salt["pillar.get"]("rabbitmq:cluster", {}).items() %}
-        {%- if 'erlang_cookie' in cluster and cluster.erlang_cookie is mapping %}
+        {%- if cluster.host and 'erlang_cookie' in cluster and cluster.erlang_cookie is mapping %}
 
-rabbitmq-config-cluster-join-{{ name }}:
+rabbitmq-config-cluster-{{ name }}-join-{{ cluster.host }}:
   file.managed:
     - name: {{ cluster.erlang_cookie.name }}
     - contents: {{ cluster.erlang_cookie.value }}
     - mode: 400
-    - user: {{ cluster.user }}
-    - group: root
+    - user: {{ rabbitmq.config.user }}
+    - group: {{ rabbitmq.config.user }}
     - makedirs: True
     - watch_in:
       - service: rabbitmq-service-running-service-running
@@ -32,7 +32,7 @@ rabbitmq-config-cluster-join-{{ name }}:
     - ram_node: {{ cluster.ram_node }}
     - runas: {{ cluster.runas }}
     - require:
-      - file: rabbitmq-config-cluster-join-{{ name }}
+      - file: rabbitmq-config-cluster-{{ name }}-join-{{ cluster.host }}
       - sls: {{ sls_config_user }}
       - service: rabbitmq-service-running-service-running
 
