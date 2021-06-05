@@ -30,26 +30,26 @@ rabbitmq:
     base: /var/lib/rabbitmq
 
   vhost:
-    - test_vhost
+    - airflow
 
   binding:
     my-new-binding:
       - destination_type: queue
       - destination: my-new-queue
       - routing_key: a_routing_key_string
-      - user: saltstack
+      - user: airflow
       - passwd: 'password'
-      - vhost: test_vhost
+      - vhost: airflow
       - arguments:
           - 'x-message-ttl': 8640000
 
   queue:
     my-new-queue:
-      - user: saltstack
+      - user: airflow
       - passwd: 'password'
       - durable: true
       - auto_delete: false
-      - vhost: test_vhost
+      - vhost: airflow
       - arguments:
           - 'x-message-ttl': 8640000
           - 'x-expires': 8640000
@@ -57,13 +57,13 @@ rabbitmq:
 
   exchange:
     my-new-exchange:
-      - user: saltstack
+      - user: airflow
       - passwd: 'password'
       - type: fanout
       - durable: true
       - internal: false
       - auto_delete: false
-      - vhost: test_vhost
+      - vhost: airflow
       - arguments:
           - 'alternate-**exchange': 'amq.fanout'
           - 'test-header': 'testing'
@@ -82,7 +82,7 @@ rabbitmq:
 
   upstream:
     upstream_1:
-      - uri: amqp://saltstack:password@localhost
+      - uri: amqp://airflow:password@localhost
       - trust_user_id: true
       - ack_mode: on-confirm
       - max_hops: 1
@@ -108,13 +108,13 @@ rabbitmq:
               - '.*'
               - '.*'
       - runas: root
-    saltstack:
+    airflow:
       - password: password
       - force: false
       - tags:
           - administrator
       - perms:
-          - test_vhost:
+          - airflow:
               - '.*'
               - '.*'
               - '.*'
