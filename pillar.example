@@ -4,8 +4,8 @@
 rabbitmq:
   cluster:
     rabbit@locahost:
-      user: rabbit    # 'user: rabbit' is confusing; its actually 'node: rabbit' but ...
-      host: rabbitmq  # short hostname of node to join to, not fqdn
+      user: rabbit    # 'user: rabbit' is confusing; 'node: rabbit' would be better
+      host: hostname  # short hostname of node to join to, not fqdn
       ram_node: None
       runas: rabbitmq
       erlang_cookie:
@@ -30,26 +30,26 @@ rabbitmq:
     base: /var/lib/rabbitmq
 
   vhost:
-    - airflow
+    - test_vhost
 
   binding:
     my-new-binding:
       - destination_type: queue
       - destination: my-new-queue
       - routing_key: a_routing_key_string
-      - user: airflow
+      - user: saltstack
       - passwd: 'password'
-      - vhost: airflow
+      - vhost: test_vhost
       - arguments:
           - 'x-message-ttl': 8640000
 
   queue:
     my-new-queue:
-      - user: airflow
+      - user: saltstack
       - passwd: 'password'
       - durable: true
       - auto_delete: false
-      - vhost: airflow
+      - vhost: test_vhost
       - arguments:
           - 'x-message-ttl': 8640000
           - 'x-expires': 8640000
@@ -57,13 +57,13 @@ rabbitmq:
 
   exchange:
     my-new-exchange:
-      - user: airflow
+      - user: saltstack
       - passwd: 'password'
       - type: fanout
       - durable: true
       - internal: false
       - auto_delete: false
-      - vhost: airflow
+      - vhost: test_vhost
       - arguments:
           - 'alternate-**exchange': 'amq.fanout'
           - 'test-header': 'testing'
@@ -82,7 +82,7 @@ rabbitmq:
 
   upstream:
     upstream_1:
-      - uri: amqp://airflow:password@localhost
+      - uri: amqp://saltstack:password@localhost
       - trust_user_id: true
       - ack_mode: on-confirm
       - max_hops: 1
@@ -108,17 +108,13 @@ rabbitmq:
               - '.*'
               - '.*'
       - runas: root
-    airflow:
-      - password: airflow
-      - force: true
+    saltstack:
+      - password: password
+      - force: false
       - tags:
           - administrator
       - perms:
-          - airflow:
-              - '.*'
-              - '.*'
-              - '.*'
-          - '/':
+          - test_vhost:
               - '.*'
               - '.*'
               - '.*'

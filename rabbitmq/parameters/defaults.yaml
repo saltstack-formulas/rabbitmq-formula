@@ -15,6 +15,7 @@ values:
     cleanlist:
       - /usr/local/bin/rabbitmq-env
       - /usr/local/bin/rabbitmq-plugins
+      - /var/run/rabbitmq
   env:
     name: /etc/rabbitmq/rabbitmq-env.conf
     locale_all: null
