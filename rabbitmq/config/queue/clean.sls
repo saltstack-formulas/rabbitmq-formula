@@ -12,8 +12,8 @@ include:
 
 rabbitmq-config-queue-absent-{{ name }}:
   cmd.run:
-    - name: /usr/local/sbin/rabbitmqadmin delete queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ name }}
+    - name: /usr/local/sbin/rabbitmqadmin delete queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ name }}  # noqa 204
     - require:
-      - service: {{ rabbitmq.service.name }}
+      - service: rabbitmq-service-running-service-running
 
     {% endfor %}

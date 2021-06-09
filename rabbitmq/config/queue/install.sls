@@ -12,10 +12,8 @@ include:
 
 rabbitmq-config-queue-present-{{ name }}:
   cmd.run:
-    - name: /usr/local/sbin/rabbitmqadmin declare queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ name }} durable={{ q.durable|to_bool|lower }} auto_delete={{ q.auto_delete|to_bool|lower }}
-
-    ### note: arguments='{# q.arguments|json #}' causes "mapping values are not allowed in this context"
+    - name: /usr/local/sbin/rabbitmqadmin declare queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ name }} durable={{ q.durable|to_bool|lower }} auto_delete={{ q.auto_delete|to_bool|lower }}  # noqa 204
     - require:
-      - service: {{ rabbitmq.service.name }}
+      - service: rabbitmq-service-running-service-running
 
     {% endfor %}

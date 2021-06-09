@@ -4,14 +4,13 @@
 rabbitmq:
   cluster:
     rabbit@locahost:
-      user: rabbit    # 'user: rabbit' is confusing; 'node: rabbit' would be better
-      host: hostname  # short hostname of node to join to, not fqdn
+      host: localhost  # short hostname of node to join to, not fqdn
       ram_node: None
       runas: rabbitmq
+      user: rabbit    # 'node' would make more sense here
       erlang_cookie:
         name: /var/lib/rabbitmq/.erlang.cookie
         value: shared-value-for-all-cluster-members
-
   pkg:
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
     use_upstream: repo  # if available (i.e. packagecloud)
@@ -47,14 +46,14 @@ rabbitmq:
     my-new-queue:
       ## note : dict format
       user: saltstack
-      passwd: 'password'
+      passwd: password
       durable: true
       auto_delete: false
       vhost: test_vhost
       arguments:
-        - 'x-message-ttl': 8640000
-        - 'x-expires': 8640000
-        - 'x-dead-letter-exchange': 'my-new-exchange'
+        - x-message-ttl: 8640000
+        - x-expires: 8640000
+        - x-dead-letter-exchange: my-new-exchange
 
   exchange:
     my-new-exchange:

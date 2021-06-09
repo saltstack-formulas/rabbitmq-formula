@@ -16,6 +16,6 @@ rabbitmq-config-upstream-present-{{ name }}:
     - {{ value | json }}
     {% endfor %}
     - require:
-      - service: {{ rabbitmq.service.name }}
+      - service: rabbitmq-service-running-service-running
 
     {% endfor %}

@@ -4,6 +4,15 @@
 # Set default values.
 ---
 values:
+  cluster:
+    rabbit@locahost:
+      erlang_cookie:
+        name: /var/lib/rabbitmq/.erlang.cookie
+        value: shared-value-for-all-cluster-members
+      host: localhost  # short hostname of node to join to, not fqdn
+      ram_node: None
+      runas: root
+      user: rabbit    # 'node' would make more sense here
   pkg:
     name: rabbitmq-server
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
@@ -23,11 +32,9 @@ values:
       rabbitmq_mnesia_base: /var/lib/rabbitmq
       RABBITMQ_BASE: /var/lib/rabbitmq
   config:
-    name: /etc/rabbitmq/rabbitmq.conf
-    user: rabbitmq
-    group: rabbitmq
-    # see rabbitmq.conf.example from rabbitmq-server github docs
     context: {}
+    name: /etc/rabbitmq/rabbitmq.conf
+    # see rabbitmq.conf.example from rabbitmq-server github docs
   service:
     name: rabbitmq-server
     enabled: true
