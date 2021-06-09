@@ -5,6 +5,7 @@ include:
   - .file
   - .user
   - .vhost
+  - .queue
   - .policy
   - .plugin
   - .upstream

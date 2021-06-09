@@ -45,15 +45,16 @@ rabbitmq:
 
   queue:
     my-new-queue:
-      - user: saltstack
-      - passwd: 'password'
-      - durable: true
-      - auto_delete: false
-      - vhost: test_vhost
-      - arguments:
-          - 'x-message-ttl': 8640000
-          - 'x-expires': 8640000
-          - 'x-dead-letter-exchange': 'my-new-exchange'
+      ## note : dict format
+      user: saltstack
+      passwd: 'password'
+      durable: true
+      auto_delete: false
+      vhost: test_vhost
+      arguments:
+        - 'x-message-ttl': 8640000
+        - 'x-expires': 8640000
+        - 'x-dead-letter-exchange': 'my-new-exchange'
 
   exchange:
     my-new-exchange:
