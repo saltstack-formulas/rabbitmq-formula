@@ -4,10 +4,10 @@
 rabbitmq:
   cluster:
     rabbit@locahost:
+      user: rabbit    # 'node' would make more sense here
       host: localhost  # short hostname of node to join to, not fqdn
       ram_node: None
       runas: rabbitmq
-      user: rabbit    # 'node' would make more sense here
       erlang_cookie:
         name: /var/lib/rabbitmq/.erlang.cookie
         value: shared-value-for-all-cluster-members
