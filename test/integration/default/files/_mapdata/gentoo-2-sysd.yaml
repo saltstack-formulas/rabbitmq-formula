@@ -17,13 +17,13 @@ values:
       - x-message-ttl: 8640000
   cluster:
     rabbit@locahost:
-      user: rabbit    # 'node' would make more sense here
-      host: localhost  # short hostname of node to join to, not fqdn
-      ram_node: None
-      runas: rabbitmq
       erlang_cookie:
         name: /var/lib/rabbitmq/.erlang.cookie
         value: shared-value-for-all-cluster-members
+      host: localhost  # short hostname of node to join to, not fqdn
+      ram_node: None
+      runas: rabbitmq
+      user: rabbit    # 'node' would make more sense here
   config:
     context: {}
     name: /etc/rabbitmq/rabbitmq.conf
@@ -62,6 +62,7 @@ values:
     - C@rabbitmq
     - Y:G@id
   pkg:
+    deps: []
     name: net-misc/rabbitmq-server
     use_upstream: repo
   plugin:
