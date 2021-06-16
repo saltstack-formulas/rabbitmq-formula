@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`1.0.3 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.0.2...v1.0.3>`_ (2021-06-16)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **user:** pass proper args to the rabbitmq state (\ `bdc94f6 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/bdc94f6ecc08b72c0ecde60d4b3b4ed03258e5be>`_\ )
+
 `1.0.2 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.0.1...v1.0.2>`_ (2021-05-24)
 ----------------------------------------------------------------------------------------------------------
 
