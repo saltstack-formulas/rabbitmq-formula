@@ -2,6 +2,39 @@
 Changelog
 =========
 
+`1.1.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.0.3...v1.1.0>`_ (2021-06-16)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **ci:** try this (\ `e8f6207 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/e8f6207fbbdb71b2edd65d6b4686476a991a7559>`_\ )
+* **config:** remove requisite (in case of failure); add user/group (\ `d5e7410 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/d5e7410068333ae292b7cc19b127fa82a88fe5ac>`_\ )
+* **example:** add working cluster example to pillar.example (\ `6953fe2 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/6953fe2154c7c2d9388e751238516a3270b16d72>`_\ )
+* **requisites:** match state name and ci (\ `af42400 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/af42400ff5bd70331fc5593bc2891bbdb2030e54>`_\ )
+* **user:** ensure user.present fully works (\ `4108523 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/41085231bfc20c923f46d0df1d093c486767089b>`_\ )
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **examples:** use airflow instead in pillar.example (\ `5bac4bb <https://github.com/saltstack-formulas/rabbitmq-formula/commit/5bac4bb0234651339449a9443a0f128de70d056e>`_\ )
+* **readme:** expand cluster join/forget documentation (\ `866a6c1 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/866a6c135ad308d9094398482d80479016ae40d5>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **cluster:** join state with erlang_cookie (\ `ce0fcb8 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/ce0fcb8482f7ea055f1c9c12c741d4b64dd085fb>`_\ )
+* **queues:** create/delete queues using cli (\ `ec02702 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/ec02702d27f04313ea25c0b133b0a61cf2cc78e4>`_\ )
+
+Tests
+^^^^^
+
+
+* **_mapdata:** finalise updates to verification files (\ `d4e50b1 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/d4e50b13d813fa11e9a5e7e1bf83a47c0ab44f8d>`_\ )
+
 `1.0.3 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.0.2...v1.0.3>`_ (2021-06-16)
 ----------------------------------------------------------------------------------------------------------
 
