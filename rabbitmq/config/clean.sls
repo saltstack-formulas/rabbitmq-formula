@@ -12,6 +12,7 @@ include:
   - .policy.clean
   - .plugin.clean
   - .upstream.clean
+  - .queue.clean
   - .vhost.clean
   - .user.clean
   - .file.clean

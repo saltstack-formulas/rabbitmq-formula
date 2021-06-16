@@ -15,7 +15,6 @@ rabbitmq-package-repo-erlang-clean:
   pkgrepo.absent:
     - names:
       - rabbitmq-rabbitmq-erlang
-      - rabbitmq_rabbitmq-erlang
       - rabbitmq-rabbitmq
       - rabbitmq_rabbitmq-server
       - deb https://dl.bintray.com/rabbitmq-erlang/debian {{ salt['grains.get']('oscodename') }} erlang

@@ -17,10 +17,13 @@ values:
       - x-message-ttl: 8640000
   cluster:
     rabbit@locahost:
-    - user: rabbit
-    - host: localhost
-    - ram_node: None
-    - runas: root
+      erlang_cookie:
+        name: /var/lib/rabbitmq/.erlang.cookie
+        value: shared-value-for-all-cluster-members
+      host: localhost  # short hostname of node to join to, not fqdn
+      ram_node: None
+      runas: rabbitmq
+      user: rabbit    # 'node' would make more sense here
   config:
     context: {}
     name: /etc/rabbitmq.conf
@@ -29,6 +32,7 @@ values:
     cleanlist:
     - /usr/local/bin/rabbitmq-env
     - /usr/local/bin/rabbitmq-plugins
+    - /var/run/rabbitmq
     data: /var/lib/rabbitmq
   env:
     context:
@@ -73,15 +77,15 @@ values:
     - definition: '{"ha-mode": "all"}'
   queue:
     my-new-queue:
-    - user: saltstack
-    - passwd: password
-    - durable: true
-    - auto_delete: false
-    - vhost: test_vhost
-    - arguments:
+      arguments:
       - x-message-ttl: 8640000
       - x-expires: 8640000
       - x-dead-letter-exchange: my-new-exchange
+      auto_delete: false
+      durable: true
+      passwd: password
+      user: saltstack
+      vhost: test_vhost
   remove_guest_user: true
   retry_option:
     attempts: 0

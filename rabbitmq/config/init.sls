@@ -5,7 +5,8 @@ include:
   - .file
   - .user
   - .vhost
+  - .queue
   - .policy
   - .plugin
   - .upstream
-  # .cluster
+  # .cluster should be run once, not always

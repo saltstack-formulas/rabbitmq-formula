@@ -10,15 +10,32 @@ include:
   - {{ sls_service_running }}
   - {{ sls_config_user }}
 
-    {% for name, cluster in salt["pillar.get"]("rabbitmq:cluster", {}).items() %}
+    {%- for name, cluster in salt["pillar.get"]("rabbitmq:cluster", {}).items() %}
+        {%- if cluster.host and 'erlang_cookie' in cluster and cluster.erlang_cookie is mapping %}
 
-rabbitmq-config-cluster-join-{{ name }}:
-  rabbitmq_cluster.join:
-    {% for value in cluster %}
-    - {{ value | json }}
-    {% endfor %}
+rabbitmq-config-cluster-{{ name }}-join-{{ cluster.host }}:
+  file.managed:
+    - name: {{ cluster.erlang_cookie.name }}
+    - contents: {{ cluster.erlang_cookie.value }}
+    - mode: 400
+    - user: {{ rabbitmq.config.user }}
+    - group: {{ rabbitmq.config.user }}
+    - makedirs: True
+    - watch_in:
+      - service: rabbitmq-service-running-service-running
+
+            {%- if 'host' in grains and grains.host not in cluster.host %}
+
+  rabbitmq_cluster.joined:
+    - user: {{ cluster.user }}
+    - host: {{ cluster.host }}
+    - ram_node: {{ cluster.ram_node }}
+    - runas: {{ cluster.runas }}
     - require:
-      - service: {{ rabbitmq.service.name }}
+      - file: rabbitmq-config-cluster-{{ name }}-join-{{ cluster.host }}
       - sls: {{ sls_config_user }}
+      - service: rabbitmq-service-running-service-running
 
-    {% endfor %}
+            {%- endif %}
+        {%- endif %}
+    {%- endfor %}

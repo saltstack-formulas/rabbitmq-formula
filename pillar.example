@@ -2,13 +2,21 @@
 # vim: ft=yaml
 ---
 rabbitmq:
+  cluster:
+    rabbit@locahost:
+      user: rabbit    # 'node' would make more sense here
+      host: localhost  # short hostname of node to join to, not fqdn
+      ram_node: None
+      runas: rabbitmq
+      erlang_cookie:
+        name: /var/lib/rabbitmq/.erlang.cookie
+        value: shared-value-for-all-cluster-members
   pkg:
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
     use_upstream: repo  # if available (i.e. packagecloud)
   service:
     enabled: true
     running: true
-
   config:
     # see rabbitmq.conf.example from rabbitmq-server github docs
     context: {}
@@ -36,15 +44,16 @@ rabbitmq:
 
   queue:
     my-new-queue:
-      - user: saltstack
-      - passwd: 'password'
-      - durable: true
-      - auto_delete: false
-      - vhost: test_vhost
-      - arguments:
-          - 'x-message-ttl': 8640000
-          - 'x-expires': 8640000
-          - 'x-dead-letter-exchange': 'my-new-exchange'
+      ## note : dict format
+      user: saltstack
+      passwd: password
+      durable: true
+      auto_delete: false
+      vhost: test_vhost
+      arguments:
+        - x-message-ttl: 8640000
+        - x-expires: 8640000
+        - x-dead-letter-exchange: my-new-exchange
 
   exchange:
     my-new-exchange:
@@ -58,13 +67,6 @@ rabbitmq:
       - arguments:
           - 'alternate-**exchange': 'amq.fanout'
           - 'test-header': 'testing'
-
-  cluster:
-    rabbit@locahost:
-      - user: rabbit
-      - host: localhost
-      - ram_node: None
-      - runas: root
 
   plugin:
     rabbitmq_management:

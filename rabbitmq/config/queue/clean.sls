@@ -8,13 +8,11 @@
 include:
   - {{ sls_service_running }}
 
-    {% for name, policy in salt["pillar.get"]("rabbitmq:policy", {}).items() %}
+    {% for name, q in salt["pillar.get"]("rabbitmq:queue", {}).items() %}
 
-rabbitmq-config-policy-present-{{ name }}:
-  rabbitmq_policy.present:
-    {% for value in policy %}
-    - {{ value | json }}
-    {% endfor %}
+rabbitmq-config-queue-absent-{{ name }}:
+  cmd.run:
+    - name: /usr/local/sbin/rabbitmqadmin delete queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ name }}  # noqa 204
     - require:
       - service: rabbitmq-service-running-service-running
 
