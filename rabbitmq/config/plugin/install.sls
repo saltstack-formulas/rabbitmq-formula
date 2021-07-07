@@ -12,6 +12,14 @@ include:
         {%- for name in rabbitmq.plugin %}
 
 rabbitmq-config-plugin-enabled-{{ name }}:
+            {%- if rabbitmq.env.locale_all %}
+  environ.setenv:
+    - name: LC_ALL
+    - value: {{ rabbitmq.env.locale_all }}
+    - update_minion: True
+    - require_in:
+      - rabbitmq_plugin: rabbitmq-config-plugin-enabled-{{ name }}
+            {%- endif %}
   rabbitmq_plugin.enabled:
     - name: {{ name }}
     - runas: {{ rabbitmq.plugin[name]['runas'] }}

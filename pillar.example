@@ -1,6 +1,24 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
+firewalld:
+  enabled: true
+  zones:
+    public:
+      short: Public
+      services:
+        - ssh
+        - rabbitmq
+      # yamllint disable rule:syntax
+      {%- if grains.os == 'Fedora' %}
+    FedoraWorkstation:
+      short: FedoraWorkstation
+      services:
+        - ssh
+        - rabbitmq
+    {%- endif %}
+      # yamllint enable rule:syntax
+
 rabbitmq:
   cluster:
     rabbit@locahost:

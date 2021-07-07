@@ -500,7 +500,7 @@ Here is an example based on `rabbitmq-formula/rabbitmq/config/file.sls`_:
                   }}
         - mode: 644
         - user: root
-        - group: {{ rabbitmq.rootgroup }}
+        - group: {{ rabbitmq.id.rootgroup }}
         - makedirs: True
         - template: jinja
         - require:

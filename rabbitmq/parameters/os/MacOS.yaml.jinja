@@ -16,5 +16,6 @@
 #}
 ---
 values:
-  rootgroup: {{ salt['cmd.run']("stat -f '%Sg' /dev/console") }}
+  id:
+    rootgroup: {{ salt['cmd.run']("stat -f '%Sg' /dev/console") }}
 ...

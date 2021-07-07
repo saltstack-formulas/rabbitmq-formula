@@ -8,7 +8,7 @@ rabbitmq_dir:
   file.directory:
     - name: /var/lib/rabbitmq
     - user: rabbitmq
-    - group: rabbitmq
+    - group: {{ 'rabbitmq' if grains.os_family != 'Suse' else 'users' }}
     - makedirs: true
     - require:
       - user: rabbitmq

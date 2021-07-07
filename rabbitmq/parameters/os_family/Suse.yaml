@@ -12,6 +12,8 @@
 # values: {}
 ---
 values:
+  id:
+    group: users
   pkg:
     deps:
       - rabbitmq-server-plugins

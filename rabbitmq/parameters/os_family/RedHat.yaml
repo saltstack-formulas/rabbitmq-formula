@@ -14,4 +14,7 @@
 values:
   config:
     name: /etc/rabbitmq.conf
+  pkg:
+    deps:
+      - socat
 ...

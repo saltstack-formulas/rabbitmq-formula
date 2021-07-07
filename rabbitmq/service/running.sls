@@ -11,9 +11,14 @@ include:
 rabbitmq-service-running-service-running:
   file.directory:
     - name: {{ rabbitmq.dir.data }}
-    - user: rabbitmq
-    - group: rabbitmq
+    - user: {{ rabbitmq.id.user }}
+    - group: {{ rabbitmq.id.group }}
     - dir_mode: '0755'
+  cmd.run:
+    - names:
+      - setsebool -P nis_enabled 1
+      - systemctl stop firewalld
+    - onlyif: test -x /usr/sbin/setsebool
   service.running:
     - name: {{ rabbitmq.service.name }}
     - retry: {{ rabbitmq.retry_option|json }}
@@ -21,7 +26,9 @@ rabbitmq-service-running-service-running:
     - watch:
       - sls: {{ sls_config_file }}
     - onfail_in:
-      - cmd: rabbitmq-service-running-service-running
+      - cmd: rabbitmq-service-running-service-not-running
+
+rabbitmq-service-running-service-not-running:
   cmd.run:
     - names:
       - journalctl -xe -u {{ rabbitmq.service.name }} || true

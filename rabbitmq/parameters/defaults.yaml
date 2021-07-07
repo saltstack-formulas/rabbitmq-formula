@@ -54,7 +54,11 @@ values:
   vhost:
     - '/virtual/host'
 
-  rootgroup: root
+  id:
+    rootgroup: root
+    user: rabbitmq
+    group: rabbitmq
+
   # default guest user will be removed unless this is set to false
   remove_guest_user: true
   user: {}

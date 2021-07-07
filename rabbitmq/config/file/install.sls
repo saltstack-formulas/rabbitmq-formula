@@ -16,7 +16,7 @@ rabbitmq-config-file-file-managed:
               }}
     - mode: 644
     - user: root
-    - group: {{ rabbitmq.rootgroup }}
+    - group: {{ rabbitmq.id.rootgroup }}
     - makedirs: True
     - template: jinja
     - context:
@@ -40,7 +40,7 @@ rabbitmq-config-env-file-managed:
               }}
     - mode: 644
     - user: root
-    - group: {{ rabbitmq.rootgroup }}
+    - group: {{ rabbitmq.id.rootgroup }}
     - makedirs: True
     - template: jinja
     - context:

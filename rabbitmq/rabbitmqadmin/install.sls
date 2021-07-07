@@ -18,7 +18,7 @@ rabbitmq-rabbitmqadmin-install:
    - user: root
    - force: false
    - replace: false
-   - group: {{ rabbitmq.rootgroup }}
+   - group: {{ rabbitmq.id.rootgroup }}
    - mode: 755
    - require:
      - cmd : rabbitmq-rabbitmqadmin-install

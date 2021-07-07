@@ -52,6 +52,10 @@ values:
     - arguments:
       - alternate-**exchange: amq.fanout
       - test-header: testing
+  id:
+    group: users
+    rootgroup: root
+    user: rabbitmq
   map_jinja:
     sources:
     - Y:G@osarch
@@ -92,7 +96,6 @@ values:
     interval: 60
     splay: 10
     until: true
-  rootgroup: root
   service:
     enabled: true
     name: rabbitmq-server
