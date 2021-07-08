@@ -419,6 +419,7 @@ suites:
           '*':
             - rabbitmq._mapdata
             - states.files
+            - rabbitmq.clean
             - rabbitmq
       pillars:
         top.sls:

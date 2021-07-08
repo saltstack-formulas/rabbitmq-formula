@@ -102,7 +102,7 @@ This state will configure the rabbitmq service and has a dependency on ``rabbitm
 via include list. It excludes ``rabbitmq.config.cluster`` state
 
 ``rabbitmq.config.cluster``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For initial setup this state writes the erlang cookie, joins cluster, and restarts service. The erlang cookie comes from pillar data and must the identical for all cluster members. Join fails if cluster is inconsistent (see rabbitmqctl forget_cluster_node rabbit@somehost).
 
