@@ -18,8 +18,8 @@ rabbitmq-config-cluster-{{ name }}-join-{{ cluster.host }}:
     - name: {{ cluster.erlang_cookie.name }}
     - contents: {{ cluster.erlang_cookie.value }}
     - mode: 400
-    - user: {{ rabbitmq.config.user }}
-    - group: {{ rabbitmq.config.user }}
+    - user: rabbitmq
+    - group: {{ rabbitmq.rootgroup }}
     - makedirs: True
     - watch_in:
       - service: rabbitmq-service-running-service-running
