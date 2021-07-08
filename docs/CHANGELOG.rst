@@ -2,6 +2,22 @@
 Changelog
 =========
 
+`1.1.1 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.1.0...v1.1.1>`_ (2021-07-08)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **cluster:** corrected user/group (\ `c147819 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/c147819446d66f71255bf8653f440a9d24610af5>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **3003.1:** update inc. AlmaLinux, Rocky & ``rst-lint`` [skip ci] (\ `f9ef575 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/f9ef57528d95865b5cad596c4292ba33c6e394c0>`_\ )
+* **kitchen+gitlab:** remove Ubuntu 16.04 & Fedora 32 (EOL) [skip ci] (\ `844195b <https://github.com/saltstack-formulas/rabbitmq-formula/commit/844195b1d2775cd050b48ebef2b25d11b4674186>`_\ )
+
 `1.1.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.0.3...v1.1.0>`_ (2021-06-16)
 ----------------------------------------------------------------------------------------------------------
 
