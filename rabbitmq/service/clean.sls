@@ -13,3 +13,5 @@ rabbitmq-service-clean-service-dead:
     - name: {{ rabbitmq.service.name }}
     - enable: False
     - sig: 'rabbit boot'
+    - require_in:
+      - sls: {{ sls_package_clean }}
