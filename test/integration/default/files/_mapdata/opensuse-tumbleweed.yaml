@@ -25,7 +25,8 @@ values:
       runas: rabbitmq
       user: rabbit    # 'node' would make more sense here
   config:
-    context: {}
+    context:
+      listeners.tcp.1: 0.0.0.0:5672
     name: /etc/rabbitmq/rabbitmq.conf
   dir:
     base: /var/lib/rabbitmq
@@ -37,6 +38,7 @@ values:
   env:
     context:
       RABBITMQ_BASE: /var/lib/rabbitmq
+      RABBITMQ_LOG_BASE: /var/log/rabbitmq
       rabbitmq_mnesia_base: /var/lib/rabbitmq
     locale_all: en_US.UTF-8
     name: /etc/rabbitmq/rabbitmq-env.conf
