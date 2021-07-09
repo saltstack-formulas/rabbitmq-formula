@@ -26,7 +26,7 @@ values:
       user: rabbit    # 'node' would make more sense here
   config:
     context: {}
-    name: /etc/rabbitmq.conf
+    name: /etc/rabbitmq/rabbitmq.conf
   dir:
     base: /var/lib/rabbitmq
     cleanlist:
