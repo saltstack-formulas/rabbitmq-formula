@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.1.2...v1.1.3) (2021-07-14)
+
+
+### Bug Fixes
+
+* **config:** rabbitmq config keys are not uppercase ([98cda43](https://github.com/saltstack-formulas/rabbitmq-formula/commit/98cda43e71335dd4400c48202fbf0b115e780b05))
+
 ## [1.1.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.1.1...v1.1.2) (2021-07-14)
 
 
