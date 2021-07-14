@@ -27,7 +27,7 @@ values:
   config:
     context:
       listeners.tcp.1: 0.0.0.0:5672
-    name: /etc/rabbitmq.conf
+    name: /etc/rabbitmq/rabbitmq.conf
   dir:
     base: /var/lib/rabbitmq
     cleanlist:
