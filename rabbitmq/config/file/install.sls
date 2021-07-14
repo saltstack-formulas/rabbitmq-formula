@@ -44,7 +44,7 @@ rabbitmq-config-env-file-managed:
     - makedirs: True
     - template: jinja
     - context:
-        config: {{ rabbitmq.env.context | json }}
+        env: {{ rabbitmq.env.context | json }}
 
     {%- endif %}
     {%- for filename, info in salt["pillar.get"]("rabbitmq:config_files", {}).items() %}

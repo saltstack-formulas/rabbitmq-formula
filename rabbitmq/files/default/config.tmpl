@@ -3,6 +3,12 @@
 # Your changes will be overwritten.
 ########################################################################
 
-{% for key, value in config.items() %}
+{%- if config is defined %}
+    {% for key, value in config.items() %}
+{{ key }}={{ value }}
+    {%- endfor %}
+{%- elif env is defined %}
+    {% for key, value in env.items() %}
 {{ key | upper }}={{ value }}
-{%- endfor %}
+    {%- endfor %}
+{%- endif %}
