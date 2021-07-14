@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.1.1...v1.1.2) (2021-07-14)
+
+
+### Bug Fixes
+
+* **redhat:** use correct location for config file ([c0ea529](https://github.com/saltstack-formulas/rabbitmq-formula/commit/c0ea529473bf398f939bca1267fa94e8285ff5b0))
+
 ## [1.1.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.1.0...v1.1.1) (2021-07-08)
 
 
