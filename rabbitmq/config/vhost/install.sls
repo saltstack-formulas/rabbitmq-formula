@@ -14,6 +14,6 @@ rabbitmq-config-vhost-present-{{ name }}:
   rabbitmq_vhost.present:
     - name: {{ name }}
     - require:
-      - service: rabbitmq-service-running-service-running
+      - sls: {{ sls_service_running }}
 
     {% endfor %}

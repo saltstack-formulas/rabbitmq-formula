@@ -2,15 +2,22 @@
 # vim: ft=yaml
 ---
 rabbitmq:
+  clustered: true
   cluster:
-    rabbit@locahost:
+    rabbit@localhost:
       user: rabbit    # 'node' would make more sense here
       host: localhost  # short hostname of node to join to, not fqdn
-      ram_node: None
+      nodeport: 5672
+      distport: 25672
       runas: rabbitmq
-      erlang_cookie:
-        name: /var/lib/rabbitmq/.erlang.cookie
-        value: shared-value-for-all-cluster-members
+      erlang_cookie: shared-value-for-all-cluster-members
+    rabbit2@localhost:
+      user: rabbit2    # 'node' would make more sense here
+      host: localhost  # short hostname of node to join to, not fqdn
+      nodeport: 5673
+      distport: 25673
+      runas: rabbitmq
+      erlang_cookie: shared-value-for-all-cluster-members
   pkg:
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
     use_upstream: repo  # if available (i.e. packagecloud)
@@ -22,15 +29,16 @@ rabbitmq:
     # see https://www.rabbitmq.com/configure.html
     context:
       listeners.tcp.1: 0.0.0.0:5672
+      listeners.tcp.2: 0.0.0.0:5673
   env:
     locale_all: en_US.UTF-8
-    context:
+    context: {}
       # https://www.rabbitmq.com/configure.html#supported-environment-variables
-      rabbitmq_mnesia_base: /var/lib/rabbitmq
-      RABBITMQ_BASE: /var/lib/rabbitmq
+      # RABBITMQ_MNESIA_DIR: /var/lib/rabbitmq
+      # RABBITMQ_BASE: /var/lib/rabbitmq
       # RABBITMQ_USE_LONGNAME: true  # not working in ci
       # https://www.rabbitmq.com/configure.html#supported-environment-variables
-      RABBITMQ_LOG_BASE: /var/log/rabbitmq
+      # RABBITMQ_LOG_BASE: /var/log/rabbitmq
   dir:
     base: /var/lib/rabbitmq
 

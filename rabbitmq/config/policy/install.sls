@@ -12,10 +12,10 @@ include:
 
 rabbitmq-config-policy-present-{{ name }}:
   rabbitmq_policy.present:
-    {% for value in policy %}
+        {% for value in policy %}
     - {{ value | json }}
-    {% endfor %}
+        {% endfor %}
     - require:
-      - service: rabbitmq-service-running-service-running
+      - sls: {{ sls_service_running }}
 
     {% endfor %}

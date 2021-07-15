@@ -9,4 +9,3 @@ include:
   - .policy
   - .plugin
   - .upstream
-  # .cluster should be run once, not always

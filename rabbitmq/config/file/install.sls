@@ -72,18 +72,15 @@ rabbitmq-config-file-file-managed-limits:
     - group: root
     - makedirs: true
     - contents:
-      - [Service]
+      - '[Service]'
       - LimitNOFILE=infinity
       - TimeoutSec=150
-    - require_in:
-      - service: rabbitmq-service-running-service-running
 
         {%- if rabbitmq.env.locale_all %}
   environ.setenv:
     - name: LC_ALL
     - value: {{ rabbitmq.env.locale_all }}
     - update_minion: True
-    - require_in:
-      - service: rabbitmq-service-running-service-running
         {%- endif %}
+
     {%- endif %}

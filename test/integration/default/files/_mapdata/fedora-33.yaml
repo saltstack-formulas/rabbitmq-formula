@@ -15,18 +15,26 @@ values:
     - vhost: test_vhost
     - arguments:
       - x-message-ttl: 8640000
+  clustered: true
   cluster:
-    rabbit@locahost:
-      erlang_cookie:
-        name: /var/lib/rabbitmq/.erlang.cookie
-        value: shared-value-for-all-cluster-members
+    rabbit@localhost:
+      distport: 25672
+      erlang_cookie: shared-value-for-all-cluster-members
       host: localhost  # short hostname of node to join to, not fqdn
-      ram_node: None
+      nodeport: 5672
       runas: rabbitmq
       user: rabbit    # 'node' would make more sense here
+    rabbit2@localhost:
+      distport: 25673
+      erlang_cookie: shared-value-for-all-cluster-members
+      host: localhost  # short hostname of node to join to, not fqdn
+      nodeport: 5673
+      runas: rabbitmq
+      user: rabbit2    # 'node' would make more sense here
   config:
     context:
       listeners.tcp.1: 0.0.0.0:5672
+      listeners.tcp.2: 0.0.0.0:5673
     name: /etc/rabbitmq/rabbitmq.conf
   dir:
     base: /var/lib/rabbitmq
@@ -36,10 +44,7 @@ values:
     - /var/run/rabbitmq
     data: /var/lib/rabbitmq
   env:
-    context:
-      RABBITMQ_BASE: /var/lib/rabbitmq
-      RABBITMQ_LOG_BASE: /var/log/rabbitmq
-      rabbitmq_mnesia_base: /var/lib/rabbitmq
+    context: {}
     locale_all: en_US.UTF-8
     name: /etc/rabbitmq/rabbitmq-env.conf
   exchange:

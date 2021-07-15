@@ -14,6 +14,6 @@ rabbitmq-config-queue-present-{{ name }}:
   cmd.run:
     - name: /usr/local/sbin/rabbitmqadmin declare queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ name }} durable={{ q.durable|to_bool|lower }} auto_delete={{ q.auto_delete|to_bool|lower }}  # noqa 204
     - require:
-      - service: rabbitmq-service-running-service-running
+      - sls: {{ sls_service_running }}
 
     {% endfor %}
