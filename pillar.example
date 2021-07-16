@@ -1,42 +1,93 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-rabbitmq:
-  cluster:
-    rabbit@locahost:
+values:
+  nodes:
+    default:
+      clustered: false
       user: rabbit    # 'node' would make more sense here
       host: localhost  # short hostname of node to join to, not fqdn
-      ram_node: None
-      runas: rabbitmq
-      erlang_cookie:
-        name: /var/lib/rabbitmq/.erlang.cookie
-        value: shared-value-for-all-cluster-members
-  pkg:
-    # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
-    use_upstream: repo  # if available (i.e. packagecloud)
-  service:
-    enabled: true
-    running: true
-  config:
-    # see rabbitmq.conf.example from rabbitmq-server github docs
-    # see https://www.rabbitmq.com/configure.html
-    context:
-      listeners.tcp.1: 0.0.0.0:5672
-  env:
-    locale_all: en_US.UTF-8
-    context:
-      # https://www.rabbitmq.com/configure.html#supported-environment-variables
-      rabbitmq_mnesia_base: /var/lib/rabbitmq
-      RABBITMQ_BASE: /var/lib/rabbitmq
-      # RABBITMQ_USE_LONGNAME: true  # not working in ci
-      # https://www.rabbitmq.com/configure.html#supported-environment-variables
-      RABBITMQ_LOG_BASE: /var/log/rabbitmq
-  dir:
-    base: /var/lib/rabbitmq
+      erlang_cookie: shared-value-for-all-cluster-members
+      config:
+        listeners.tcp.1: 0.0.0.0:5672
+        # auth_backends.1: ldap
+        # auth_backends.2: internal
+        # auth_ldap.servers.1: ldap.eng.megacorp.local
+        # auth_ldap.servers.2: 192.168.0.100
+        # auth_ldap.user_dn_pattern: cn=${username},ou=People,dc=example,dc=com
+        # auth_ldap.use_ssl: false
+        # auth_ldap.port: 389
+        # auth_ldap.log: false
+      service: true
+      plugins:
+        - rabbitmq_management
+        - rabbitmq_federation
+        - rabbitmq_federation_management
+        # rabbitmq_auth_backend_ldap
+      vhosts:
+        - test_vhost
+      users: {}
+      policy:
+        rabbitmq_policy:
+          - name: HA
+          - pattern: '.*'
+          - definition: '{"ha-mode": "all"}'
+      queues:
+        my-new-queue:
+          ## note : dict format
+          user: saltstack
+          passwd: password
+          durable: true
+          auto_delete: false
+          vhost: test_vhost
+          arguments:
+            - x-message-ttl: 8640000
+            - x-expires: 8640000
+            - x-dead-letter-exchange: my-new-exchange
+      upstreams:
+        upstream_1:
+          - uri: amqp://saltstack:password@localhost
+          - trust_user_id: true
+          - ack_mode: on-confirm
+          - max_hops: 1
+      users:
+        user1:
+          - password: password
+          - force: true
+          - tags: monitoring, user
+          - perms:
+              - '/':
+                  - '.*'
+                  - '.*'
+                  - '.*'
+          - runas: root
+        user2:
+          - password: password
+          - force: true
+          - tags: monitoring, user
+          - perms:
+              - '/':
+                  - '.*'
+                  - '.*'
+                  - '.*'
+          - runas: root
+        saltstack:
+          - password: password
+          - force: false
+          - tags:
+              - administrator
+          - perms:
+              - test_vhost:
+                  - '.*'
+                  - '.*'
+                  - '.*'
+          - runas: root
 
-  vhost:
-    - test_vhost
+  environ:
+    # https://www.rabbitmq.com/configure.html#supported-environment-variables
+    rabbitmq_mnesia_dir: /var/lib/rabbitmq
 
+  ## todo: add support for ...
   binding:
     my-new-binding:
       - destination_type: queue
@@ -47,19 +98,6 @@ rabbitmq:
       - vhost: test_vhost
       - arguments:
           - 'x-message-ttl': 8640000
-
-  queue:
-    my-new-queue:
-      ## note : dict format
-      user: saltstack
-      passwd: password
-      durable: true
-      auto_delete: false
-      vhost: test_vhost
-      arguments:
-        - x-message-ttl: 8640000
-        - x-expires: 8640000
-        - x-dead-letter-exchange: my-new-exchange
 
   exchange:
     my-new-exchange:
@@ -73,58 +111,6 @@ rabbitmq:
       - arguments:
           - 'alternate-**exchange': 'amq.fanout'
           - 'test-header': 'testing'
-
-  plugin:
-    rabbitmq_management:
-      runas: root
-    rabbitmq_federation:
-      runas: root
-
-  policy:
-    rabbitmq_policy:
-      - name: HA
-      - pattern: '.*'
-      - definition: '{"ha-mode": "all"}'
-
-  upstream:
-    upstream_1:
-      - uri: amqp://saltstack:password@localhost
-      - trust_user_id: true
-      - ack_mode: on-confirm
-      - max_hops: 1
-
-  user:
-    user1:
-      - password: password
-      - force: true
-      - tags: monitoring, user
-      - perms:
-          - '/':
-              - '.*'
-              - '.*'
-              - '.*'
-      - runas: root
-    user2:
-      - password: password
-      - force: true
-      - tags: monitoring, user
-      - perms:
-          - '/':
-              - '.*'
-              - '.*'
-              - '.*'
-      - runas: root
-    saltstack:
-      - password: password
-      - force: false
-      - tags:
-          - administrator
-      - perms:
-          - test_vhost:
-              - '.*'
-              - '.*'
-              - '.*'
-      - runas: root
 
   tofs:
     # The files_switch key serves as a selector for alternative

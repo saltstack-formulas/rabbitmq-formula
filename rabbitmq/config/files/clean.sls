@@ -8,11 +8,8 @@
 include:
   - {{ sls_package_clean }}
 
-rabbitmq-config-files-file-absent:
+rabbitmq-config-files-absent:
   file.absent:
-    - names:
-      - {{ rabbitmq.config.name }}
-      - {{ rabbitmq.env.name }}
-      - /etc/rabbitmq
+    - name: /etc/rabbitmq
     - require_in:
       - sls: {{ sls_package_clean }}
