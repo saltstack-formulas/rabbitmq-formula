@@ -10,6 +10,5 @@ control 'rabbitmq.config.file' do
   describe file('/etc/rabbitmq/rabbitmq-env.conf') do
     it { should exist }
     it { should be_file }
-    its('content') { should include 'RABBITMQ_MNESIA_BASE=/var/lib/rabbitmq' }
   end
 end

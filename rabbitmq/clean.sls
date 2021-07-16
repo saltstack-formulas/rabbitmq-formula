@@ -3,6 +3,5 @@
 
 include:
   - .config.clean
-  - .rabbitmqadmin.clean
   - .service.clean
   - .package.clean

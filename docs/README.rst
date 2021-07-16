@@ -67,7 +67,7 @@ now ``pre-commit`` will run automatically on each ``git commit``. ::
 Special notes
 -------------
 
-The ``rabbitmq`` state does not include ``rabbitmq.config.cluster`` state (initial cluster setup). This formula does not provide any 'forget' state (for inconsistent cluster fixing) during cluster join (could be future feature).
+The default node in any rabbitmq installation is 'rabbit@localhost'. Multiple nodes per host are allowed if defined in pillar data under `rabbitmq:nodes`.
 
 Available states
 ----------------
@@ -90,21 +90,11 @@ starts the associated rabbitmq service.
 This state will install the rabbitmq package and has a dependency on ``rabbitmq.install``
 via include list.
 
-``rabbitmq.rabbitmqadmin``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will install the rabbitmqadmin package only.
-
 ``rabbitmq.config``
 ^^^^^^^^^^^^^^^^^^^
 
 This state will configure the rabbitmq service and has a dependency on ``rabbitmq.install``
 via include list. It excludes ``rabbitmq.config.cluster`` state
-
-``rabbitmq.config.cluster``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For initial setup this state writes the erlang cookie, joins cluster, and restarts service. The erlang cookie comes from pillar data and must the identical for all cluster members. Join fails if cluster is inconsistent (see rabbitmqctl forget_cluster_node rabbit@somehost).
 
 ``rabbitmq.service``
 ^^^^^^^^^^^^^^^^^^^^
@@ -126,11 +116,6 @@ then uninstalls the package.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will stop the rabbitmq service and disable it at boot time.
-
-``rabbitmq.rabbitmqadmin.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will remote the rabbitmqadmin package only.
 
 ``rabbitmq.config.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
