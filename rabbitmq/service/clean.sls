@@ -1,26 +1,17 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
----
+
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as rabbitmq with context %}
+{%- set sls_package_clean = tplroot ~ '.package.clean' %}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
-        {%- if 'service' in node and node.service %}
+include:
+  - {{ sls_package_clean }}
 
-rabbitmq-service-dead-service-{{ name }}:
+rabbitmq-service-clean-service-dead:
   service.dead:
-    - name: rabbitmq-server-{{ name }}
+    - name: {{ rabbitmq.service.name }}
     - enable: False
-  file.absent:
-    - names:
-      - {{ rabbitmq.dir.service }}/rabbitmq-server-{{ name }}.service
-      - /etc/systemd/system/rabbitmq-server-{{ name }}.service.d/limits.conf
-    - watch_in:
-      - cmd: rabbitmq-service-dead-daemon-reload
-
-        {%- endif %}
-    {%- endfor %}
-
-rabbitmq-service-dead-daemon-reload:
-  cmd.run:
-    - name: systemctl daemon-reload
+    - sig: 'rabbit boot'
+    - require_in:
+      - sls: {{ sls_package_clean }}

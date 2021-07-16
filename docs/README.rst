@@ -18,7 +18,7 @@ rabbitmq-formula
    :scale: 100%
    :target: https://github.com/pre-commit/pre-commit
 
-This formula installs and configures RabbitMQ Clusters on GNU/Linux.
+This formula installs and configures RabbitMQ server on GNU/Linux.
 
 .. contents:: **Table of Contents**
    :depth: 1

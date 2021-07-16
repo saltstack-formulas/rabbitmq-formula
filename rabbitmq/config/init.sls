@@ -2,12 +2,11 @@
 # vim: ft=sls
 
 include:
-  - .files
-  - .clusters
-  - .users
-  - .vhosts
-  - .queues
-  - .policies
-  - .plugins
-  - .params
-  - .upstreams
+  - .file
+  - .user
+  - .vhost
+  - .queue
+  - .policy
+  - .plugin
+  - .upstream
+  # .cluster should be run once, not always

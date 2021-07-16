@@ -11,6 +11,5 @@
 # you can remove this file or provide at least an empty dict, e.g.
 # values: {}
 ---
-values:
-  locale_all: en_US.UTF-8
+values: {}
 ...
