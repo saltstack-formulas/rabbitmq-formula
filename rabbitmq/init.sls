@@ -3,6 +3,5 @@
 
 include:
   - .package
-  - .rabbitmqadmin
   - .config
   - .service
