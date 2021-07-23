@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-# vim: ft=yaml
 # yamllint disable rule:indentation rule:line-length
-# Debian 11
+# Debian-11
 ---
 values:
   added_in_defaults: defaults_value
