@@ -1,5 +1,39 @@
 # Changelog
 
+# [2.0.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.1.3...v2.0.0) (2021-07-23)
+
+
+### Continuous Integration
+
+* add Debian 11 Bullseye & update `yamllint` configuration [skip ci] ([ca1d906](https://github.com/saltstack-formulas/rabbitmq-formula/commit/ca1d906fe42cb04fede0befcded759c6de6f0bf4))
+* **kitchen:** move `provisioner` block & update `run_command` [skip ci] ([a78383e](https://github.com/saltstack-formulas/rabbitmq-formula/commit/a78383e828b920cddca7d64122f94030bb453f69))
+* add Debian 11 Bullseye & update `yamllint` configuration [skip ci] ([0530632](https://github.com/saltstack-formulas/rabbitmq-formula/commit/0530632b0c615268e81b495a899670f90833d1e0))
+* **kitchen:** move `provisioner` block & update `run_command` [skip ci] ([2b7892f](https://github.com/saltstack-formulas/rabbitmq-formula/commit/2b7892fe80e827cbf082b5e5f191d7fd69e4e7f1))
+
+
+### Features
+
+* **clusters:** add distributed rabbitmq support ([104d7f2](https://github.com/saltstack-formulas/rabbitmq-formula/commit/104d7f221cbeaac2d757abce597f27181e7a7c44))
+* **clusters:** distributed rabbitmq support ([1af43e6](https://github.com/saltstack-formulas/rabbitmq-formula/commit/1af43e6e263615567db595203fc9eb6b059573eb))
+
+
+### Reverts
+
+* **clusters:** add distributed rabbitmq support [skip ci] ([7d8f8fd](https://github.com/saltstack-formulas/rabbitmq-formula/commit/7d8f8fddb402c27d7c97c52f6cbb648c9de128f6))
+
+
+### Tests
+
+* **_mapdata:** add verification file for `debian-11` [skip ci] ([bf5ead1](https://github.com/saltstack-formulas/rabbitmq-formula/commit/bf5ead10986f1ecd02e7186fd4348c8f46b3b4db))
+
+
+### BREAKING CHANGES
+
+* **clusters:** the structure of pillar data is changed to
+ allow multiple rabbitmq nodes per host. The default nodename
+ is 'rabbit@localhost' but this commit allows multiple nodes,
+ i.e. 'rabbit2@localhost', 'rabbit3@locahost', to be defined
+
 ## [1.1.3](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.1.2...v1.1.3) (2021-07-14)
 
 
