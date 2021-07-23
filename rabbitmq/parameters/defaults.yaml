@@ -4,61 +4,50 @@
 # Set default values.
 ---
 values:
-  cluster:
-    rabbit@locahost:
+  nodes:
+    rabbit:  # the default rabbitmq nodename
+      clustered: false
       user: rabbit    # 'node' would make more sense here
       host: localhost  # short hostname of node to join to, not fqdn
-      ram_node: None
       runas: rabbitmq
-      erlang_cookie:
-        name: /var/lib/rabbitmq/.erlang.cookie
-        value: shared-value-for-all-cluster-members
+      erlang_cookie: null
+      config: {}
+      service: true
+      plugins:
+        - rabbitmq_management
+        - rabbitmq_federation
+        - rabbitmq_federation_management
+        # rabbitmq_auth_backend_ldap
+      vhosts:
+        - '/virtual/host'
+      users: {}
+      remove_guest_user: true
+      policy:
+        rabbitmq_policy:
+          - name: HA
+          - pattern: '.*'
+          - definition: '{"ha-mode": "all"}'
+      queues: {}
+
+  environ: {}
+
   pkg:
     name: rabbitmq-server
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
     use_upstream: repo    # use upstream repo (if applicable)
-    deps: []
+    deps: {}
+
   dir:
     base: /usr/lib/rabbitmq
     data: /var/lib/rabbitmq
+    config: /etc/rabbitmq
     cleanlist:
       - /usr/local/bin/rabbitmq-env
       - /usr/local/bin/rabbitmq-plugins
       - /var/run/rabbitmq
-  env:
-    name: /etc/rabbitmq/rabbitmq-env.conf
-    locale_all: null
-    context:
-      rabbitmq_mnesia_base: /var/lib/rabbitmq
-      RABBITMQ_BASE: /var/lib/rabbitmq
-  config:
-    context: {}
-    name: /etc/rabbitmq/rabbitmq.conf
-    # see rabbitmq.conf.example from rabbitmq-server github docs
-  service:
-    name: rabbitmq-server
-    enabled: true
-    running: true
-  plugin:
-    # http-based API for management, monitoring, browser ui, rabbitmqadm cli
-    # required by binding, exchange, and queue states
-    rabbitmq_management:
-      runas: root
-    rabbitmq_federation:
-      runas: root
-  policy:
-    rabbitmq_policy:
-      - name: HA
-      - pattern: '.*'
-      - definition: '{"ha-mode": "all"}'
-  vhost:
-    - '/virtual/host'
+    service: /usr/lib/systemd/system
 
   rootgroup: root
-  # default guest user will be removed unless this is set to false
-  remove_guest_user: true
-  user: {}
-
   retry_option:
     # https://docs.saltstack.com/en/latest/ref/states/requisites.html#retrying-states
     attempts: 0
