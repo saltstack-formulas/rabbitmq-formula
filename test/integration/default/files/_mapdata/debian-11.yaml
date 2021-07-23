@@ -5,55 +5,18 @@ values:
   added_in_defaults: defaults_value
   added_in_pillar: pillar_value
   arch: amd64
-  binding:
-    my-new-binding:
-    - destination_type: queue
-    - destination: my-new-queue
-    - routing_key: a_routing_key_string
-    - user: saltstack
-    - passwd: password
-    - vhost: test_vhost
-    - arguments:
-      - x-message-ttl: 8640000
-  cluster:
-    rabbit@locahost:
-      erlang_cookie:
-        name: /var/lib/rabbitmq/.erlang.cookie
-        value: shared-value-for-all-cluster-members
-      host: localhost  # short hostname of node to join to, not fqdn
-      ram_node: None
-      runas: rabbitmq
-      user: rabbit    # 'node' would make more sense here
-  config:
-    context:
-      listeners.tcp.1: 0.0.0.0:5672
-    name: /etc/rabbitmq/rabbitmq.conf
   dir:
-    base: /var/lib/rabbitmq
+    base: "/var/lib/rabbitmq"
     cleanlist:
-    - /usr/local/bin/rabbitmq-env
-    - /usr/local/bin/rabbitmq-plugins
-    - /var/run/rabbitmq
-    data: /var/lib/rabbitmq
-  env:
-    context:
-      RABBITMQ_BASE: /var/lib/rabbitmq
-      RABBITMQ_LOG_BASE: /var/log/rabbitmq
-      rabbitmq_mnesia_base: /var/lib/rabbitmq
+    - "/usr/local/bin/rabbitmq-env"
+    - "/usr/local/bin/rabbitmq-plugins"
+    - "/var/run/rabbitmq"
+    config: "/etc/rabbitmq"
+    data: "/var/lib/rabbitmq"
+    service: "/usr/lib/systemd/system"
+  environ:
     locale_all: en_US.UTF-8
-    name: /etc/rabbitmq/rabbitmq-env.conf
-  exchange:
-    my-new-exchange:
-    - user: saltstack
-    - passwd: password
-    - type: fanout
-    - durable: true
-    - internal: false
-    - auto_delete: false
-    - vhost: test_vhost
-    - arguments:
-      - alternate-**exchange: amq.fanout
-      - test-header: testing
+    values: {}
   map_jinja:
     sources:
     - Y:G@osarch
@@ -63,43 +26,209 @@ values:
     - C@rabbitmq:lookup
     - C@rabbitmq
     - Y:G@id
+  nodes:
+    rabbit:
+      binding:
+        my-new-binding:
+        - destination_type: queue
+        - destination: my-new-queue
+        - routing_key: a_routing_key_string
+        - user: saltstack_mq
+        - passwd: password
+        - vhost: default_vhost
+        - arguments:
+          - x-message-ttl: 8640000
+      clustered: false
+      config:
+        listeners.tcp.1: 0.0.0.0:5672
+      distport: 25672
+      erlang_cookie: shared-secret
+      exchange:
+        my-new-exchange:
+        - user: saltstack_mq
+        - passwd: password
+        - type: fanout
+        - durable: true
+        - internal: false
+        - auto_delete: false
+        - vhost: default_vhost
+        - arguments:
+          - alternate-**exchange: amq.fanout
+          - test-header: testing
+      host: localhost
+      nodeport: 5672
+      plugins:
+      - rabbitmq_management
+      - rabbitmq_federation
+      - rabbitmq_federation_management
+      policy:
+        my-new-rabbitmq-policy:
+        - name: HA
+        - pattern: ".*"
+        - definition: '{"ha-mode": "all"}'
+        rabbitmq_policy:
+        - name: HA
+        - pattern: ".*"
+        - definition: '{"ha-mode": "all"}'
+      queue:
+        my-new-queue:
+          arguments:
+          - x-message-ttl: 8640000
+          - x-expires: 8640000
+          - x-dead-letter-exchange: my-new-exchange
+          auto_delete: false
+          durable: true
+          passwd: password
+          user: saltstack_mq
+          vhost: default_vhost
+      queues: {}
+      remove_guest_user: true
+      runas: rabbitmq
+      service: true
+      upstream:
+        my-new-upstream1:
+        - uri: amqp://saltstack_mq:password@localhost
+        - trust_user_id: true
+        - ack_mode: on-confirm
+      user: rabbit
+      users:
+        airflow:
+          force: true
+          password: airflow
+          perms:
+            default_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - management
+          - administrator
+        saltstack_mq:
+          force: false
+          password: password
+          perms:
+            default_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - administrator
+          - management
+        user1:
+          force: true
+          password: password
+          perms:
+            default_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - monitoring
+          - user
+      vhosts:
+      - default_vhost
+    rabbit2:
+      binding:
+        my-new-binding:
+        - destination_type: queue
+        - destination: my-new-queue
+        - routing_key: a_routing_key_string
+        - user: saltstack_mq
+        - passwd: password
+        - vhost: rabbit2_vhost
+        - arguments:
+          - x-message-ttl: 8640000
+      clustered: false
+      config:
+        listeners.tcp.1: 0.0.0.0:5673
+      distport: 25673
+      erlang_cookie: shared-secret
+      exchange:
+        my-new-exchange:
+        - user: saltstack_mq
+        - passwd: password
+        - type: fanout
+        - durable: true
+        - internal: false
+        - auto_delete: false
+        - vhost: rabbit2_vhost
+        - arguments:
+          - alternate-**exchange: amq.fanout
+          - test-header: testing
+      host: localhost
+      nodeport: 5673
+      plugins: []
+      policy:
+        my-new-rabbitmq-policy:
+        - name: HA
+        - pattern: ".*"
+        - definition: '{"ha-mode": "all"}'
+      queue:
+        my-new-queue:
+          arguments:
+          - x-message-ttl: 8640000
+          - x-expires: 8640000
+          - x-dead-letter-exchange: my-new-exchange
+          auto_delete: false
+          durable: true
+          passwd: password
+          user: saltstack_mq
+          vhost: rabbit2_vhost
+      remove_guest_user: true
+      service: true
+      upstream:
+        my-new-upstream1:
+        - uri: amqp://saltstack_mq:password@localhost
+        - trust_user_id: true
+        - ack_mode: on-confirm
+        - max_hops: 1
+      user: rabbit2
+      users:
+        airflow:
+          force: true
+          password: airflow
+          perms:
+            rabbit2_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - management
+          - administrator
+        saltstack_mq:
+          force: false
+          password: password
+          perms:
+            rabbit2_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - administrator
+        user1:
+          force: true
+          password: password
+          perms:
+            rabbit2_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - monitoring
+          - user
+      vhosts:
+      - rabbit2_vhost
   pkg:
     deps:
-      - libtinfo5
+    - libtinfo5
     name: rabbitmq-server
     use_upstream: repo
-  plugin:
-    rabbitmq_federation:
-      runas: root
-    rabbitmq_management:
-      runas: root
-  policy:
-    rabbitmq_policy:
-    - name: HA
-    - pattern: .*
-    - definition: '{"ha-mode": "all"}'
-  queue:
-    my-new-queue:
-      arguments:
-      - x-message-ttl: 8640000
-      - x-expires: 8640000
-      - x-dead-letter-exchange: my-new-exchange
-      auto_delete: false
-      durable: true
-      passwd: password
-      user: saltstack
-      vhost: test_vhost
-  remove_guest_user: true
   retry_option:
     attempts: 0
     interval: 60
     splay: 10
     until: true
   rootgroup: root
-  service:
-    enabled: true
-    name: rabbitmq-server
-    running: true
   tofs:
     files_switch:
     - any/path/can/be/used/here
@@ -111,44 +240,4 @@ values:
     source_files:
       rabbitmq-config-file-file-managed:
       - example.tmpl.jinja
-  upstream:
-    upstream_1:
-    - uri: amqp://saltstack:password@localhost
-    - trust_user_id: true
-    - ack_mode: on-confirm
-    - max_hops: 1
-  user:
-    saltstack:
-    - password: password
-    - force: false
-    - tags:
-      - administrator
-    - perms:
-      - test_vhost:
-        - .*
-        - .*
-        - .*
-    - runas: root
-    user1:
-    - password: password
-    - force: true
-    - tags: monitoring, user
-    - perms:
-      - /:
-        - .*
-        - .*
-        - .*
-    - runas: root
-    user2:
-    - password: password
-    - force: true
-    - tags: monitoring, user
-    - perms:
-      - /:
-        - .*
-        - .*
-        - .*
-    - runas: root
-  vhost:
-  - test_vhost
   winner: pillar
