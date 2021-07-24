@@ -18,7 +18,7 @@ rabbitmq-config-plugins-enabled-{{ name }}-{{ plugin }}:
     - runas: root
     - onlyif: test -x /usr/sbin/rabbitmqctl
     - watch_in:
-      - sls: {{ sls_service_running }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
 
                 {%- if plugin == 'rabbitmq_management' %}
 

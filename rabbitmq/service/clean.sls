@@ -6,20 +6,19 @@
 
     {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
         {%- if 'service' in node and node.service %}
-
-            {%- set name = '-' ~ name %}
-            {%- if name == '-rabbit' %}
-                {%- set name='' %}
+            {%- set svcname = 'rabbitmq-server' %}
+            {%- if name != 'rabbit' %}
+                {%- set svcname = svcname ~ '-' ~ name %}
             {%- endif %}
 
-rabbitmq-service-dead-service{{ name }}:
+rabbitmq-service-dead-service-{{ name }}:
   service.dead:
-    - name: rabbitmq-server{{ name }}
+    - name: {{ svcname }}
     - enable: False
   file.absent:
     - names:
-      - '{{ rabbitmq.dir.service }}/rabbitmq-server{{ name|replace('-', '') }}.service'
-      - '/etc/systemd/system/rabbitmq-server{{ name|replace('-', '') }}.service.d/limits.conf'
+      - '{{ rabbitmq.dir.service }}/{{ svcname }}.service'
+      - '/etc/systemd/system/{{ svcname }}.service.d/limits.conf'
     - watch_in:
       - cmd: rabbitmq-service-dead-daemon-reload
 

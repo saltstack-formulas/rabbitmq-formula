@@ -44,6 +44,7 @@ values:
           - x-message-ttl: 8640000
       clustered: false
       config:
+        auth_backends.1: internal
         listeners.tcp.1: 0.0.0.0:5672
       distport: 25672
       erlang_cookie: shared-secret
@@ -144,6 +145,7 @@ values:
           - x-message-ttl: 8640000
       clustered: false
       config:
+        auth_backends.1: internal
         listeners.tcp.1: 0.0.0.0:5673
       distport: 25673
       erlang_cookie: shared-secret
@@ -225,6 +227,7 @@ values:
   pkg:
     deps:
     - socat
+    deps_disablerepo: ''
     name: rabbitmq-server
     use_upstream: repo
   retry_option:

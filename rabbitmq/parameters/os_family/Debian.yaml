@@ -15,5 +15,5 @@ values:
   pkg:
     deps:
       - libtinfo5
-      # erlang-eldap
+      - erlang-eldap
 ...
