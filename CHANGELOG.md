@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.1...v2.0.2) (2021-07-24)
+
+
+### Bug Fixes
+
+* **services:** ensure services use config files ([fba7962](https://github.com/saltstack-formulas/rabbitmq-formula/commit/fba79628a6ed365ec9d930db7873de6816d4ef24))
+
+
+### Continuous Integration
+
+* **gitlab-ci:** enable openSUSE Tumbleweed instance [skip ci] ([8103a1f](https://github.com/saltstack-formulas/rabbitmq-formula/commit/8103a1f56f7c0a8a27529bbd67a5c92aa7a6b8f0))
+
 ## [2.0.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.0...v2.0.1) (2021-07-24)
 
 
