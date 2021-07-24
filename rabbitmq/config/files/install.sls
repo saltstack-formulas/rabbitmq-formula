@@ -14,7 +14,7 @@ include:
 
 rabbitmq-config-files-managed-{{ name }}:
   file.managed:
-    - name: '{{ rabbitmq.dir.config }}/{{ name }}/rabbitmq-server-{{ name }}.conf'
+    - name: '{{ rabbitmq.dir.config }}/{{ name }}/rabbitmq-server.conf'
     - source: {{ files_switch(['config.tmpl'],
                               lookup='rabbitmq-config-files-managed-' ~ name
                  )
@@ -27,9 +27,9 @@ rabbitmq-config-files-managed-{{ name }}:
     - context:
         config: {{ node.config | json }}
     - require_in:
-      - sls: {{ sls_service_running }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
     - watch_in:
-      - sls: {{ sls_service_running }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
 
         {%- endif %}
     {%- endfor %}

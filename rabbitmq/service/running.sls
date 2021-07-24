@@ -13,25 +13,24 @@ include:
 
     {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
         {%- if 'service' in node and node.service %}
-
-            {%- set name = '-' ~ name %}
-            {%- if name == '-rabbit' %}
-                {%- set name='' %}
+            {%- set svcname = 'rabbitmq-server' %}
+            {%- if name != 'rabbit' %}
+                {%- set svcname = svcname ~ '-' ~ name %}
             {%- endif %}
 
-rabbitmq-service-running-directory{{ name }}:
+rabbitmq-service-running-directory-{{ name }}:
   file.directory:
-    - name: {{ rabbitmq.dir.data }}/{{ name|replace('-', '') }}
+    - name: {{ rabbitmq.dir.data }}/{{ name }}
     - user: rabbitmq
     - group: rabbitmq
     - makedirs: true
     - dir_mode: '0755'
 
-rabbitmq-service-running-managed{{ name }}:
+rabbitmq-service-running-managed-{{ name }}:
   file.managed:
-    - name: '{{ rabbitmq.dir.service }}/rabbitmq-server{{ name }}.service'
+    - name: '{{ rabbitmq.dir.service }}/{{ svcname }}.service'
     - source: {{ files_switch(['systemd.ini.jinja'],
-                              lookup='rabbitmq-service-running-managed' ~ name
+                              lookup='rabbitmq-service-running-managed-' ~ name
                  )
               }}
     - mode: '0644'
@@ -41,18 +40,19 @@ rabbitmq-service-running-managed{{ name }}:
     - template: jinja
     - context:
         name: {{ name }}
-        workdir: {{ rabbitmq.dir.data }}/{{ name|replace('-', '') }}
+        workdir: {{ rabbitmq.dir.data }}/{{ name }}
         nodeport: {{ '' if 'nodeport' not in node else node.nodeport }}
         distport: {{ '' if 'distport' not in node else node.distport }}
         nodename: {{ node.user }}
-        mnesia_dir: {{ rabbitmq.dir.data }}/{{ name|replace('-', '') }}
+        mnesia_dir: {{ rabbitmq.dir.data }}/{{ name }}
+        cfgfile: {{ rabbitmq.dir.config }}/{{ name }}/rabbitmq-server.conf
     - require_in:
-      - service: rabbitmq-service-running-service-running{{ name }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
 
                 {%- if grains.os_family == 'RedHat' %}
-rabbitmq-service-running-managed{{ name }}-limits:
+rabbitmq-service-running-managed-{{ name }}-limits:
   file.managed:
-    - name: '/etc/systemd/system/rabbitmq-server{{ name }}.service.d/limits.conf'
+    - name: '/etc/systemd/system/{{ svcname }}.service.d/limits.conf'
     - user: root
     - group: root
     - makedirs: true
@@ -61,25 +61,25 @@ rabbitmq-service-running-managed{{ name }}-limits:
       - LimitNOFILE=infinity
       - TimeoutSec=150
     - require_in:
-      - service: rabbitmq-service-running-service-running{{ name }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
                 {%- endif %}
 
-rabbitmq-service-running-service-running{{ name }}:
+rabbitmq-service-running-service-running-{{ name }}:
   service.running:
-    - name: rabbitmq-server{{ name }}
+    - name: {{ svcname }}
     - retry: {{ rabbitmq.retry_option|json }}
     - enable: True
     - watch:
       - sls: {{ sls_config_files }}
     - onfail_in:
-      - cmd: rabbitmq-service-running-service-running{{ name }}
+      - cmd: rabbitmq-service-running-service-running-{{ name }}
     - require:
       - cmd: rabbitmq-service-running-daemon-reload
-      - file: rabbitmq-service-running-directory{{ name }}
-      - file: rabbitmq-service-running-managed{{ name }}
+      - file: rabbitmq-service-running-directory-{{ name }}
+      - file: rabbitmq-service-running-managed-{{ name }}
   cmd.run:
     - names:
-      - journalctl -xe -u {{ 'rabbitmq-server' ~ name }} || true
+      - journalctl -xe -u {{ svcname }} || true
 
         {%- endif %}
     {%- endfor %}
