@@ -38,12 +38,11 @@ rabbitmq-config-users-added-{{ name }}-{{ user }}:
 
             {%- endfor %}
         {%- endif %}
-    {%- endfor %}
+        {% if node.remove_guest_user == True %}
 
-    {% if salt['pillar.get']('rabbitmq:remove_guest_user', True) %}
-
-rabbitmq-config-users-guest-absent:
+rabbitmq-config-users-guest-absent-{{ name }}:
   rabbitmq_user.absent:
     - name: guest
 
-    {% endif %}
+        {% endif %}
+    {%- endfor %}
