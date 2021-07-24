@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.0...v2.0.1) (2021-07-24)
+
+
+### Bug Fixes
+
+* **guest:** remove guest user from all nodes ([eaaa8bd](https://github.com/saltstack-formulas/rabbitmq-formula/commit/eaaa8bdc531d63501a5705a549b00d9965ea6701))
+
+
+### Continuous Integration
+
+* **centos,suse:** get ci working ([cfcd8b8](https://github.com/saltstack-formulas/rabbitmq-formula/commit/cfcd8b86922d4e6b58284e5802fe6c3e79242ed2))
+* **suse:** corrected group ([4e5acd3](https://github.com/saltstack-formulas/rabbitmq-formula/commit/4e5acd39f6cf413db45d7f82879279c6bdad56e5))
+
 # [2.0.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v1.1.3...v2.0.0) (2021-07-23)
 
 
