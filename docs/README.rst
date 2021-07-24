@@ -67,7 +67,7 @@ now ``pre-commit`` will run automatically on each ``git commit``. ::
 Special notes
 -------------
 
-The default node in any rabbitmq installation is 'rabbit@localhost'. Multiple nodes per host are allowed if defined in pillar data under `rabbitmq:nodes`.
+The default node in any rabbitmq installation is 'rabbit@localhost'. Multiple nodes per host are allowed if defined in pillar data under `rabbitmq:nodes`.  Clustering is supported, see `pillar.example`.
 
 Available states
 ----------------

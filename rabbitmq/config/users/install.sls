@@ -18,7 +18,7 @@ include:
 rabbitmq-config-users-added-{{ name }}-{{ user }}:
   cmd.run:
     - names:
-      - {{ cmd }} --node {{ name }} add_user {{ user }} {{ u.password }} |true
+      - {{ cmd }} --node {{ name }} add_user {{ user }} {{ u.password }} ||true
           {%- if 'force' in u and u.force %}
       - {{ cmd }} --node {{ name }} change_password {{ user }} {{ u.password }}
           {%- endif %}
@@ -41,8 +41,8 @@ rabbitmq-config-users-added-{{ name }}-{{ user }}:
         {% if node.remove_guest_user == True %}
 
 rabbitmq-config-users-guest-absent-{{ name }}:
-  rabbitmq_user.absent:
-    - name: guest
+  cmd.run:
+    - name: {{ cmd }} --node {{ name }} delete_user guest || true
 
         {% endif %}
     {%- endfor %}

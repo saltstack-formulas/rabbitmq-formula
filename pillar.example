@@ -4,9 +4,6 @@
 rabbitmq:
   nodes:
     rabbit:  # default node name
-      clustered: false
-      user: rabbit    # 'node' would make more sense here
-      host: localhost  # short hostname of node to join to, not fqdn
       nodeport: 5672
       distport: 25672
       erlang_cookie: shared-secret
@@ -110,12 +107,11 @@ rabbitmq:
           - ack_mode: on-confirm
 
     rabbit2:
-      clustered: false
-      user: rabbit2    # 'node' would make more sense here
-      host: localhost  # short hostname of node to join to, not fqdn
       nodeport: 5673
       distport: 25673
       erlang_cookie: shared-secret
+      clustered: false              # true
+      join_node: rabbit@localhost   # create multinode cluster on localhost
       config:
         auth_backends.1: internal   # default
         listeners.tcp.1: 0.0.0.0:5673
