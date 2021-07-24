@@ -12,6 +12,7 @@ include:
 rabbitmq-package-install-pkg-deps:
   pkg.installed:
     - names: {{ rabbitmq.pkg.deps|json }}
+    - disablerepo: '{{ rabbitmq.pkg.deps_disablerepo }}'
     {%- endif %}
 
 rabbitmq-package-install-pkg-installed:

@@ -35,6 +35,7 @@ values:
     name: rabbitmq-server
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
     use_upstream: repo    # use upstream repo (if applicable)
+    deps_disablerepo: ''  # could be useful
     deps: {}
 
   dir:

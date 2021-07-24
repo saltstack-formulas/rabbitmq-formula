@@ -18,6 +18,7 @@ Environment="RABBITMQ_NODE_PORT={{ '5672' if nodeport is not defined else nodepo
 Environment="RABBITMQ_SERVER_START_ARGS=-rabbitmq_management listener [{port,{{ nodeport + 10000 }}}]"
 Environment="RABBITMQ_DIST_PORT={{ '25672' if distport is not defined else distport }}"
 Environment="RABBITMQ_MNESIA_DIR={{ '/var/lib/rabbitmq' if mnesia_dir is not defined else mnesia_dir }}"
+Environment="RABBITMQ_CONFIG_FILE={{ '/etc/rabbitmq/rabbitmq.conf' if cfgfile is not defined else cfgfile }}"
 
 # To override LimitNOFILE, create the following file:
 #
