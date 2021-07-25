@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`2.0.3 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.2...v2.0.3>`_ (2021-07-25)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **cluster:** resolve some issues with clustering (\ `a2d609f <https://github.com/saltstack-formulas/rabbitmq-formula/commit/a2d609fabf727df8d0cebc494c06182039070e2b>`_\ )
+
 `2.0.2 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.1...v2.0.2>`_ (2021-07-24)
 ----------------------------------------------------------------------------------------------------------
 
