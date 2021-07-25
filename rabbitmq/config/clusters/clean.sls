@@ -5,18 +5,21 @@
 {%- from tplroot ~ "/map.jinja" import mapdata as rabbitmq with context %}
 
     {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
-        {%- if node and 'clustered' in node and node.clustered %}
+        {%- if 'clustered' in node and node.clustered and 'join_node' in node %}
 
 rabbitmq-config-clusters-{{ name }}-leave-{{ node.join_node }}:
-  file.absent:
-    - name: {{ rabbitmq.dir.data }}/{{ name }}/.erlang.cookie
   cmd.run:
     - names:
-      - /usr/sbin/rabbitmqctl --node {{ name }} stop_app
-      - /usr/sbin/rabbitmqctl --node {{ name }} reset
-      - /usr/sbin/rabbitmqctl --node {{ name }} start_app
+      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost stop_app || true
+      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost reset || true
+      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost start_app || true
+      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost cluster_status || true
     - runas: rabbitmq
     - onlyif: test -x /usr/sbin/rabbitmqctl
+  file.absent:
+    - name: {{ rabbitmq.dir.data }}/{{ name }}/.erlang.cookie
+    - require:
+      - cmd: rabbitmq-config-clusters-{{ name }}-leave-{{ node.join_node }}
 
         {%- endif %}
     {%- endfor %}

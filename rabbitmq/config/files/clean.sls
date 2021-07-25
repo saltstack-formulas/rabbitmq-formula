@@ -8,8 +8,14 @@
 include:
   - {{ sls_package_clean }}
 
-rabbitmq-config-files-absent:
+    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+
+rabbitmq-config-files-absent-{{ name }}:
   file.absent:
-    - name: {{ rabbitmq.dir.config }}
+    - names:
+      - {{ rabbitmq.dir.config }}
+      - {{ rabbitmq.dir.data }}/{{ name }}/.erlang.cookie
     - require_in:
       - sls: {{ sls_package_clean }}
+
+    {%- endfor %}

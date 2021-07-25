@@ -5,10 +5,8 @@
 ---
 values:
   nodes:
-    rabbit:  # the default rabbitmq nodename
+    rabbit:  # default rabbitmq node name
       clustered: false
-      user: rabbit    # 'node' would make more sense here
-      host: localhost  # short hostname of node to join to, not fqdn
       runas: rabbitmq
       erlang_cookie: null
       config: {}

@@ -43,9 +43,11 @@ rabbitmq-service-running-managed-{{ name }}:
         workdir: {{ rabbitmq.dir.data }}/{{ name }}
         nodeport: {{ '' if 'nodeport' not in node else node.nodeport }}
         distport: {{ '' if 'distport' not in node else node.distport }}
-        nodename: {{ node.user }}
+        nodename: {{ name }}
         mnesia_dir: {{ rabbitmq.dir.data }}/{{ name }}
         cfgfile: {{ rabbitmq.dir.config }}/{{ name }}/rabbitmq-server.conf
+    - watch_in:
+      - cmd: rabbitmq-service-running-daemon-reload
     - require_in:
       - service: rabbitmq-service-running-service-running-{{ name }}
 

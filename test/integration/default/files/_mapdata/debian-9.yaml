@@ -58,7 +58,6 @@ values:
         - arguments:
           - alternate-**exchange: amq.fanout
           - test-header: testing
-      host: localhost
       nodeport: 5672
       plugins:
       - rabbitmq_management
@@ -93,7 +92,6 @@ values:
         - uri: amqp://saltstack_mq:password@localhost
         - trust_user_id: true
         - ack_mode: on-confirm
-      user: rabbit
       users:
         airflow:
           force: true
@@ -141,7 +139,7 @@ values:
         - vhost: rabbit2_vhost
         - arguments:
           - x-message-ttl: 8640000
-      clustered: false
+      clustered: false              # true
       config:
         auth_backends.1: internal
         listeners.tcp.1: 0.0.0.0:5673
@@ -159,7 +157,6 @@ values:
         - arguments:
           - alternate-**exchange: amq.fanout
           - test-header: testing
-      host: localhost
       nodeport: 5673
       plugins: []
       policy:
@@ -186,7 +183,7 @@ values:
         - trust_user_id: true
         - ack_mode: on-confirm
         - max_hops: 1
-      user: rabbit2
+      join_node: rabbit@localhost   # create multinode cluster on localhost
       users:
         airflow:
           force: true

@@ -32,6 +32,22 @@ rabbitmq-config-files-managed-{{ name }}:
       - service: rabbitmq-service-running-service-running-{{ name }}
 
         {%- endif %}
+        {%- if 'erlang_cookie' in node and node.erlang_cookie %}
+
+rabbitmq-config-files-managed-{{ name }}-erlang-cookie:
+  file.managed:
+    - name: {{ rabbitmq.dir.data }}/{{ name }}/.erlang.cookie
+    - contents: {{ node.erlang_cookie }}
+    - mode: 400
+    - user: rabbitmq
+    - group: {{ rabbitmq.rootgroup }}
+    - makedirs: True
+    - require_in:
+      - service: rabbitmq-service-running-service-running-{{ name }}
+    - watch_in:
+      - service: rabbitmq-service-running-service-running-{{ name }}
+
+        {%- endif %}
     {%- endfor %}
 
     {%- if 'environ' in rabbitmq and rabbitmq.environ %}
@@ -61,4 +77,3 @@ rabbitmq-config-files-environ-setenv:
     - update_minion: True
 
     {%- endif %}
-
