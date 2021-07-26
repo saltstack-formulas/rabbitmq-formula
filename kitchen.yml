@@ -452,3 +452,27 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/default
+  - name: nopillars
+    provisioner:
+      dependencies:
+        - name: files
+          path: ./test/salt
+        - name: states
+          path: ./test/salt
+      state_top:
+        base:
+          '*':
+            - rabbitmq._mapdata
+            - states.files
+            - rabbitmq.clean
+            - rabbitmq
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - rabbitmq
+      pillars_from_files:
+        rabbitmq.sls: test/salt/pillar/nopillars.sls
+    verifier:
+      inspec_tests:
+        - path: test/integration/nopillars
