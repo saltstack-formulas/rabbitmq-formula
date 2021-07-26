@@ -27,7 +27,9 @@ values:
     rabbit:
       clustered: false
       config: {}
-      erlang_cookie: ''
+      distport: 25672
+      erlang_cookie: shared-secret
+      nodeport: 5672
       plugins:
         - rabbitmq_management
         - rabbitmq_federation
@@ -39,7 +41,6 @@ values:
           - definition: '{"ha-mode": "all"}'
       queues: {}
       remove_guest_user: true
-      runas: rabbitmq
       service: true
       users: {}
       vhosts:

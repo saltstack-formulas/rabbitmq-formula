@@ -8,7 +8,7 @@
 include:
   - {{ sls_service_running }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'plugins' in node and node.plugins is iterable and node.plugins is not string %}
             {%- for plugin in node.plugins %}
 

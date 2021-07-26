@@ -11,7 +11,7 @@ include:
   - {{ sls_config_files }}
   - {{ sls_config_users }}
 
-    {%- for name, node in salt["config.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'service' in node and node.service %}
             {%- set svcname = 'rabbitmq-server' %}
             {%- if name != 'rabbit' %}

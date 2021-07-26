@@ -8,7 +8,7 @@
 include:
   - {{ sls_package_clean }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
 
 rabbitmq-config-files-absent-{{ name }}:
   file.absent:

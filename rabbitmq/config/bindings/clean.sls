@@ -4,7 +4,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as rabbitmq with context %}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'bindings' in node and node.bindings is mapping %}
             {%- for binding, q in node.bindings.items() %}
 

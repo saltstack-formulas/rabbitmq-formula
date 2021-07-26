@@ -9,7 +9,7 @@
 include:
   - {{ sls_service_running }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'config' in node and node.config is mapping %}
 
 rabbitmq-config-files-managed-{{ name }}:

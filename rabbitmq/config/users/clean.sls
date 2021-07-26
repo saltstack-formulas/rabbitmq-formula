@@ -13,7 +13,7 @@ rabbitmq-config-users-environ-locale:
     - update_minion: True
 
     {%- endif %}
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'users' in node and node.users is mapping %}
             {%- for user, items in node.users.items() %}
 

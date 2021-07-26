@@ -8,7 +8,7 @@
 include:
   - {{ sls_service_running }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'queues' in node and node.queues is mapping %}
             {%- for queue, q in node.queues.items() %}
 
