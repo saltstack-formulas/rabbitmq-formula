@@ -71,8 +71,6 @@ rabbitmq-service-running-service-running-{{ name }}:
     - name: {{ svcname }}
     - retry: {{ rabbitmq.retry_option|json }}
     - enable: True
-    - watch:
-      - sls: {{ sls_config_files }}
     - onfail_in:
       - cmd: rabbitmq-service-running-service-running-{{ name }}
     - require:
