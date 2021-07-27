@@ -29,7 +29,6 @@ rabbitmq-config-clusters-{{ name }}-join-{{ node.join_node }}:
       - file: rabbitmq-config-files-managed-{{ name }}-erlang-cookie
       - sls: {{ sls_config_users }}
       - service: rabbitmq-service-running-service-running-{{ name }}
-      - service: rabbitmq-service-running-service-running-{{ node.join_node.split('@')[0] }}
 
             {%- endif %}
         {%- endif %}
