@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.5](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.4...v2.0.5) (2021-07-27)
+
+
+### Bug Fixes
+
+* **service:** root must own systemd file ([c74ac45](https://github.com/saltstack-formulas/rabbitmq-formula/commit/c74ac4550eb55409bbfc99b5cc80949dca1fac11))
+
 ## [2.0.4](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.3...v2.0.4) (2021-07-27)
 
 
