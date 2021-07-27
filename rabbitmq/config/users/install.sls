@@ -38,7 +38,7 @@ rabbitmq-config-users-added-{{ name }}-{{ user }}:
 
             {%- endfor %}
         {%- endif %}
-        {% if node.remove_guest_user == True %}
+        {% if 'remove_guest_user' not in node or node.remove_guest_user == True %}
 
 rabbitmq-config-users-guest-absent-{{ name }}:
   cmd.run:
