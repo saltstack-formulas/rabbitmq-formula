@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`2.0.7 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.6...v2.0.7>`_ (2021-07-27)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **clusters:** remove multinode requisite (\ `76fc930 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/76fc93021bd357b681997d44dc118dbcaa4c5ab5>`_\ )
+
 `2.0.6 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.5...v2.0.6>`_ (2021-07-27)
 ----------------------------------------------------------------------------------------------------------
 

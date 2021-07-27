@@ -1,7 +1,7 @@
 name: rabbitmq
 os: Debian, Ubuntu
 os_family: Debian
-version: 2.0.6
+version: 2.0.7
 release: 1
 minimum_version: 2017.7
 summary: rabbitmq formula
