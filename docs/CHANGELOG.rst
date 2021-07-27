@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`2.0.6 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.5...v2.0.6>`_ (2021-07-27)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **jinja2:** use defaults for incomplete pillars (\ `5207f9f <https://github.com/saltstack-formulas/rabbitmq-formula/commit/5207f9fafbe939d47d26024b7282a791c0c14cc5>`_\ )
+
 `2.0.5 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.4...v2.0.5>`_ (2021-07-27)
 ----------------------------------------------------------------------------------------------------------
 
