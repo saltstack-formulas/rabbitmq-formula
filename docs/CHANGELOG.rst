@@ -2,6 +2,22 @@
 Changelog
 =========
 
+`2.0.4 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.3...v2.0.4>`_ (2021-07-27)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **default:** add default ports to defaults (\ `9c95eb2 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/9c95eb261168b92080e1305d76b2e04d3e129e25>`_\ )
+* **jinja2:** use final merged values instead of pillars (\ `b1f5495 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/b1f549546d9f3348f3352a4a23e0468c1b066ed2>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **nopillars:** add nopillar ci checks (\ `6610594 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/6610594149e3f2ad3b49195b5ab9558780350f4e>`_\ )
+
 `2.0.3 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.2...v2.0.3>`_ (2021-07-25)
 ----------------------------------------------------------------------------------------------------------
 
