@@ -34,7 +34,7 @@ rabbitmq-service-running-managed-{{ name }}:
                  )
               }}
     - mode: '0644'
-    - user: rabbitmq
+    - user: root
     - group: {{ rabbitmq.rootgroup }}
     - makedirs: True
     - template: jinja
@@ -56,7 +56,7 @@ rabbitmq-service-running-managed-{{ name }}-limits:
   file.managed:
     - name: '/etc/systemd/system/{{ svcname }}.service.d/limits.conf'
     - user: root
-    - group: root
+    - group: {{ rabbitmq.rootgroup }}
     - makedirs: true
     - contents:
       - [Service]
