@@ -8,7 +8,7 @@
 include:
   - {{ sls_service_running }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'params' in node and node.params is mapping %}
             {%- for param, items in node.params.items() %}
 

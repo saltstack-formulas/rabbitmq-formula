@@ -8,7 +8,7 @@
 include:
   - {{ sls_service_running }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'upstreams' in node and node.upstreams is mapping %}
             {%- for upstream, items in node.upstreams.items() %}
 

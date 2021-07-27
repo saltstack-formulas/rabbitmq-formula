@@ -4,9 +4,6 @@
 rabbitmq:
   nodes:
     rabbit:  # default node name
-      nodeport: 5672
-      distport: 25672
-      erlang_cookie: shared-secret
       config:
         auth_backends.1: internal   # default
         listeners.tcp.1: 0.0.0.0:5672
@@ -18,7 +15,6 @@ rabbitmq:
         # auth_ldap.log: false
         # auth_ldap.dn_lookup_attribute: sAMAccountName  # or userPrincipalName
         # auth_ldap.dn_lookup_base: OU=myOrg,DC=example,DC=com
-      service: true
       plugins:
         - rabbitmq_management
         - rabbitmq_federation

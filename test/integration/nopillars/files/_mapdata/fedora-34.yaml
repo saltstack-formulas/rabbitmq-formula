@@ -1,0 +1,60 @@
+---
+values:
+  added_in_defaults: defaults_value
+  arch: amd64
+  config:
+    name: "/etc/rabbitmq/rabbitmq.conf"
+  dir:
+    base: "/usr/lib/rabbitmq"
+    cleanlist:
+      - "/usr/local/bin/rabbitmq-env"
+      - "/usr/local/bin/rabbitmq-plugins"
+      - "/var/run/rabbitmq"
+    config: "/etc/rabbitmq"
+    data: "/var/lib/rabbitmq"
+    service: "/usr/lib/systemd/system"
+  environ: {}
+  map_jinja:
+    sources:
+      - Y:G@osarch
+      - Y:G@os_family
+      - Y:G@os
+      - Y:G@osfinger
+      - C@rabbitmq:lookup
+      - C@rabbitmq
+      - Y:G@id
+  nodes:
+    rabbit:
+      clustered: false
+      config: {}
+      distport: 25672
+      erlang_cookie: shared-secret
+      nodeport: 5672
+      plugins:
+        - rabbitmq_management
+        - rabbitmq_federation
+        - rabbitmq_federation_management
+      policy:
+        rabbitmq_policy:
+          - name: HA
+          - pattern: ".*"
+          - definition: '{"ha-mode": "all"}'
+      queues: {}
+      remove_guest_user: true
+      service: true
+      users: {}
+      vhosts:
+        - "/virtual/host"
+  pkg:
+    deps:
+      - socat
+    deps_disablerepo: ''
+    name: rabbitmq-server
+    use_upstream: repo
+  retry_option:
+    attempts: 0
+    interval: 60
+    splay: 10
+    until: true
+  rootgroup: root
+  winner: defaults

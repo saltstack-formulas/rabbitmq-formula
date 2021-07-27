@@ -7,8 +7,9 @@ values:
   nodes:
     rabbit:  # default rabbitmq node name
       clustered: false
-      runas: rabbitmq
-      erlang_cookie: null
+      nodeport: 5672
+      distport: 25672
+      erlang_cookie: shared-secret
       config: {}
       service: true
       plugins:

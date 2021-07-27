@@ -4,16 +4,16 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as rabbitmq with context %}
 
-    {%- if grains.os_family == 'RedHat' and rabbitmq.environ.locale_all %}
+    {%- if grains.os_family == 'RedHat' and 'locale_all' in rabbitmq.environ %}
 
 rabbitmq-config-users-environ-locale:
   environ.setenv:
     - name: LC_ALL
-    - value: {{ rabbitmq.environ.locale_all }}
+    - value: {{ rabbitmq.environ.locale_all or 'en_US.UTF-8' }}
     - update_minion: True
 
     {%- endif %}
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'users' in node and node.users is mapping %}
             {%- for user, items in node.users.items() %}
 

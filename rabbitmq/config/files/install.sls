@@ -9,7 +9,7 @@
 include:
   - {{ sls_service_running }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'config' in node and node.config is mapping %}
 
 rabbitmq-config-files-managed-{{ name }}:
@@ -68,12 +68,12 @@ rabbitmq-config-files-environ-managed:
         env: {{ rabbitmq.environ | json }}
 
     {%- endif %}
-    {%- if grains.os_family == 'RedHat' and rabbitmq.environ.locale_all %}
+    {%- if grains.os_family == 'RedHat' and 'locale_all' in rabbitmq.environ %}
 
 rabbitmq-config-files-environ-setenv:
   environ.setenv:
     - name: LC_ALL
-    - value: {{ rabbitmq.environ.locale_all }}
+    - value: {{ rabbitmq.environ.locale_all or 'en_US.UTF-8' }}
     - update_minion: True
 
     {%- endif %}

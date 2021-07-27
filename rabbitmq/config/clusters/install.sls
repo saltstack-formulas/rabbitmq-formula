@@ -12,7 +12,7 @@ include:
   - {{ sls_config_users }}
   - {{ sls_config_files }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'clustered' in node and node.clustered and 'join_node' in node %}
             {%- if 'erlang_cookie' in node and node.erlang_cookie %}
 

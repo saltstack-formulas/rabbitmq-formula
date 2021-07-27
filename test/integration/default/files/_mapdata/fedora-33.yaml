@@ -87,7 +87,6 @@ values:
           vhost: default_vhost
       queues: {}
       remove_guest_user: true
-      runas: rabbitmq
       service: true
       upstream:
         my-new-upstream1:

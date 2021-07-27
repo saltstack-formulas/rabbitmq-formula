@@ -11,7 +11,7 @@ include:
   - {{ sls_service_running }}
   - {{ sls_vhosts_install }}
 
-    {%- for name, node in salt["pillar.get"]("rabbitmq:nodes", {}).items() %}
+    {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'users' in node and node.users is mapping %}
             {%- for user, u in node.users.items() %}
 
