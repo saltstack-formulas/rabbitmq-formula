@@ -11,7 +11,9 @@
 rabbitmq-config-exchanges-delete-{{ name }}-{{ exchange }}:
   cmd.run:
     - name: /usr/local/sbin/rabbitmqadmin --node {{ name }} delete exchange --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ exchange }}  # noqa 204
-    - onlyif: test -x /usr/local/sbin/rabbitmqadmin
+    - onlyif:
+      - test -x /usr/local/sbin/rabbitmqadmin
+      - test -d {{ rabbitmq.dir.data }}
     - runas: rabbitmq
 
             {%- endfor %}

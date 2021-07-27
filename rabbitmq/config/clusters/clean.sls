@@ -15,7 +15,9 @@ rabbitmq-config-clusters-{{ name }}-leave-{{ node.join_node }}:
       - /usr/sbin/rabbitmqctl --node {{ name }}@localhost start_app || true
       - /usr/sbin/rabbitmqctl --node {{ name }}@localhost cluster_status || true
     - runas: rabbitmq
-    - onlyif: test -x /usr/sbin/rabbitmqctl
+    - onlyif:
+      - test -x /usr/sbin/rabbitmqctl
+      - test -d {{ rabbitmq.dir.data }}
   file.absent:
     - name: {{ rabbitmq.dir.data }}/{{ name }}/.erlang.cookie
     - require:

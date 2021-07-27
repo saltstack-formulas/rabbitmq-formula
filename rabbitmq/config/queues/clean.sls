@@ -11,7 +11,9 @@
 rabbitmq-config-queues-disabled-{{ name }}-{{ queue }}:
   cmd.run:
     - name: /usr/local/sbin/rabbitmqadmin --node {{ name }} delete queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ queue }}  # noqa 204
-    - onlyif: test -x /usr/sbin/rabbitmqctl
+    - onlyif:
+      - test -x /usr/local/sbin/rabbitmqadmin
+      - test -d {{ rabbitmq.dir.data }}
     - runas: rabbitmq
 
             {%- endfor %}

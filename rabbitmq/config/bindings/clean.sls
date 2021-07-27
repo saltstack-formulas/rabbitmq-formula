@@ -11,7 +11,9 @@
 rabbitmq-config-bindings-delete-{{ name }}-{{ binding }}:
   cmd.run:
     - name: /usr/local/sbin/rabbitmqadmin --node {{ name }} delete binding --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ binding }}  # noqa 204
-    - onlyif: test -x /usr/local/sbin/rabbitmqadmin
+    - onlyif:
+      - test -x /usr/local/sbin/rabbitmqadmin
+      - test -d {{ rabbitmq.dir.data }}
     - runas: rabbitmq
 
             {%- endfor %}

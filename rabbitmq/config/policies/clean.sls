@@ -12,7 +12,9 @@ rabbitmq-config-policies-absent-{{ name }}-{{ policy }}:
   cmd.run:
     - name: /usr/sbin/rabbitmqctl --node {{ name }} clear_policy {{ policy }} {{ '' if 'args' not in items else items.args }}   # noqa 204
     - runas: rabbitmq
-    - onlyif: test -x /usr/sbin/rabbitmqctl
+    - onlyif:
+      - test -x /usr/sbin/rabbitmqctl
+      - test -d {{ rabbitmq.dir.data }}
 
             {%- endfor %}
         {%- endif %}

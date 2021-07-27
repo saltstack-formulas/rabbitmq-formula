@@ -20,7 +20,9 @@ rabbitmq-config-users-environ-locale:
 rabbitmq-config-users-deleted-{{ name }}-{{ user }}:
   cmd.run:
     - name: /usr/sbin/rabbitmqctl --node {{ name }} delete_user {{ user }} ||true
-    - onlyif: test -x /usr/sbin/rabbitmqctl
+    - onlyif:
+      - test -x /usr/sbin/rabbitmqctl
+      - test -d {{ rabbitmq.dir.data }}
     - runas: rabbitmq
 
             {%- endfor %}
