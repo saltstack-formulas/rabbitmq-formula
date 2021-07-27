@@ -11,7 +11,9 @@
 rabbitmq-config-vhosts-delete-{{ name }}-{{ vhost }}:
   cmd.run:
     - name: /usr/sbin/rabbitmqctl --node {{ name }} delete_vhost {{ vhost }} || true
-    - onlyif: test -x /usr/sbin/rabbitmqctl
+    - onlyif:
+      - test -x /usr/sbin/rabbitmqctl
+      - test -d {{ rabbitmq.dir.data }}
     - runas: rabbitmq
 
             {%- endfor %}
