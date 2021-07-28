@@ -9,6 +9,18 @@
 include:
   - {{ sls_service_running }}
 
+    {%- if 'erlang_cookie' in r and r.erlang_cookie %}
+
+rabbitmq-config-files-managed-erlang-cookie:
+  file.managed:
+    - name: {{ r.dir.data }}/.erlang.cookie
+    - contents: {{ r.erlang_cookie }}
+    - mode: 400
+    - user: rabbitmq
+    - group: {{ r.rootgroup }}
+    - makedirs: True
+
+    {%- endif %}
     {%- for name, node in r.nodes.items() %}
         {%- if 'config' in node and node.config is mapping %}
 
@@ -26,22 +38,8 @@ rabbitmq-config-files-managed-{{ name }}:
     - template: jinja
     - context:
         config: {{ node.config | json }}
-    - require_in:
-      - service: rabbitmq-service-running-service-running-{{ name }}
-    - watch_in:
-      - service: rabbitmq-service-running-service-running-{{ name }}
-
-        {%- endif %}
-        {%- if 'erlang_cookie' in node and node.erlang_cookie %}
-
-rabbitmq-config-files-managed-{{ name }}-erlang-cookie:
-  file.managed:
-    - name: {{ r.dir.data }}/{{ name }}/.erlang.cookie
-    - contents: {{ node.erlang_cookie }}
-    - mode: 400
-    - user: rabbitmq
-    - group: {{ r.rootgroup }}
-    - makedirs: True
+    - require:
+      - file: rabbitmq-config-files-managed-erlang-cookie
     - require_in:
       - service: rabbitmq-service-running-service-running-{{ name }}
     - watch_in:
@@ -49,7 +47,6 @@ rabbitmq-config-files-managed-{{ name }}-erlang-cookie:
 
         {%- endif %}
     {%- endfor %}
-
     {%- if 'environ' in r and r.environ %}
 
 rabbitmq-config-files-environ-managed:

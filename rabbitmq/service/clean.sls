@@ -15,6 +15,7 @@ rabbitmq-service-dead-service-{{ name }}:
   service.dead:
     - name: {{ svcname }}
     - enable: False
+    - onlyif: systemctl status svcname
   file.absent:
     - names:
       - '{{ rabbitmq.dir.service }}/{{ svcname }}.service'
