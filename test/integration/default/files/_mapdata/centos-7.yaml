@@ -21,6 +21,7 @@ values:
   environ:
     locale_all: en_US.UTF-8
     values: {}
+  erlang_cookie: shared-secret
   map_jinja:
     sources:
     - Y:G@osarch
@@ -47,7 +48,6 @@ values:
         auth_backends.1: internal
         listeners.tcp.1: 0.0.0.0:5672
       distport: 25672
-      erlang_cookie: shared-secret
       exchange:
         my-new-exchange:
         - user: saltstack_mq
@@ -145,7 +145,6 @@ values:
         auth_backends.1: internal
         listeners.tcp.1: 0.0.0.0:5673
       distport: 25673
-      erlang_cookie: shared-secret
       exchange:
         my-new-exchange:
         - user: saltstack_mq
@@ -158,7 +157,7 @@ values:
         - arguments:
           - alternate-**exchange: amq.fanout
           - test-header: testing
-      join_node: rabbit@localhost   # create multinode cluster on localhost
+      join_node: rabbit   # create multinode cluster on localhost
       nodeport: 5673
       plugins: []
       policy:

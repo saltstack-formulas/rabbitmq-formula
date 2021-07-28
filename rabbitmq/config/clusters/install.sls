@@ -14,22 +14,20 @@ include:
 
     {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'clustered' in node and node.clustered and 'join_node' in node %}
-            {%- if 'erlang_cookie' in node and node.erlang_cookie %}
 
 rabbitmq-config-clusters-{{ name }}-join-{{ node.join_node }}:
   cmd.run:
     - names:
-      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost stop_app
-      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost join_cluster {{ node.join_node }}
-      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost start_app
-      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost cluster_status
+      - /usr/sbin/rabbitmqctl --node {{ name }} stop_app
+      - /usr/sbin/rabbitmqctl --node {{ name }} join_cluster {{ node.join_node }}
+      - /usr/sbin/rabbitmqctl --node {{ name }} start_app
+      - /usr/sbin/rabbitmqctl --node {{ name }} cluster_status
     - runas: rabbitmq
     - onlyif: test -x /usr/sbin/rabbitmqctl
     - require:
-      - file: rabbitmq-config-files-managed-{{ name }}-erlang-cookie
+      - file: rabbitmq-config-files-managed-erlang-cookie
       - sls: {{ sls_config_users }}
       - service: rabbitmq-service-running-service-running-{{ name }}
 
-            {%- endif %}
         {%- endif %}
     {%- endfor %}

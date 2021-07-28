@@ -18,10 +18,6 @@ rabbitmq-config-clusters-{{ name }}-leave-{{ node.join_node }}:
     - onlyif:
       - test -x /usr/sbin/rabbitmqctl
       - test -d {{ rabbitmq.dir.data }}
-  file.absent:
-    - name: {{ rabbitmq.dir.data }}/{{ name }}/.erlang.cookie
-    - require:
-      - cmd: rabbitmq-config-clusters-{{ name }}-leave-{{ node.join_node }}
 
         {%- endif %}
     {%- endfor %}

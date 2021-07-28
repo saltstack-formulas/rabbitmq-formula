@@ -14,6 +14,7 @@ values:
     data: "/var/lib/rabbitmq"
     service: "/usr/lib/systemd/system"
   environ: {}
+  erlang_cookie: shared-secret
   map_jinja:
     sources:
       - Y:G@osarch
@@ -28,7 +29,6 @@ values:
       clustered: false
       config: {}
       distport: 25672
-      erlang_cookie: shared-secret
       nodeport: 5672
       plugins:
         - rabbitmq_management

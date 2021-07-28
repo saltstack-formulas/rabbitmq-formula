@@ -14,7 +14,6 @@ rabbitmq-config-files-absent-{{ name }}:
   file.absent:
     - names:
       - {{ rabbitmq.dir.config }}
-      - {{ rabbitmq.dir.data }}/{{ name }}/.erlang.cookie
     - require_in:
       - sls: {{ sls_package_clean }}
 

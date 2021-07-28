@@ -2,6 +2,7 @@
 # vim: ft=yaml
 ---
 rabbitmq:
+  erlang_cookie: shared-secret
   nodes:
     rabbit:  # default node name
       config:
@@ -105,9 +106,8 @@ rabbitmq:
     rabbit2:
       nodeport: 5673
       distport: 25673
-      erlang_cookie: shared-secret
-      clustered: false              # true
-      join_node: rabbit@localhost   # create multinode cluster on localhost
+      clustered: false    # true
+      join_node: rabbit   # create multinode cluster on localhost
       config:
         auth_backends.1: internal   # default
         listeners.tcp.1: 0.0.0.0:5673
@@ -209,9 +209,8 @@ rabbitmq:
   environ:
     locale_all: en_US.UTF-8
     values: {}
-    # https://www.rabbitmq.com/configure.html#supported-environment-variables
-    # rabbitmq_mnesia_base: /var/lib/rabbitmq
-    # RABBITMQ_BASE: /var/lib/rabbitmq
+    # https://www.rabbitmq.com/relocate.html
+    # rabbitmq_mnesia_base: /var/lib/rabbitmq/mnesia
     # RABBITMQ_USE_LONGNAME: true  # not working in ci
     # https://www.rabbitmq.com/configure.html#supported-environment-variables
     # RABBITMQ_LOG_BASE: /var/log/rabbitmq

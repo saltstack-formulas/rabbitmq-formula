@@ -4,12 +4,12 @@
 # Set default values.
 ---
 values:
+  erlang_cookie: shared-secret
   nodes:
     rabbit:  # default rabbitmq node name
       clustered: false
       nodeport: 5672
       distport: 25672
-      erlang_cookie: shared-secret
       config: {}
       service: true
       plugins:
