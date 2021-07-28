@@ -209,9 +209,8 @@ rabbitmq:
   environ:
     locale_all: en_US.UTF-8
     values: {}
-    # https://www.rabbitmq.com/configure.html#supported-environment-variables
-    # rabbitmq_mnesia_base: /var/lib/rabbitmq
-    # RABBITMQ_BASE: /var/lib/rabbitmq
+    # https://www.rabbitmq.com/relocate.html
+    # rabbitmq_mnesia_base: /var/lib/rabbitmq/mnesia
     # RABBITMQ_USE_LONGNAME: true  # not working in ci
     # https://www.rabbitmq.com/configure.html#supported-environment-variables
     # RABBITMQ_LOG_BASE: /var/log/rabbitmq
