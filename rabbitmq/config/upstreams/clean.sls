@@ -6,13 +6,17 @@
 
     {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'upstreams' in node and node.upstreams is mapping %}
-            {%- for upstream, u in node.upstreams.items() %}
+            {%- for upstream, p in node.upstreams.items() %}
 
 rabbitmq-config-upstreams-absent-{{ name }}-{{ upstream }}:
   rabbitmq_upstream.absent:
-                {% for v in u %}
-    - {{ v | json }}
-                {% endfor %}
+                {%- for l in p %}
+    - {{ l|yaml }}
+                {%- endfor %}
+    - runas: rabbitmq
+    - onlyif:
+      - test -x /usr/sbin/rabbitmqctl
+      - test -d {{ rabbitmq.dir.data }}
 
             {%- endfor %}
         {%- endif %}

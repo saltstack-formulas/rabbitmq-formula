@@ -17,7 +17,7 @@ rabbitmq-config-params-present-{{ name }}-{{ param }}:
     - name: /usr/sbin/rabbitmqctl --node {{ name }} {{ items.action }} {{ items.args|join(' ') }}
     - onlyif: test -x /usr/sbin/rabbitmqctl
     - require:
-      - sls: {{ sls_service_running }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
 
             {%- endfor %}
         {%- endif %}

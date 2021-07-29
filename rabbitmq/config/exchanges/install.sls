@@ -18,7 +18,7 @@ rabbitmq-config-exchanges-enabled-{{ name }}-{{ exchange }}:
     - onlyif: test -x /usr/sbin/rabbitmqctl
     - runas: rabbitmq
     - require:
-      - sls: {{ sls_service_running }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
 
             {%- endfor %}
         {%- endif %}

@@ -12,12 +12,15 @@ include:
         {%- if 'policies' in node and node.policies is mapping %}
             {%- for policy, p in node.policies.items() %}
 
-rabbitmq-config-policies-present-{{ name }}-{{ policy }}:
-  cmd.run:
-    - name: /usr/sbin/rabbitmqctl --node {{ name }} set_policy {{ policy }} "{{ p.pattern }}" '{{ p.definition }}' {{ '' if 'args' not in p else p.args }}  # noqa 204
+rabbitmq-config-policies-enabled-{{ name }}-{{ policy }}:
+  rabbitmq_policy.present:
+                {%- for v in p %}
+    - {{ v|yaml }}
+                {%- endfor %}
     - onlyif: test -x /usr/sbin/rabbitmqctl
+    - runas: rabbitmq
     - require:
-      - sls: {{ sls_service_running }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
 
             {%- endfor %}
         {%- endif %}

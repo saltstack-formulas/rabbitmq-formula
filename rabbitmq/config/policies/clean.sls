@@ -9,8 +9,10 @@
             {%- for policy, p in node.policies.items() %}
 
 rabbitmq-config-policies-absent-{{ name }}-{{ policy }}:
-  cmd.run:
-    - name: /usr/sbin/rabbitmqctl --node {{ name }} clear_policy {{ policy }} {{ '' if 'args' not in p else p.args }}   # noqa 204
+  rabbitmq_policy.absent:
+                {%- for l in p %}
+    - {{ l|yaml }}
+                {%- endfor %}
     - runas: rabbitmq
     - onlyif:
       - test -x /usr/sbin/rabbitmqctl
