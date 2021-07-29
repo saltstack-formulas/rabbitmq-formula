@@ -20,10 +20,11 @@ rabbitmq:
         - rabbitmq_management
         - rabbitmq_federation
         - rabbitmq_federation_management
-        # rabbitmq_auth_backend_ldap
+        - rabbitmq_auth_backend_ldap
+        - rabbitmq_shovel
       vhosts:
         - default_vhost
-      queue:
+      queues:
         my-new-queue:
           ## note : dict format
           user: saltstack_mq
@@ -35,28 +36,28 @@ rabbitmq:
             - x-message-ttl: 8640000
             - x-expires: 8640000
             - x-dead-letter-exchange: my-new-exchange
-      binding:
+      bindings:
         my-new-binding:
-          - destination_type: queue
-          - destination: my-new-queue
-          - routing_key: a_routing_key_string
-          - user: saltstack_mq
-          - passwd: 'password'
-          - vhost: default_vhost
-          - arguments:
-              - 'x-message-ttl': 8640000
-      exchange:
+          destination_type: queue
+          destination: my-new-queue
+          routing_key: a_routing_key_string
+          user: saltstack_mq
+          passwd: 'password'
+          vhost: default_vhost
+          arguments:
+            - 'x-message-ttl': 8640000
+      exchanges:
         my-new-exchange:
-          - user: saltstack_mq
-          - passwd: 'password'
-          - type: fanout
-          - durable: true
-          - internal: false
-          - auto_delete: false
-          - vhost: default_vhost
-          - arguments:
-              - 'alternate-**exchange': 'amq.fanout'
-              - 'test-header': 'testing'
+          user: saltstack_mq
+          passwd: 'password'
+          type: fanout
+          durable: true
+          internal: false
+          auto_delete: false
+          vhost: default_vhost
+          arguments:
+            - 'alternate-**exchange': 'amq.fanout'
+            - 'test-header': 'testing'
       remove_guest_user: true
       users:
         user1:
@@ -92,16 +93,16 @@ rabbitmq:
               - '.*'
               - '.*'
               - '.*'
-      policy:
-        my-new-rabbitmq-policy:
-          - name: HA
-          - pattern: '.*'
-          - definition: '{"ha-mode": "all"}'
-      upstream:
+      policies:
+        my-policy:
+          name: HA
+          pattern: '.*'
+          definition: '{"ha-mode": "all"}'
+      upstreams:
         my-new-upstream1:
-          - uri: amqp://saltstack_mq:password@localhost
-          - trust_user_id: true
-          - ack_mode: on-confirm
+          uri: amqp://saltstack_mq:password@localhost
+          trust_user_id: true
+          ack_mode: on-confirm
 
     rabbit2:
       nodeport: 5673
@@ -123,7 +124,7 @@ rabbitmq:
       plugins: []
       vhosts:
         - rabbit2_vhost
-      queue:
+      queues:
         my-new-queue:
           ## note : dict format
           user: saltstack_mq
@@ -135,28 +136,28 @@ rabbitmq:
             - x-message-ttl: 8640000
             - x-expires: 8640000
             - x-dead-letter-exchange: my-new-exchange
-      binding:
+      bindings:
         my-new-binding:
-          - destination_type: queue
-          - destination: my-new-queue
-          - routing_key: a_routing_key_string
-          - user: saltstack_mq
-          - passwd: 'password'
-          - vhost: rabbit2_vhost
-          - arguments:
-              - 'x-message-ttl': 8640000
-      exchange:
+          destination_type: queue
+          destination: my-new-queue
+          routing_key: a_routing_key_string
+          user: saltstack_mq
+          passwd: 'password'
+          vhost: rabbit2_vhost
+          arguments:
+            - 'x-message-ttl': 8640000
+      exchanges:
         my-new-exchange:
-          - user: saltstack_mq
-          - passwd: 'password'
-          - type: fanout
-          - durable: true
-          - internal: false
-          - auto_delete: false
-          - vhost: rabbit2_vhost
-          - arguments:
-              - 'alternate-**exchange': 'amq.fanout'
-              - 'test-header': 'testing'
+          user: saltstack_mq
+          passwd: 'password'
+          type: fanout
+          durable: true
+          internal: false
+          auto_delete: false
+          vhost: rabbit2_vhost
+          arguments:
+            - 'alternate-**exchange': 'amq.fanout'
+            - 'test-header': 'testing'
       remove_guest_user: true
       users:
         user1:
@@ -191,17 +192,17 @@ rabbitmq:
               - '.*'
               - '.*'
               - '.*'
-      policy:
-        my-new-rabbitmq-policy:
-          - name: HA
-          - pattern: '.*'
-          - definition: '{"ha-mode": "all"}'
-      upstream:
+      policies:
+        my-policy:
+          name: HA
+          pattern: '.*'
+          definition: '{"ha-mode": "all"}'
+      upstreams:
         my-new-upstream1:
-          - uri: amqp://saltstack_mq:password@localhost
-          - trust_user_id: true
-          - ack_mode: on-confirm
-          - max_hops: 1
+          uri: amqp://saltstack_mq:password@localhost
+          trust_user_id: true
+          ack_mode: on-confirm
+          max_hops: 1
 
   pkg:
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14

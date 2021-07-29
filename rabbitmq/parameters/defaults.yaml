@@ -21,13 +21,12 @@ values:
         - '/virtual/host'
       users: {}
       remove_guest_user: true
-      policy:
+      policies:
         rabbitmq_policy:
-          - name: HA
-          - pattern: '.*'
-          - definition: '{"ha-mode": "all"}'
+          name: HA
+          pattern: '.*'
+          definition: '{"ha-mode": "all"}'
       queues: {}
-
   environ: {}
 
   pkg:
