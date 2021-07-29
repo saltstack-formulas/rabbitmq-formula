@@ -34,6 +34,7 @@ rabbitmq-config-users-added-{{ name }}-{{ user }}:
     - runas: rabbitmq
     - require:
       - service: rabbitmq-service-running-service-running-{{ name }}
+    - require_in:
       - sls: {{ sls_vhosts_install }}
 
             {%- endfor %}

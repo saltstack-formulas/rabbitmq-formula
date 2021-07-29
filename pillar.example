@@ -26,7 +26,7 @@ rabbitmq:
       vhosts:
         - default_vhost
       queues:
-        my-new-queue:
+        my-queue:
           ## note : dict format
           user: saltstack_mq
           passwd: password
@@ -36,18 +36,18 @@ rabbitmq:
           arguments:
             - x-message-ttl: 8640000
             - x-expires: 8640000
-            - x-dead-letter-exchange: my-new-exchange
+            - x-dead-letter-exchange: my-exchange
       bindings:
-        my-new-binding:
+        my-binding:
           source: 'customers.direct'
           destination_type: queue
-          destination: my-new-queue
+          destination: my-queue
           routing_key: a_routing_key_string
           user: saltstack_mq
           passwd: 'password'
           vhost: default_vhost
       exchanges:
-        my-new-exchange:
+        my-exchange:
           user: saltstack_mq
           passwd: 'password'
           type: fanout
@@ -104,7 +104,7 @@ rabbitmq:
           - definition: '{"federation-upstream-set":"all"}'
           - priority: 1
       upstreams:
-        my-new-upstream1:
+        my-upstream1:
           - uri: 'amqp://saltstack_mq:password@localhost'
           - trust_user_id: true
           - ack_mode: on-confirm
@@ -131,7 +131,7 @@ rabbitmq:
       vhosts:
         - rabbit2_vhost
       queues:
-        my-new-queue:
+        my-queue:
           ## note : dict format
           user: saltstack_mq
           passwd: password
@@ -141,18 +141,18 @@ rabbitmq:
           arguments:
             - x-message-ttl: 8640000
             - x-expires: 8640000
-            - x-dead-letter-exchange: my-new-exchange
+            - x-dead-letter-exchange: my-exchange
       bindings:
-        my-new-binding:
+        my-binding:
           source: 'customers.direct'
           destination_type: queue
-          destination: my-new-queue
+          destination: my-queue
           routing_key: a_routing_key_string
           user: saltstack_mq
           passwd: 'password'
           vhost: rabbit2_vhost
       exchanges:
-        my-new-exchange:
+        my-exchange:
           user: saltstack_mq
           passwd: 'password'
           type: fanout
@@ -208,7 +208,7 @@ rabbitmq:
           - definition: '{"federation-upstream-set":"all"}'
           - priority: 1
       upstreams:
-        my-new-upstream1:
+        my-upstream1:
           - uri: 'amqp://saltstack_mq:password@localhost'
           - trust_user_id: true
           - ack_mode: on-confirm

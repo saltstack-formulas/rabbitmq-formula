@@ -10,9 +10,7 @@
 
 rabbitmq-config-upstreams-absent-{{ name }}-{{ upstream }}:
   rabbitmq_upstream.absent:
-                {%- for l in p %}
-    - {{ l|yaml }}
-                {%- endfor %}
+    - name: {{ upstream }}
     - runas: rabbitmq
     - onlyif:
       - test -x /usr/sbin/rabbitmqctl

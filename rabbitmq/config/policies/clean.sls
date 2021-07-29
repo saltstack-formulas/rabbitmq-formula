@@ -10,8 +10,10 @@
 
 rabbitmq-config-policies-absent-{{ name }}-{{ policy }}:
   rabbitmq_policy.absent:
-                {%- for l in p %}
-    - {{ l|yaml }}
+                {%- for v in p %}
+                    {%- if 'name' in v %}
+    - {{ v|yaml }}
+                    {%- endif %}
                 {%- endfor %}
     - runas: rabbitmq
     - onlyif:

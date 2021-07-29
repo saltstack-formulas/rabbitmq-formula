@@ -25,6 +25,7 @@ rabbitmq-config-plugins-enabled-{{ name }}-{{ plugin }}:
 rabbitmq-config-plugins-{{ name }}-rabbitmqadmin-install:
   cmd.run:
     - name : curl -k -L http://localhost:15672/cli/rabbitmqadmin -o /usr/local/sbin/rabbitmqadmin
+    - unless: test -x /usr/local/bin/rabbitmqadmin
   file.managed:
    - name: /usr/local/sbin/rabbitmqadmin
    - user: root
@@ -36,7 +37,6 @@ rabbitmq-config-plugins-{{ name }}-rabbitmqadmin-install:
      - cmd : rabbitmq-config-plugins-{{ name }}-rabbitmqadmin-install
 
                 {%- endif %}
-
             {%- endfor %}
         {%- endif %}
     {%- endfor %}

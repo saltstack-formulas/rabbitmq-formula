@@ -14,6 +14,7 @@ rabbitmq-config-plugins-disabled-{{ name }}-{{ plugin }}:
     - onlyif:
       - test -x /usr/sbin/rabbitmq-plugins
       - test -d {{ rabbitmq.dir.data }}
+      - test -f {{ rabbitmq.dir.config }}/enabled_plugins
     - runas: root
   file.absent:
     - name: /usr/local/sbin/rabbitmqadmin
