@@ -3,12 +3,10 @@
 ---
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as rabbitmq with context %}
-{%- set sls_service_clean = tplroot ~ '.service.clean' %}
 {%- set sls_config_users_clean = tplroot ~ '.config.users.clean' %}
 {%- set sls_config_plugins_clean = tplroot ~ '.config.plugins.clean' %}
 
 include:
-  - {{ sls_service_clean }}
   - {{ sls_config_plugins_clean }}
   - {{ sls_config_users_clean }}
 
@@ -24,7 +22,6 @@ rabbitmq-config-vhosts-delete-{{ name }}-{{ vhost }}:
       - test -d {{ rabbitmq.dir.data }}
     - runas: rabbitmq
     - require_in:
-      - sls: {{ sls_service_clean }}
       - sls: {{ sls_config_plugins_clean }}
       - sls: {{ sls_config_users_clean }}
 

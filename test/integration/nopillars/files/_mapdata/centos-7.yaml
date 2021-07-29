@@ -35,11 +35,7 @@ values:
         - rabbitmq_federation
         - rabbitmq_federation_management
         - rabbitmq_auth_backend_ldap
-      policy:
-        rabbitmq_policy:
-          - name: HA
-          - pattern: ".*"
-          - definition: '{"ha-mode": "all"}'
+      policies: {}
       queues: {}
       remove_guest_user: true
       service: true

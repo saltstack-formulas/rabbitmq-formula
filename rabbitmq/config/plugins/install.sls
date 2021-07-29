@@ -14,9 +14,11 @@ include:
 
 rabbitmq-config-plugins-enabled-{{ name }}-{{ plugin }}:
   cmd.run:
-    - name: /usr/sbin/rabbitmq-plugins --node {{ name }} enable {{ plugin }}
+    - name: /usr/sbin/rabbitmq-plugins --node {{ name }} enable {{ plugin }} || true
     - runas: root
-    - onlyif: test -x /usr/sbin/rabbitmqctl
+    - unless: /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled {{ plugin }}
+    - onchanges_in:
+      - cmd: rabbitmq-service-running-daemon-reload
     - watch_in:
       - service: rabbitmq-service-running-service-running-{{ name }}
 
@@ -26,6 +28,9 @@ rabbitmq-config-plugins-{{ name }}-rabbitmqadmin-install:
   cmd.run:
     - name : curl -k -L http://localhost:15672/cli/rabbitmqadmin -o /usr/local/sbin/rabbitmqadmin
     - unless: test -x /usr/local/bin/rabbitmqadmin
+    - onlyif: /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled {{ plugin }}
+    - require:
+      - sls: {{ sls_service_running }}
   file.managed:
    - name: /usr/local/sbin/rabbitmqadmin
    - user: root

@@ -30,8 +30,8 @@ rabbitmq:
           ## note : dict format
           user: saltstack_mq
           passwd: password
-          durable: true
-          auto_delete: false
+          durable: 'true'
+          auto_delete: 'false'
           vhost: default_vhost
           arguments:
             - x-message-ttl: 8640000
@@ -39,7 +39,7 @@ rabbitmq:
             - x-dead-letter-exchange: my-exchange
       bindings:
         my-binding:
-          source: 'customers.direct'
+          source: 'amq.topic'
           destination_type: queue
           destination: my-queue
           routing_key: a_routing_key_string
@@ -51,9 +51,9 @@ rabbitmq:
           user: saltstack_mq
           passwd: 'password'
           type: fanout
-          durable: true
-          internal: false
-          auto_delete: false
+          durable: 'true'
+          internal: 'false'
+          auto_delete: 'false'
           vhost: default_vhost
           arguments:
             - 'alternate-**exchange': 'amq.fanout'
@@ -135,8 +135,8 @@ rabbitmq:
           ## note : dict format
           user: saltstack_mq
           passwd: password
-          durable: true
-          auto_delete: false
+          durable: 'true'
+          auto_delete: 'false'
           vhost: rabbit2_vhost
           arguments:
             - x-message-ttl: 8640000
@@ -144,7 +144,7 @@ rabbitmq:
             - x-dead-letter-exchange: my-exchange
       bindings:
         my-binding:
-          source: 'customers.direct'
+          source: 'amq.topic'
           destination_type: queue
           destination: my-queue
           routing_key: a_routing_key_string
@@ -156,9 +156,9 @@ rabbitmq:
           user: saltstack_mq
           passwd: 'password'
           type: fanout
-          durable: true
-          internal: false
-          auto_delete: false
+          durable: 'true'
+          internal: 'false'
+          auto_delete: 'false'
           vhost: rabbit2_vhost
           arguments:
             - 'alternate-**exchange': 'amq.fanout'

@@ -3,6 +3,10 @@
 ---
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as r with context %}
+{%- set sls_service_clean = tplroot ~ '.service.clean' %}
+
+include:
+  - {{ sls_service_clean }}
 
     {%- if grains.os_family == 'RedHat' and 'locale_all' in r.environ %}
 
@@ -24,6 +28,8 @@ rabbitmq-config-users-deleted-{{ name }}-{{ user }}:
       - test -x /usr/sbin/rabbitmqctl
       - test -d {{ r.dir.data }}
     - runas: rabbitmq
+    - require_in:
+      - sls: {{ sls_service_clean }}
 
             {%- endfor %}
         {%- endif %}

@@ -3,12 +3,10 @@
 ---
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as rabbitmq with context %}
-{%- set sls_service_running = tplroot ~ '.service.running' %}
 {%- set sls_config_plugins = tplroot ~ '.config.plugins.install' %}
 {%- set sls_config_users = tplroot ~ '.config.users.install' %}
 
 include:
-  - {{ sls_service_running }}
   - {{ sls_config_plugins }}
   - {{ sls_config_users }}
 
@@ -22,7 +20,6 @@ rabbitmq-config-vhosts-add-{{ name }}-{{ vhost }}:
     - onlyif: test -x /usr/sbin/rabbitmqctl
     - runas: rabbitmq
     - require:
-      - service: rabbitmq-service-running-service-running-{{ name }}
       - sls: {{ sls_config_plugins }}
     - require_in:
       - sls: {{ sls_config_users }}
