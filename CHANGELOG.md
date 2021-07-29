@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.8](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.7...v2.0.8) (2021-07-29)
+
+
+### Bug Fixes
+
+* **erlang:** erlang.cookie is linked to rabbitmq user homedir ([c568698](https://github.com/saltstack-formulas/rabbitmq-formula/commit/c5686984011258e0c2427f42ec1467d52a35db4b))
+* **service:** set mnesia_base not mnesia_dir (derived) ([3b93fd2](https://github.com/saltstack-formulas/rabbitmq-formula/commit/3b93fd23abd4e6605bbd77606cff36181f6d2169))
+
 ## [2.0.7](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.6...v2.0.7) (2021-07-27)
 
 
