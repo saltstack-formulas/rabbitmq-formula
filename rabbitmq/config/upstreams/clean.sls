@@ -6,11 +6,11 @@
 
     {%- for name, node in rabbitmq.nodes.items() %}
         {%- if 'upstreams' in node and node.upstreams is mapping %}
-            {%- for upstream, items in node.upstreams.items() %}
+            {%- for upstream, u in node.upstreams.items() %}
 
 rabbitmq-config-upstreams-absent-{{ name }}-{{ upstream }}:
   rabbitmq_upstream.absent:
-                {% for v in items %}
+                {% for v in u %}
     - {{ v | json }}
                 {% endfor %}
 
