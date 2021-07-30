@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`2.0.11 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.10...v2.0.11>`_ (2021-07-30)
+-------------------------------------------------------------------------------------------------------------
+
+Code Refactoring
+^^^^^^^^^^^^^^^^
+
+
+* **policies:** use dict to avoid 'too many functions' issues (\ `bf77ffd <https://github.com/saltstack-formulas/rabbitmq-formula/commit/bf77ffd1e24ca170be55f03368567b551e16d642>`_\ )
+
 `2.0.10 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.9...v2.0.10>`_ (2021-07-30)
 ------------------------------------------------------------------------------------------------------------
 
