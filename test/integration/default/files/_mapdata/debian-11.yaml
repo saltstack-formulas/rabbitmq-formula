@@ -65,12 +65,10 @@ values:
         - rabbitmq_shovel_management
       policies:
         my-federate-policy:
-          - name: federate-me
           - pattern: '^federated\.'
           - definition: '{"federation-upstream-set":"all"}'
           - priority: 1
         my-ha-policy:
-          - name: HA
           - pattern: '.*'
           - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
       queues:
@@ -160,12 +158,10 @@ values:
       plugins: []
       policies:
         my-federate-policy:
-          - name: federate-me
           - pattern: '^federated\.'
           - definition: '{"federation-upstream-set":"all"}'
           - priority: 1
         my-ha-policy:
-          - name: HA
           - pattern: '.*'
           - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
       queues:
