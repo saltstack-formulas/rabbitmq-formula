@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.0.9](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.8...v2.0.9) (2021-07-30)
+
+
+### Bug Fixes
+
+* **config:** fix various configuration issues ([f090d31](https://github.com/saltstack-formulas/rabbitmq-formula/commit/f090d31a9136a5217b191fc78dff09e36528b017))
+* **config:** update configuration states" ([7a169c0](https://github.com/saltstack-formulas/rabbitmq-formula/commit/7a169c0e4fed5d7a73d2ceb52f8970cc819eb56f))
+* **keyword:** dont use variable named items ([dfc12db](https://github.com/saltstack-formulas/rabbitmq-formula/commit/dfc12dbf600b561bc7b0db80ef54bc241ceff547))
+
+
+### Code Refactoring
+
+* **requisites:** require id name ([1fbeccc](https://github.com/saltstack-formulas/rabbitmq-formula/commit/1fbeccc53c97d1e9c23ce9397e9d188f265b6b53))
+
+
+### Documentation
+
+* **pillar.example:** correct dict names ([1b3ef38](https://github.com/saltstack-formulas/rabbitmq-formula/commit/1b3ef38c42c951fe31052825f290ce1c74fdc35f))
+
 ## [2.0.8](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.7...v2.0.8) (2021-07-29)
 
 
