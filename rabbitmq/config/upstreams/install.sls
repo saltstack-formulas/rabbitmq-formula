@@ -14,6 +14,7 @@ include:
 
 rabbitmq-config-upstreams-enabled-{{ name }}-{{ upstream }}:
   rabbitmq_upstream.present:
+    - name: {{ upstream }}
                 {%- for v in p %}
     - {{ v|yaml }}
                 {%- endfor %}
