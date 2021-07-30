@@ -95,11 +95,9 @@ rabbitmq:
               - '.*'
       policies:
         my-ha-policy:
-          - name: HA
           - pattern: '.*'
           - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
         my-federate-policy:
-          - name: federate-me
           - pattern: '^federated\.'
           - definition: '{"federation-upstream-set":"all"}'
           - priority: 1
@@ -199,11 +197,9 @@ rabbitmq:
               - '.*'
       policies:
         my-ha-policy:
-          - name: HA
           - pattern: '.*'
           - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
         my-federate-policy:
-          - name: federate-me
           - pattern: '^federated\.'
           - definition: '{"federation-upstream-set":"all"}'
           - priority: 1

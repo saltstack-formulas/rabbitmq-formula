@@ -14,6 +14,7 @@ include:
 
 rabbitmq-config-policies-enabled-{{ name }}-{{ policy }}:
   rabbitmq_policy.present:
+    - name: {{ policy }}
                 {%- for v in p %}
     - {{ v|yaml }}
                 {%- endfor %}
