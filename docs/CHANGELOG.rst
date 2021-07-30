@@ -2,6 +2,16 @@
 Changelog
 =========
 
+`2.0.10 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.9...v2.0.10>`_ (2021-07-30)
+------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **policy:** use specificed name for the policies (\ `3ef3516 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/3ef3516515cebf9a8d0cd7ef51dda5054b65f457>`_\ )
+* **upstream:** use specificed name for the upstream (\ `57d4a33 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/57d4a3348958f954bcb955b113d188e854a71e7e>`_\ )
+
 `2.0.9 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.8...v2.0.9>`_ (2021-07-30)
 ----------------------------------------------------------------------------------------------------------
 
