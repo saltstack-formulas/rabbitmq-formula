@@ -15,9 +15,11 @@ include:
 rabbitmq-config-policies-enabled-{{ name }}-{{ policy }}:
   rabbitmq_policy.present:
     - name: {{ policy }}
-                {%- for v in p %}
-    - {{ v|yaml }}
-                {%- endfor %}
+    - pattern: {{ p.pattern }}
+    - definition: '{{ p.definition }}'
+    - priority: {{ 0 if 'priority' not in p else p.priority }}
+    - vhost: {{ '/' if 'vhost' not in p else p.vhost }}
+    - apply_to: {{ 'all' if 'apply_to' not in p else p.apply_to }}
     - onlyif: test -x /usr/sbin/rabbitmqctl
     - runas: rabbitmq
     - require:

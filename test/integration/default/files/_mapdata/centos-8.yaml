@@ -61,20 +61,25 @@ values:
           vhost: default_vhost
       nodeport: 5672
       plugins:
-        - rabbitmq_management
-        - rabbitmq_federation
-        - rabbitmq_federation_management
-        - rabbitmq_auth_backend_ldap
-        - rabbitmq_shovel
-        - rabbitmq_shovel_management
+      - rabbitmq_management
+      - rabbitmq_federation
+      - rabbitmq_federation_management
+      - rabbitmq_auth_backend_ldap
+      - rabbitmq_shovel
+      - rabbitmq_shovel_management
       policies:
         my-federate-policy:
-          - pattern: '^federated\.'
-          - definition: '{"federation-upstream-set":"all"}'
-          - priority: 1
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: "^federated\\."
+          priority: 1
         my-ha-policy:
-          - pattern: '.*'
-          - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          pattern: ".*"
+        my-tricky-one:
+          apply_to: queues
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: "^something$"
+          priority: 1
       queues:
         my-queue:
           arguments:
@@ -162,12 +167,18 @@ values:
       plugins: []
       policies:
         my-federate-policy:
-          - pattern: '^federated\.'
-          - definition: '{"federation-upstream-set":"all"}'
-          - priority: 1
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: "^federated\\."
+          priority: 1
         my-ha-policy:
-          - pattern: '.*'
-          - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          pattern: ".*"
+        my-tricky-one:
+          apply_to: queues
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: "^something$"
+          priority: 1
+
       queues:
         my-queue:
           arguments:
@@ -183,10 +194,10 @@ values:
       service: true
       upstreams:
         my-upstream1:
-          - uri: 'amqp://saltstack_mq:password@localhost'
-          - trust_user_id: true
-          - ack_mode: on-confirm
-          - max_hops: 1
+        - uri: amqp://saltstack_mq:password@localhost
+        - trust_user_id: true
+        - ack_mode: on-confirm
+        - max_hops: 1
       users:
         airflow:
           force: true
