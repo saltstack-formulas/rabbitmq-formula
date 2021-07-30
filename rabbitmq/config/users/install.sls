@@ -33,7 +33,7 @@ rabbitmq-config-users-added-{{ name }}-{{ user }}:
     - onlyif: test -x {{ cmd }}
     - runas: rabbitmq
     - require:
-      - sls: {{ sls_service_running }}
+      - service: rabbitmq-service-running-service-running-{{ name }}
       - sls: {{ sls_vhosts_install }}
 
             {%- endfor %}

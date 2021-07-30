@@ -78,8 +78,7 @@ rabbitmq-service-running-service-running-{{ name }}:
       - file: rabbitmq-service-running-directory-{{ name }}
       - file: rabbitmq-service-running-managed-{{ name }}
   cmd.run:
-    - names:
-      - journalctl -xe -u {{ svcname }} || true
+    - name: systemctl status {{ svcname }} || true
 
         {%- endif %}
     {%- endfor %}

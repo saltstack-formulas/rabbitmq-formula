@@ -33,66 +33,69 @@ values:
     - Y:G@id
   nodes:
     rabbit:
-      binding:
-        my-new-binding:
-        - destination_type: queue
-        - destination: my-new-queue
-        - routing_key: a_routing_key_string
-        - user: saltstack_mq
-        - passwd: password
-        - vhost: default_vhost
-        - arguments:
-          - x-message-ttl: 8640000
+      bindings:
+        my-binding:
+          destination: my-queue
+          destination_type: queue
+          passwd: password
+          routing_key: a_routing_key_string
+          source: amq.topic
+          user: saltstack_mq
+          vhost: default_vhost
       clustered: false
       config:
         auth_backends.1: internal
         listeners.tcp.1: 0.0.0.0:5672
       distport: 25672
-      exchange:
-        my-new-exchange:
-        - user: saltstack_mq
-        - passwd: password
-        - type: fanout
-        - durable: true
-        - internal: false
-        - auto_delete: false
-        - vhost: default_vhost
-        - arguments:
+      exchanges:
+        my-exchange:
+          arguments:
           - alternate-**exchange: amq.fanout
           - test-header: testing
+          auto_delete: 'false'
+          durable: 'true'
+          internal: 'false'
+          passwd: password
+          type: fanout
+          user: saltstack_mq
+          vhost: default_vhost
       nodeport: 5672
       plugins:
       - rabbitmq_management
       - rabbitmq_federation
       - rabbitmq_federation_management
-      policy:
-        my-new-rabbitmq-policy:
-        - name: HA
-        - pattern: ".*"
-        - definition: '{"ha-mode": "all"}'
-        rabbitmq_policy:
-        - name: HA
-        - pattern: ".*"
-        - definition: '{"ha-mode": "all"}'
-      queue:
-        my-new-queue:
+      - rabbitmq_auth_backend_ldap
+      - rabbitmq_shovel
+      - rabbitmq_shovel_management
+      policies:
+        my-federate-policy:
+          - name: federate-me
+          - pattern: '^federated\.'
+          - definition: '{"federation-upstream-set":"all"}'
+          - priority: 1
+        my-ha-policy:
+          - name: HA
+          - pattern: '.*'
+          - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+      queues:
+        my-queue:
           arguments:
           - x-message-ttl: 8640000
           - x-expires: 8640000
-          - x-dead-letter-exchange: my-new-exchange
-          auto_delete: false
-          durable: true
+          - x-dead-letter-exchange: my-exchange
+          auto_delete: 'false'
+          durable: 'true'
           passwd: password
           user: saltstack_mq
           vhost: default_vhost
-      queues: {}
       remove_guest_user: true
       service: true
-      upstream:
-        my-new-upstream1:
-        - uri: amqp://saltstack_mq:password@localhost
-        - trust_user_id: true
-        - ack_mode: on-confirm
+      upstreams:
+        my-upstream1:
+          - uri: 'amqp://saltstack_mq:password@localhost'
+          - trust_user_id: true
+          - ack_mode: on-confirm
+          - max_hops: 1
       users:
         airflow:
           force: true
@@ -130,56 +133,60 @@ values:
       vhosts:
       - default_vhost
     rabbit2:
-      binding:
-        my-new-binding:
-        - destination_type: queue
-        - destination: my-new-queue
-        - routing_key: a_routing_key_string
-        - user: saltstack_mq
-        - passwd: password
-        - vhost: rabbit2_vhost
-        - arguments:
-          - x-message-ttl: 8640000
+      bindings:
+        my-binding:
+          destination: my-queue
+          destination_type: queue
+          passwd: password
+          routing_key: a_routing_key_string
+          source: amq.topic
+          user: saltstack_mq
+          vhost: rabbit2_vhost
       clustered: false              # true
       config:
         auth_backends.1: internal
         listeners.tcp.1: 0.0.0.0:5673
       distport: 25673
-      exchange:
-        my-new-exchange:
-        - user: saltstack_mq
-        - passwd: password
-        - type: fanout
-        - durable: true
-        - internal: false
-        - auto_delete: false
-        - vhost: rabbit2_vhost
-        - arguments:
+      exchanges:
+        my-exchange:
+          arguments:
           - alternate-**exchange: amq.fanout
           - test-header: testing
+          auto_delete: 'false'
+          durable: 'true'
+          internal: 'false'
+          passwd: password
+          type: fanout
+          user: saltstack_mq
+          vhost: rabbit2_vhost
       join_node: rabbit   # create multinode cluster on localhost
       nodeport: 5673
       plugins: []
-      policy:
-        my-new-rabbitmq-policy:
-        - name: HA
-        - pattern: ".*"
-        - definition: '{"ha-mode": "all"}'
-      queue:
-        my-new-queue:
+      policies:
+        my-federate-policy:
+          - name: federate-me
+          - pattern: '^federated\.'
+          - definition: '{"federation-upstream-set":"all"}'
+          - priority: 1
+        my-ha-policy:
+          - name: HA
+          - pattern: '.*'
+          - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+      queues:
+        my-queue:
           arguments:
           - x-message-ttl: 8640000
           - x-expires: 8640000
-          - x-dead-letter-exchange: my-new-exchange
-          auto_delete: false
-          durable: true
+          - x-dead-letter-exchange: my-exchange
+          auto_delete: 'false'
+          durable: 'true'
           passwd: password
           user: saltstack_mq
           vhost: rabbit2_vhost
       remove_guest_user: true
       service: true
-      upstream:
-        my-new-upstream1:
+      upstreams:
+        my-upstream1:
         - uri: amqp://saltstack_mq:password@localhost
         - trust_user_id: true
         - ack_mode: on-confirm
