@@ -95,12 +95,17 @@ rabbitmq:
               - '.*'
       policies:
         my-ha-policy:
-          - pattern: '.*'
-          - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          pattern: '.*'
+          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
         my-federate-policy:
-          - pattern: '^federated\.'
-          - definition: '{"federation-upstream-set":"all"}'
-          - priority: 1
+          pattern: '^federated\.'
+          definition: '{"federation-upstream-set":"all"}'
+          priority: 1
+        my-tricky-one:
+          pattern: '^something$'
+          definition: '{"federation-upstream-set":"all"}'
+          priority: 1
+          apply_to: queues
       upstreams:
         my-upstream1:
           - uri: 'amqp://saltstack_mq:password@localhost'
@@ -197,12 +202,17 @@ rabbitmq:
               - '.*'
       policies:
         my-ha-policy:
-          - pattern: '.*'
-          - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          pattern: '.*'
+          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
         my-federate-policy:
-          - pattern: '^federated\.'
-          - definition: '{"federation-upstream-set":"all"}'
-          - priority: 1
+          pattern: '^federated\.'
+          definition: '{"federation-upstream-set":"all"}'
+          priority: 1
+        my-tricky-one:
+          pattern: '^something$'
+          definition: '{"federation-upstream-set":"all"}'
+          priority: 1
+          apply_to: queues
       upstreams:
         my-upstream1:
           - uri: 'amqp://saltstack_mq:password@localhost'

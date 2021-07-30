@@ -67,12 +67,17 @@ values:
         - rabbitmq_shovel_management
       policies:
         my-federate-policy:
-          - pattern: '^federated\.'
-          - definition: '{"federation-upstream-set":"all"}'
-          - priority: 1
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: "^federated\\."
+          priority: 1
         my-ha-policy:
-          - pattern: '.*'
-          - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          pattern: ".*"
+        my-tricky-one:
+          apply_to: queues
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: "^something$"
+          priority: 1
       queues:
         my-queue:
           arguments:
@@ -159,12 +164,17 @@ values:
       plugins: []
       policies:
         my-federate-policy:
-          - pattern: '^federated\.'
-          - definition: '{"federation-upstream-set":"all"}'
-          - priority: 1
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: "^federated\\."
+          priority: 1
         my-ha-policy:
-          - pattern: '.*'
-          - definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          pattern: ".*"
+        my-tricky-one:
+          apply_to: queues
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: "^something$"
+          priority: 1
       queues:
         my-queue:
           arguments:
