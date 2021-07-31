@@ -17,8 +17,7 @@ values:
         - rabbitmq_federation
         - rabbitmq_federation_management
         - rabbitmq_auth_backend_ldap
-      vhosts:
-        - '/virtual/host'
+      vhosts: {}
       users: {}
       remove_guest_user: true
       policies: {}
