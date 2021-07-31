@@ -21,7 +21,6 @@ rabbitmq-config-plugins-disabled-{{ name }}-{{ plugin }}:
       - /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled {{ plugin }}
     - runas: root
     - require_in:
-      - file: rabbitmq-config-plugins-disabled-{{ name }}-{{ plugin }}
       - file: rabbitmq-config-plugins-clean-rabbitmqadmin
 
             {%- endfor %}

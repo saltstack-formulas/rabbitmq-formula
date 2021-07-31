@@ -94,24 +94,30 @@ rabbitmq:
               - '.*'
               - '.*'
       policies:
-        my-ha-policy:
-          pattern: '.*'
-          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
         my-federate-policy:
+          definition: '{"federation-upstream-set":"all"}'
           pattern: '^federated\.'
-          definition: '{"federation-upstream-set":"all"}'
           priority: 1
+          vhost: default_vhost
+        my-ha-policy:
+          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          pattern: '.*'
+          vhost: default_vhost
         my-tricky-one:
-          pattern: '^something$'
-          definition: '{"federation-upstream-set":"all"}'
-          priority: 1
           apply_to: queues
-      upstreams:
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: '^something$'
+          priority: 1
+          vhost: default_vhost
+      parameters:
         my-upstream1:
-          - uri: 'amqp://saltstack_mq:password@localhost'
-          - trust_user_id: true
-          - ack_mode: on-confirm
-          - max_hops: 1
+          component: federation-upstream
+          params:
+            'uri': 'amqp://saltstack_mq:password@localhost'
+            'ack-mode': on-confirm
+            'trust-user-id': true
+            'max-hops': 1
+          vhost: default_vhost
 
     rabbit2:
       nodeport: 5673
@@ -201,24 +207,30 @@ rabbitmq:
               - '.*'
               - '.*'
       policies:
-        my-ha-policy:
-          pattern: '.*'
-          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
         my-federate-policy:
+          definition: '{"federation-upstream-set":"all"}'
           pattern: '^federated\.'
-          definition: '{"federation-upstream-set":"all"}'
           priority: 1
+          vhost: rabbit2_vhost
+        my-ha-policy:
+          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          pattern: '.*'
+          vhost: rabbit2_vhost
         my-tricky-one:
-          pattern: '^something$'
-          definition: '{"federation-upstream-set":"all"}'
-          priority: 1
           apply_to: queues
-      upstreams:
+          definition: '{"federation-upstream-set":"all"}'
+          pattern: '^something$'
+          priority: 1
+          vhost: rabbit2_vhost
+      parameters:
         my-upstream1:
-          - uri: 'amqp://saltstack_mq:password@localhost'
-          - trust_user_id: true
-          - ack_mode: on-confirm
-          - max_hops: 1
+          component: federation-upstream
+          params:
+            'uri': 'amqp://saltstack_mq:password@localhost'
+            'ack-mode': on-confirm
+            'trust-user-id': true
+            'max-hops': 1
+          vhost: rabbit2_vhost
 
   pkg:
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14

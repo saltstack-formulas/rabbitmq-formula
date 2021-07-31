@@ -11,12 +11,12 @@ include:
   - {{ sls_config_vhosts_clean }}
 
     {%- for name, node in rabbitmq.nodes.items() %}
-        {%- if 'policies' in node and node.policies is mapping %}
-            {%- for policy, p in node.policies.items() %}
+        {%- if 'parameters' in node and node.parameters is mapping %}
+            {%- for param, p in node.parameters.items() %}
 
-rabbitmq-config-policies-absent-{{ name }}-{{ policy }}:
+rabbitmq-config-parameters-absent-{{ name }}-{{ param }}:
   cmd.run:
-    - name: /usr/sbin/rabbitmqctl --node {{ name }} clear_policy {{ policy }} --vhost={{ '/' if 'vhost' not in p else p.vhost }} || true # noqa 204
+    - name: /usr/sbin/rabbitmqctl --node {{ name }} clear_parameter --vhost={{ '/' if 'vhost' not in p else p.vhost }} {{ p.component }} {{ param }} || true # noqa 204
     - onlyif:
       - test -x /usr/sbin/rabbitmqctl
       - test -d {{ rabbitmq.dir.data }}

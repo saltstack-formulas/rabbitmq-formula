@@ -12,6 +12,7 @@ values:
       distport: 25672
       config: {}
       service: true
+      parameters: {}
       plugins:
         - rabbitmq_management
         - rabbitmq_federation

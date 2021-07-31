@@ -9,17 +9,15 @@ include:
   - {{ sls_service_running }}
 
     {%- for name, node in rabbitmq.nodes.items() %}
-        {%- if 'upstreams' in node and node.upstreams is mapping %}
-            {%- for upstream, p in node.upstreams.items() %}
+        {%- if 'parameters' in node and node.parameters is mapping %}
+            {%- for param, p in node.parameters.items() %}
 
-rabbitmq-config-upstreams-enabled-{{ name }}-{{ upstream }}:
-  rabbitmq_upstream.present:
-    - name: {{ upstream }}
-                {%- for v in p %}
-    - {{ v|yaml }}
-                {%- endfor %}
-    - onlyif: test -x /usr/sbin/rabbitmqctl
+rabbitmq-config-parameters-present-{{ name }}-{{ param }}:
+  cmd.run:
+    - name: >-
+            /usr/sbin/rabbitmqctl --node {{ name }} set_parameter --vhost={{ '/' if 'vhost' not in p else p.vhost }} {{ p.component }} '{{ param }}' '{{ p.params|json }}'  # noqa 204
     - runas: rabbitmq
+    - onlyif: test -x /usr/sbin/rabbitmqctl
     - require:
       - service: rabbitmq-service-running-service-running-{{ name }}
 

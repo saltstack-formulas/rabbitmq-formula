@@ -9,7 +9,6 @@ include:
   - .queues.clean
   - .policies.clean
   - .plugins.clean
-  - .params.clean
-  - .upstreams.clean
+  - .parameters.clean
   - .clusters.clean
   - .files.clean

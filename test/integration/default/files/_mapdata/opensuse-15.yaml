@@ -58,6 +58,15 @@ values:
           user: saltstack_mq
           vhost: default_vhost
       nodeport: 5672
+      parameters:
+        my-upstream1:
+          component: federation-upstream
+          params:
+            'ack-mode': on-confirm
+            'max-hops': 1
+            'trust-user-id': true
+            'uri': 'amqp://saltstack_mq:password@localhost'
+          vhost: default_vhost
       plugins:
         - rabbitmq_management
         - rabbitmq_federation
@@ -68,16 +77,19 @@ values:
       policies:
         my-federate-policy:
           definition: '{"federation-upstream-set":"all"}'
-          pattern: "^federated\\."
+          pattern: '^federated\.'
           priority: 1
+          vhost: default_vhost
         my-ha-policy:
           definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
-          pattern: ".*"
+          pattern: '.*'
+          vhost: default_vhost
         my-tricky-one:
           apply_to: queues
           definition: '{"federation-upstream-set":"all"}'
-          pattern: "^something$"
+          pattern: '^something$'
           priority: 1
+          vhost: default_vhost
       queues:
         my-queue:
           arguments:
@@ -91,12 +103,6 @@ values:
           vhost: default_vhost
       remove_guest_user: true
       service: true
-      upstreams:
-        my-upstream1:
-          - uri: 'amqp://saltstack_mq:password@localhost'
-          - trust_user_id: true
-          - ack_mode: on-confirm
-          - max_hops: 1
       users:
         airflow:
           force: true
@@ -162,20 +168,32 @@ values:
           vhost: rabbit2_vhost
       join_node: rabbit   # create multinode cluster on localhost
       nodeport: 5673
+      parameters:
+        my-upstream1:
+          component: federation-upstream
+          params:
+            'ack-mode': on-confirm
+            'max-hops': 1
+            'trust-user-id': true
+            'uri': 'amqp://saltstack_mq:password@localhost'
+          vhost: rabbit2_vhost
       plugins: []
       policies:
         my-federate-policy:
           definition: '{"federation-upstream-set":"all"}'
-          pattern: "^federated\\."
+          pattern: '^federated\.'
           priority: 1
+          vhost: rabbit2_vhost
         my-ha-policy:
           definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
-          pattern: ".*"
+          pattern: '.*'
+          vhost: rabbit2_vhost
         my-tricky-one:
           apply_to: queues
           definition: '{"federation-upstream-set":"all"}'
-          pattern: "^something$"
+          pattern: '^something$'
           priority: 1
+          vhost: rabbit2_vhost
       queues:
         my-queue:
           arguments:
@@ -189,12 +207,6 @@ values:
           vhost: rabbit2_vhost
       remove_guest_user: true
       service: true
-      upstreams:
-        my-upstream1:
-          - uri: 'amqp://saltstack_mq:password@localhost'
-          - trust_user_id: true
-          - ack_mode: on-confirm
-          - max_hops: 1
       users:
         airflow:
           force: true

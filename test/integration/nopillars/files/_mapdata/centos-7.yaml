@@ -30,6 +30,7 @@ values:
       config: {}
       distport: 25672
       nodeport: 5672
+      parameters: {}
       plugins:
         - rabbitmq_management
         - rabbitmq_federation
@@ -40,8 +41,7 @@ values:
       remove_guest_user: true
       service: true
       users: {}
-      vhosts:
-        - "/virtual/host"
+      vhosts: {}
   pkg:
     deps:
       - socat
