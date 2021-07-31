@@ -5,7 +5,7 @@ This list is sorted by the number of commits per contributor in _descending_ ord
 Avatar|Contributor|Contributions
 :-:|---|:-:
 <img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/10231489?v=4' width='36' height='36' alt='@myii'>|[@myii](https://github.com/myii)|93
-<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/13322818?v=4' width='36' height='36' alt='@noelmcloughlin'>|[@noelmcloughlin](https://github.com/noelmcloughlin)|72
+<img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/13322818?v=4' width='36' height='36' alt='@noelmcloughlin'>|[@noelmcloughlin](https://github.com/noelmcloughlin)|75
 <img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/1396878?v=4' width='36' height='36' alt='@gravyboat'>|[@gravyboat](https://github.com/gravyboat)|11
 <img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/52996?v=4' width='36' height='36' alt='@daks'>|[@daks](https://github.com/daks)|6
 <img class='float-left rounded-1' src='https://avatars.githubusercontent.com/u/3374962?v=4' width='36' height='36' alt='@nmadhok'>|[@nmadhok](https://github.com/nmadhok)|6

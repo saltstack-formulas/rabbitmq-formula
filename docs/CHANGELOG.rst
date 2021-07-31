@@ -2,6 +2,21 @@
 Changelog
 =========
 
+`2.1.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.12...v2.1.0>`_ (2021-07-31)
+-----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **defaults:** do not create a vhost by default (\ `977e9e0 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/977e9e0d6ed4014a2c78ecda5bffbf7c167cea34>`_\ )
+
+Features
+^^^^^^^^
+
+
+* **policies,params:** refactor upstreams as params/policies (\ `161c70a <https://github.com/saltstack-formulas/rabbitmq-formula/commit/161c70a8eda885737ec1e9b457812495686eb424>`_\ )
+
 `2.0.12 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.11...v2.0.12>`_ (2021-07-31)
 -------------------------------------------------------------------------------------------------------------
 
