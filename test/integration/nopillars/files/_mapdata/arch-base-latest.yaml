@@ -43,8 +43,7 @@ values:
       remove_guest_user: true
       service: true
       users: {}
-      vhosts:
-        - "/virtual/host"
+      vhosts: {}
   pkg:
     deps:
       - socat

@@ -9,7 +9,6 @@ include:
   - .queues
   - .policies
   - .plugins
-  - .params
   - .exchanges
   - .bindings
-  - .upstreams
+  - .parameters
