@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.12](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.11...v2.0.12) (2021-07-31)
+
+
+### Bug Fixes
+
+* **cluster:** fix clean state ([567d1ce](https://github.com/saltstack-formulas/rabbitmq-formula/commit/567d1cec4f18b87b296e3522fd2f4df7082e7261))
+
 ## [2.0.11](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.10...v2.0.11) (2021-07-30)
 
 
