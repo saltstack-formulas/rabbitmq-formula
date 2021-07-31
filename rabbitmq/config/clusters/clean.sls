@@ -10,10 +10,10 @@
 rabbitmq-config-clusters-{{ name }}-leave-{{ node.join_node }}:
   cmd.run:
     - names:
-      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost stop_app || true
-      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost reset || true
-      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost start_app || true
-      - /usr/sbin/rabbitmqctl --node {{ name }}@localhost cluster_status || true
+      - /usr/sbin/rabbitmqctl --node {{ name }} stop_app || true
+      - /usr/sbin/rabbitmqctl --node {{ name }} reset || true
+      - /usr/sbin/rabbitmqctl --node {{ name }} start_app || true
+      - /usr/sbin/rabbitmqctl --node {{ name }} cluster_status || true
     - runas: rabbitmq
     - onlyif:
       - test -x /usr/sbin/rabbitmqctl
