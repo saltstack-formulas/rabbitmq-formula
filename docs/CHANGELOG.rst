@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`2.1.3 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.2...v2.1.3>`_ (2021-08-01)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **formula:** fix exchanges and bindings (\ `e95d319 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/e95d3199f340d054998097ef76af63dbfeeba0c5>`_\ )
+
 `2.1.2 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.1...v2.1.2>`_ (2021-08-01)
 ----------------------------------------------------------------------------------------------------------
 
