@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.1...v2.1.2) (2021-08-01)
+
+
+### Bug Fixes
+
+* **exchanges:** accept arguments if supplied ([6df27a6](https://github.com/saltstack-formulas/rabbitmq-formula/commit/6df27a6d78b27652a09e96d0a274514f75a85bec))
+
 ## [2.1.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.0...v2.1.1) (2021-08-01)
 
 
