@@ -51,8 +51,8 @@ rabbitmq:
           auto_delete: 'false'
           vhost: default_vhost
           arguments:
-            - 'alternate-**exchange': 'amq.fanout'
-            - 'test-header': 'testing'
+            alternate-**exchange: 'amq.fanout'
+            test-header: 'testing'
       remove_guest_user: true
       users:
         user1:
@@ -164,8 +164,8 @@ rabbitmq:
           auto_delete: 'false'
           vhost: rabbit2_vhost
           arguments:
-            - 'alternate-**exchange': 'amq.fanout'
-            - 'test-header': 'testing'
+            alternate-**exchange: 'amq.fanout'
+            test-header: 'testing'
       remove_guest_user: true
       users:
         user1:

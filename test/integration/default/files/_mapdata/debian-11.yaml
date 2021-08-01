@@ -46,8 +46,8 @@ values:
       exchanges:
         my-exchange:
           arguments:
-          - alternate-**exchange: amq.fanout
-          - test-header: testing
+            alternate-**exchange: amq.fanout
+            test-header: testing
           auto_delete: 'false'
           durable: 'true'
           internal: 'false'
@@ -151,8 +151,8 @@ values:
       exchanges:
         my-exchange:
           arguments:
-          - alternate-**exchange: amq.fanout
-          - test-header: testing
+            alternate-**exchange: amq.fanout
+            test-header: testing
           auto_delete: 'false'
           durable: 'true'
           internal: 'false'
