@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.0...v2.1.1) (2021-08-01)
+
+
+### Bug Fixes
+
+* **queues:** apply queue arguments if specified ([52eacec](https://github.com/saltstack-formulas/rabbitmq-formula/commit/52eacecf9d505a3fc3d2b4d935db3102e2a5dd98))
+
 # [2.1.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.0.12...v2.1.0) (2021-07-31)
 
 
