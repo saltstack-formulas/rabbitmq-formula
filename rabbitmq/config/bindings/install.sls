@@ -19,9 +19,7 @@ include:
 rabbitmq-config-bindings-enabled-{{ name }}-{{ binding }}:
   cmd.run:
     - name: /usr/local/sbin/rabbitmqadmin --node {{ name }} --port={{ node.nodeport + 10000 }} declare binding --vhost={{ b.vhost }} --username={{ b.user }} --password={{ b.passwd }} source={{ b.source }} destination={{ b.destination }} destination_type={{ b.destination_type }} routing_key={{ b.routing_key }} # noqa 204
-    - onlyif:
-        - test -x /usr/local/sbin/rabbitmqadmin
-        - /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled rabbitmq_management
+    - onlyif: test -x /usr/local/sbin/rabbitmqadmin
     - runas: rabbitmq
     - require:
       - sls: {{ sls_config_plugins }}

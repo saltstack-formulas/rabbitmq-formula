@@ -27,8 +27,8 @@ rabbitmq-config-plugins-enabled-{{ name }}-{{ plugin }}:
 rabbitmq-config-plugins-{{ name }}-rabbitmqadmin-install:
   cmd.run:
     - name : curl -k -L http://localhost:15672/cli/rabbitmqadmin -o /usr/local/sbin/rabbitmqadmin
-    - unless: test -x /usr/local/bin/rabbitmqadmin
-    - onlyif: /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled {{ plugin }}
+    - unless: test -x /usr/local/sbin/rabbitmqadmin
+    - onlyif: /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled rabbitmq_management
     - require:
       - sls: {{ sls_service_running }}
   file.managed:
