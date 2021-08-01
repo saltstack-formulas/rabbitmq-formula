@@ -20,9 +20,7 @@ rabbitmq-config-exchanges-enabled-{{ name }}-{{ exchange }}:
   cmd.run:
     - name: >-
             /usr/local/sbin/rabbitmqadmin --node {{ name }} --port={{ node.nodeport + 10000 }} declare exchange --vhost={{ ex.vhost }} --username={{ ex.user }} --password={{ ex.passwd }} name={{ exchange }} type={{ ex.type }} durable={{ ex.durable }} internal={{ ex.internal }} auto_delete={{ ex.auto_delete }} arguments='{{ "{}" if "arguments" not in ex else ex.arguments|json }}'  # noqa 204
-    - onlyif:
-        - test -x /usr/local/sbin/rabbitmqadmin
-        - /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled rabbitmq_management
+    - onlyif: test -x /usr/local/sbin/rabbitmqadmin
     - runas: rabbitmq
     - require:
       - sls: {{ sls_config_plugins }}

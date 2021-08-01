@@ -22,7 +22,6 @@ rabbitmq-config-bindings-delete-{{ name }}-{{ binding }}:
     - onlyif:
       - test -x /usr/local/sbin/rabbitmqadmin
       - test -d {{ rabbitmq.dir.data }}
-      # /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled rabbitmq_management
     - runas: rabbitmq
     - require_in:
       - sls: {{ sls_config_plugins_clean }}

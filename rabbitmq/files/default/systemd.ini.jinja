@@ -2,7 +2,7 @@
 # File managed by Salt. Changes risk being overwritten.
 #########################################################
 [Unit]
-Description=RabbitMQ Broker {{ '' if name is not defined or name else name }}
+Description=RabbitMQ broker {{ '' if name is not defined or name else name }}
 Wants=network-online.target
 After=syslog.target network.target
 
