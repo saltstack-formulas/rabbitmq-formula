@@ -18,7 +18,8 @@ include:
 
 rabbitmq-config-queues-enabled-{{ name }}-{{ queue }}:
   cmd.run:
-    - name: /usr/local/sbin/rabbitmqadmin --node {{ name }} --port={{ node.nodeport + 10000 }} declare queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ queue }} durable={{ q.durable|to_bool|lower }} auto_delete={{ q.auto_delete|to_bool|lower }}  # noqa 204
+    - name: >-
+            /usr/local/sbin/rabbitmqadmin --node {{ name }} --port={{ node.nodeport + 10000 }} declare queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ queue }} durable={{ q.durable|to_bool|lower }} auto_delete={{ q.auto_delete|to_bool|lower }} arguments='{{ "{}" if "arguments" not in q else q.arguments|json }}'  # noqa 204
     - onlyif:
         - test -x /usr/local/sbin/rabbitmqadmin
         # /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled rabbitmq_management

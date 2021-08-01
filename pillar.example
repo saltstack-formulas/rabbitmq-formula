@@ -27,16 +27,11 @@ rabbitmq:
         - default_vhost
       queues:
         my-queue:
-          ## note : dict format
           user: saltstack_mq
           passwd: password
           durable: 'true'
           auto_delete: 'false'
           vhost: default_vhost
-          arguments:
-            - x-message-ttl: 8640000
-            - x-expires: 8640000
-            - x-dead-letter-exchange: my-exchange
       bindings:
         my-binding:
           source: 'amq.topic'
@@ -113,10 +108,10 @@ rabbitmq:
         my-upstream1:
           component: federation-upstream
           params:
-            'uri': 'amqp://saltstack_mq:password@localhost'
-            'ack-mode': on-confirm
-            'trust-user-id': true
-            'max-hops': 1
+            uri: 'amqp://saltstack_mq:password@localhost'
+            ack-mode: on-confirm
+            trust-user-id: true
+            max-hops: 1
           vhost: default_vhost
 
     rabbit2:
@@ -141,16 +136,15 @@ rabbitmq:
         - rabbit2_vhost
       queues:
         my-queue:
-          ## note : dict format
           user: saltstack_mq
           passwd: password
           durable: 'true'
           auto_delete: 'false'
           vhost: rabbit2_vhost
           arguments:
-            - x-message-ttl: 8640000
-            - x-expires: 8640000
-            - x-dead-letter-exchange: my-exchange
+            x-dead-letter-exchange: my-exchange
+            x-expires: 8640000
+            x-queue-type: quorum
       bindings:
         my-binding:
           source: 'amq.topic'
@@ -226,10 +220,10 @@ rabbitmq:
         my-upstream1:
           component: federation-upstream
           params:
-            'uri': 'amqp://saltstack_mq:password@localhost'
-            'ack-mode': on-confirm
-            'trust-user-id': true
-            'max-hops': 1
+            uri: 'amqp://saltstack_mq:password@localhost'
+            ack-mode: on-confirm
+            trust-user-id: true
+            max-hops: 1
           vhost: rabbit2_vhost
 
   pkg:
