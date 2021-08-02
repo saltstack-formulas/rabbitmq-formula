@@ -14,7 +14,7 @@ include:
         {%- if 'parameters' in node and node.parameters is mapping %}
             {%- for param, p in node.parameters.items() %}
 
-rabbitmq-config-parameters-absent-{{ name }}-{{ param }}:
+rabbitmq-config-parameters-clear-{{ name }}-{{ param }}:
   cmd.run:
     - name: /usr/sbin/rabbitmqctl --node {{ name }} clear_parameter --vhost={{ '/' if 'vhost' not in p else p.vhost }} {{ p.component }} {{ param }} || true # noqa 204
     - onlyif:

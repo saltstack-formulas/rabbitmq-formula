@@ -14,7 +14,7 @@ include:
         {%- if 'policies' in node and node.policies is mapping %}
             {%- for policy, p in node.policies.items() %}
 
-rabbitmq-config-policies-absent-{{ name }}-{{ policy }}:
+rabbitmq-config-policies-clear-{{ name }}-{{ policy }}:
   cmd.run:
     - name: /usr/sbin/rabbitmqctl --node {{ name }} clear_policy {{ policy }} --vhost={{ '/' if 'vhost' not in p else p.vhost }} || true # noqa 204
     - onlyif:
