@@ -14,7 +14,8 @@ include:
 
 rabbitmq-config-policies-enabled-{{ name }}-{{ policy }}:
   cmd.run:
-    - name: /usr/sbin/rabbitmqctl --node {{ name }} set_policy {{ policy }} --vhost={{ '/' if 'vhost' not in p else p.vhost }} '{{ p.pattern }}' '{{ p.definition }}' --priority {{ 0 if 'priority' not in p else p.priority }} --apply-to {{ 'all' if 'apply_to' not in p else p.apply_to }}  # noqa 204
+    - name: >-
+            /usr/sbin/rabbitmqctl --node {{ name }} set_policy {{ policy }} --vhost={{ '/' if 'vhost' not in p else p.vhost }} '{{ p.pattern }}' '{{ p.definition|json }}' --priority {{ 0 if 'priority' not in p else p.priority }} --apply-to {{ 'all' if 'apply_to' not in p else p.apply_to }}  # noqa 204
     - runas: rabbitmq
     - onlyif: test -x /usr/sbin/rabbitmqctl
     - require:

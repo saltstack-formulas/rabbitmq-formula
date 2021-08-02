@@ -16,7 +16,7 @@ include:
         {%- if 'queues' in node and node.queues is mapping %}
             {%- for queue, q in node.queues.items() %}
 
-rabbitmq-config-queues-disabled-{{ name }}-{{ queue }}:
+rabbitmq-config-queues-delete-{{ name }}-{{ queue }}:
   cmd.run:
     - name: /usr/local/sbin/rabbitmqadmin --node {{ name }} --port={{ node.nodeport + 10000 }} delete queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ queue }} || true  # noqa 204
     - onlyif:

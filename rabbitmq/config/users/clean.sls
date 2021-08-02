@@ -21,7 +21,7 @@ rabbitmq-config-users-environ-locale:
         {%- if 'users' in node and node.users is mapping %}
             {%- for user, items in node.users.items() %}
 
-rabbitmq-config-users-deleted-{{ name }}-{{ user }}:
+rabbitmq-config-users-delete-{{ name }}-{{ user }}:
   cmd.run:
     - name: /usr/sbin/rabbitmqctl --node {{ name }} delete_user {{ user }} ||true
     - onlyif:

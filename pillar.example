@@ -90,19 +90,16 @@ rabbitmq:
               - '.*'
       policies:
         my-federate-policy:
-          definition: '{"federation-upstream-set":"all"}'
+          definition:
+            federation-upstream-set: all
           pattern: '^federated\.'
           priority: 1
           vhost: default_vhost
         my-ha-policy:
-          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          definition:
+            ha-mode: nodes
+            ha-params: ["rabbit", "rabbit2"]
           pattern: '.*'
-          vhost: default_vhost
-        my-tricky-one:
-          apply_to: queues
-          definition: '{"federation-upstream-set":"all"}'
-          pattern: '^something$'
-          priority: 1
           vhost: default_vhost
       parameters:
         my-upstream1:
@@ -202,19 +199,16 @@ rabbitmq:
               - '.*'
       policies:
         my-federate-policy:
-          definition: '{"federation-upstream-set":"all"}'
+          definition:
+            federation-upstream-set: all
           pattern: '^federated\.'
           priority: 1
           vhost: rabbit2_vhost
         my-ha-policy:
-          definition: '{"ha-mode":"nodes","ha-params":["rabbit", "rabbit2"]}'
+          definition:
+            ha-mode: nodes
+            ha-params: ["rabbit", "rabbit2"]
           pattern: '.*'
-          vhost: rabbit2_vhost
-        my-tricky-one:
-          apply_to: queues
-          definition: '{"federation-upstream-set":"all"}'
-          pattern: '^something$'
-          priority: 1
           vhost: rabbit2_vhost
       parameters:
         my-upstream1:
