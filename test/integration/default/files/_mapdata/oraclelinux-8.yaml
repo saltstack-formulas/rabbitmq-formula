@@ -1,3 +1,4 @@
+# yamllint disable rule:indentation rule:line-length
 ---
 values:
   added_in_defaults: defaults_value
