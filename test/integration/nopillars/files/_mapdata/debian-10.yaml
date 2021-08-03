@@ -2,8 +2,6 @@
 values:
   added_in_defaults: defaults_value
   arch: amd64
-  config:
-    name: "/etc/rabbitmq/rabbitmq.conf"
   dir:
     base: "/usr/lib/rabbitmq"
     cleanlist:
@@ -14,6 +12,7 @@ values:
     data: "/var/lib/rabbitmq"
     service: "/usr/lib/systemd/system"
   environ: {}
+  erlang_cookie: shared-secret
   map_jinja:
     sources:
       - Y:G@osarch
@@ -28,17 +27,14 @@ values:
       clustered: false
       config: {}
       distport: 25672
-      erlang_cookie: shared-secret
       nodeport: 5672
+      parameters: {}
       plugins:
         - rabbitmq_management
         - rabbitmq_federation
         - rabbitmq_federation_management
-      policy:
-        rabbitmq_policy:
-          - name: HA
-          - pattern: ".*"
-          - definition: '{"ha-mode": "all"}'
+        - rabbitmq_auth_backend_ldap
+      policies: {}
       queues: {}
       remove_guest_user: true
       service: true
@@ -46,7 +42,8 @@ values:
       vhosts: {}
   pkg:
     deps:
-      - socat
+      - libtinfo5
+      - erlang-eldap
     deps_disablerepo: ''
     name: rabbitmq-server
     use_upstream: repo
