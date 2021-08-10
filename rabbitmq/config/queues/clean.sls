@@ -23,7 +23,7 @@ rabbitmq-config-queues-delete-{{ name }}-{{ queue }}:
       - test -x /usr/local/sbin/rabbitmqadmin
       - test -x /usr/sbin/rabbitmqctl
       - test -d {{ rabbitmq.dir.data }}
-      - /usr/sbin/rabbitmqctl --node {{ name }} --vhost={{ vhost }} list_queues | grep ^{{ queue }}\s*
+      - /usr/sbin/rabbitmqctl --node {{ name }} --vhost={{ q.vhost }} list_queues | grep ^{{ queue }}\s*
     - runas: rabbitmq
     - require_in:
       - sls: {{ sls_config_plugins_clean }}

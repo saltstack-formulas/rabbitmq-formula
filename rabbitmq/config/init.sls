@@ -3,7 +3,6 @@
 
 include:
   - .files
-  - .clusters
   - .users
   - .vhosts
   - .queues
@@ -12,3 +11,4 @@ include:
   - .exchanges
   - .bindings
   - .parameters
+  - .clusters
