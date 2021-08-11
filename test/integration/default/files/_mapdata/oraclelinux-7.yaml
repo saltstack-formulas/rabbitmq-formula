@@ -58,9 +58,14 @@ values:
           vhost: default_vhost
       nodeport: 5672
       parameters:
-        my-upstream1:
+        my-federation-upstream-set:
+          component: federation-upstream-set
+          definition:
+            upstream: my-federation-upstream1
+          vhost: default_vhost
+        my-federation-upstream1:
           component: federation-upstream
-          params:
+          definition:
             ack-mode: on-confirm
             max-hops: 1
             trust-user-id: true
@@ -74,10 +79,16 @@ values:
       - rabbitmq_shovel
       - rabbitmq_shovel_management
       policies:
-        my-federate-policy:
+        my-federation-policy1:
           definition:
             federation-upstream-set: all
-          pattern: '^federated\.'
+          pattern: '^federated1\.'
+          priority: 1
+          vhost: default_vhost
+        my-federation-policy2:
+          definition:
+            federation-upstream-set: my-federation-upstream-set
+          pattern: '^federated2\.'
           priority: 1
           vhost: default_vhost
         my-ha-policy:
@@ -85,6 +96,7 @@ values:
             ha-mode: nodes
             ha-params: ["rabbit", "rabbit2"]
           pattern: '.*'
+          priority: 1
           vhost: default_vhost
       queues:
         my-queue:
@@ -161,9 +173,14 @@ values:
       join_node: rabbit   # create multinode cluster on localhost
       nodeport: 5673
       parameters:
-        my-upstream1:
+        my-federation-upstream-set:
+          component: federation-upstream-set
+          definition:
+            upstream: my-federation-upstream1
+          vhost: default_vhost
+        my-federation-upstream1:
           component: federation-upstream
-          params:
+          definition:
             ack-mode: on-confirm
             max-hops: 1
             trust-user-id: true
@@ -171,10 +188,16 @@ values:
           vhost: rabbit2_vhost
       plugins: []
       policies:
-        my-federate-policy:
+        my-federation-policy1:
           definition:
             federation-upstream-set: all
-          pattern: '^federated\.'
+          pattern: '^federated1\.'
+          priority: 1
+          vhost: rabbit2_vhost
+        my-federation-policy2:
+          definition:
+            federation-upstream-set: my-federation-upstream-set
+          pattern: '^federated2\.'
           priority: 1
           vhost: rabbit2_vhost
         my-ha-policy:
@@ -182,6 +205,7 @@ values:
             ha-mode: nodes
             ha-params: ["rabbit", "rabbit2"]
           pattern: '.*'
+          priority: 1
           vhost: rabbit2_vhost
       queues:
         my-queue:
