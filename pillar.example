@@ -88,11 +88,32 @@ rabbitmq:
               - '.*'
               - '.*'
               - '.*'
+      parameters:
+        my-federation-upstream-set:
+          component: federation-upstream-set
+          definition:
+            # todo: multiple dict items (not just one)
+            upstream: my-federation-upstream1
+          vhost: default_vhost
+        my-federation-upstream1:
+          component: federation-upstream
+          definition:
+            uri: 'amqp://saltstack_mq:password@localhost'
+            ack-mode: on-confirm
+            trust-user-id: true
+            max-hops: 1
+          vhost: default_vhost
       policies:
-        my-federate-policy:
+        my-federation-policy1:
           definition:
             federation-upstream-set: all
-          pattern: '^federated\.'
+          pattern: '^federated1\.'
+          priority: 1
+          vhost: default_vhost
+        my-federation-policy2:
+          definition:
+            federation-upstream-set: my-federation-upstream-set
+          pattern: '^federated2\.'
           priority: 1
           vhost: default_vhost
         my-ha-policy:
@@ -100,15 +121,7 @@ rabbitmq:
             ha-mode: nodes
             ha-params: ["rabbit", "rabbit2"]
           pattern: '.*'
-          vhost: default_vhost
-      parameters:
-        my-upstream1:
-          component: federation-upstream
-          params:
-            uri: 'amqp://saltstack_mq:password@localhost'
-            ack-mode: on-confirm
-            trust-user-id: true
-            max-hops: 1
+          priority: 1
           vhost: default_vhost
 
     rabbit2:
@@ -197,11 +210,32 @@ rabbitmq:
               - '.*'
               - '.*'
               - '.*'
+      parameters:
+        my-federation-upstream-set:
+          component: federation-upstream-set
+          definition:
+            # todo: multiple dict items (not just one)
+            upstream: my-federation-upstream1
+          vhost: rabbit2_vhost
+        my-federation-upstream1:
+          component: federation-upstream
+          definition:
+            uri: 'amqp://saltstack_mq:password@localhost'
+            ack-mode: on-confirm
+            trust-user-id: true
+            max-hops: 1
+          vhost: rabbit2_vhost
       policies:
-        my-federate-policy:
+        my-federation-policy1:
           definition:
             federation-upstream-set: all
-          pattern: '^federated\.'
+          pattern: '^federated1\.'
+          priority: 1
+          vhost: rabbit2_vhost
+        my-federation-policy2:
+          definition:
+            federation-upstream-set: my-federation-upstream-set
+          pattern: '^federated2\.'
           priority: 1
           vhost: rabbit2_vhost
         my-ha-policy:
@@ -209,15 +243,7 @@ rabbitmq:
             ha-mode: nodes
             ha-params: ["rabbit", "rabbit2"]
           pattern: '.*'
-          vhost: rabbit2_vhost
-      parameters:
-        my-upstream1:
-          component: federation-upstream
-          params:
-            uri: 'amqp://saltstack_mq:password@localhost'
-            ack-mode: on-confirm
-            trust-user-id: true
-            max-hops: 1
+          priority: 1
           vhost: rabbit2_vhost
 
   pkg:
