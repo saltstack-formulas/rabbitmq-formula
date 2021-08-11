@@ -177,7 +177,7 @@ values:
           component: federation-upstream-set
           definition:
             upstream: my-federation-upstream1
-          vhost: default_vhost
+          vhost: rabbit2_vhost
         my-federation-upstream1:
           component: federation-upstream
           definition:
