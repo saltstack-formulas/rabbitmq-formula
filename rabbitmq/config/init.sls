@@ -3,8 +3,8 @@
 
 include:
   - .files
-  - .users
   - .vhosts
+  - .users
   - .queues
   - .policies
   - .plugins

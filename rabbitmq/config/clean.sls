@@ -2,13 +2,13 @@
 # vim: ft=sls
 
 include:
-  - .users.clean
-  - .vhosts.clean
-  - .exchanges.clean
-  - .bindings.clean
-  - .queues.clean
-  - .policies.clean
-  - .plugins.clean
   - .parameters.clean
+  - .policies.clean
+  - .bindings.clean
+  - .exchanges.clean
+  - .queues.clean
+  - .vhosts.clean
   - .clusters.clean
+  - .users.clean
+  - .plugins.clean
   - .files.clean

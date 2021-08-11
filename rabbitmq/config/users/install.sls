@@ -19,17 +19,17 @@ rabbitmq-config-users-added-{{ name }}-{{ user }}:
   cmd.run:
     - names:
       - {{ cmd }} --node {{ name }} add_user {{ user }} {{ u.password }} ||true
-          {%- if 'force' in u and u.force %}
+                {%- if 'force' in u and u.force %}
       - {{ cmd }} --node {{ name }} change_password {{ user }} {{ u.password }}
-          {%- endif %}
-          {%- if 'tags' in u and u.tags %}
+                {%- endif %}
+                {%- if 'tags' in u and u.tags %}
       - {{ cmd }} --node {{ name }} set_user_tags {{ user }} {{ u.tags|join(' ') }}   # noqa 204
-          {%- endif %}
-          {%- if 'perms' in u and u.perms %}
-              {%- for vhost, perms in u.perms.items() %}
+                {%- endif %}
+                {%- if 'perms' in u and u.perms %}
+                    {%- for vhost, perms in u.perms.items() %}
       - {{ cmd }} --node {{ name }} set_permissions -p {{ vhost }} {{ user }} {{ perms|map("json")|join(" ") }}  # noqa 204
-              {%- endfor %}
-          {%- endif %}
+                    {%- endfor %}
+                {%- endif %}
     - onlyif: test -x {{ cmd }}
     - runas: rabbitmq
     - require:
