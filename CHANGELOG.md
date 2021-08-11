@@ -1,5 +1,17 @@
 # Changelog
 
+# [2.2.0](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.4...v2.2.0) (2021-08-11)
+
+
+### Continuous Integration
+
+* **nopillars:** disable failing platforms ([58343b6](https://github.com/saltstack-formulas/rabbitmq-formula/commit/58343b695ec67dca08496e12817084fd4f411baf))
+
+
+### Features
+
+* **federation-set:** add support for ([b77789b](https://github.com/saltstack-formulas/rabbitmq-formula/commit/b77789b5f8e055163035fd7ddbbcf690e9f44d85))
+
 ## [2.1.4](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.3...v2.1.4) (2021-08-11)
 
 
