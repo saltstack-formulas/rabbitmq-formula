@@ -26,6 +26,7 @@ rabbitmq-config-queues-enabled-{{ name }}-{{ queue }}:
       - sls: {{ sls_config_plugins }}
       - sls: {{ sls_config_users }}
       - sls: {{ sls_config_vhosts }}
+    - unless: /usr/sbin/rabbitmqctl --node {{ name }} --vhost={{ q.vhost }} list_queues | grep ^{{ queue }}\s*
 
             {%- endfor %}
         {%- endif %}

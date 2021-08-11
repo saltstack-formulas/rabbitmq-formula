@@ -3,12 +3,12 @@
 
 include:
   - .files
-  - .clusters
-  - .users
   - .vhosts
+  - .users
   - .queues
   - .policies
   - .plugins
   - .exchanges
   - .bindings
   - .parameters
+  - .clusters

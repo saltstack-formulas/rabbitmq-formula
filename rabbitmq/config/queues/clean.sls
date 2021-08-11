@@ -21,7 +21,9 @@ rabbitmq-config-queues-delete-{{ name }}-{{ queue }}:
     - name: /usr/local/sbin/rabbitmqadmin --node {{ name }} --port={{ node.nodeport + 10000 }} delete queue --vhost={{ q.vhost }} --username={{ q.user }} --password={{ q.passwd }} name={{ queue }} || true  # noqa 204
     - onlyif:
       - test -x /usr/local/sbin/rabbitmqadmin
+      - test -x /usr/sbin/rabbitmqctl
       - test -d {{ rabbitmq.dir.data }}
+      - /usr/sbin/rabbitmqctl --node {{ name }} --vhost={{ q.vhost }} list_queues | grep ^{{ queue }}\s*
     - runas: rabbitmq
     - require_in:
       - sls: {{ sls_config_plugins_clean }}
