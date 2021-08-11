@@ -2,6 +2,37 @@
 Changelog
 =========
 
+`2.1.4 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.3...v2.1.4>`_ (2021-08-11)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **config:** create vhost before users (\ `44c2d8f <https://github.com/saltstack-formulas/rabbitmq-formula/commit/44c2d8f09cf31832caa73d19bedf2dbd010051da>`_\ )
+
+Code Refactoring
+^^^^^^^^^^^^^^^^
+
+
+* **cluster:** simplify cluster.clean (\ `557e07e <https://github.com/saltstack-formulas/rabbitmq-formula/commit/557e07e8dc48b4dfc0801369a6f70537fea4f030>`_\ )
+* **clusters:** join cluster last (\ `e9b5fb0 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/e9b5fb0e6b1317249d7b5353e316abacc9e62721>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gemfile+lock:** use ``ssf`` customised ``inspec`` repo [skip ci] (\ `763d252 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/763d252075b215592050febe94050998794a3b3a>`_\ )
+* **gitlab-ci:** enable more instances for both suites [skip ci] (\ `586ba89 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/586ba897293c6d2f5b2d893f2bcc1eb7a4e5ed83>`_\ )
+
+Tests
+^^^^^
+
+
+* **_mapdata:** use minimal header required across all files [skip ci] (\ `aab65c7 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/aab65c7796d82bed3c00c076b88f61038e429e41>`_\ )
+* **default:** add/fix verification files (where easy) [skip ci] (\ `cc459e1 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/cc459e1284d13b8cd03d4b0c9319544e32983369>`_\ )
+* **nopillars:** add/fix verification files (where easy) [skip ci] (\ `a4e2c77 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/a4e2c7730fb037772b970375d77f57163f908e3c>`_\ )
+
 `2.1.3 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.2...v2.1.3>`_ (2021-08-01)
 ----------------------------------------------------------------------------------------------------------
 
