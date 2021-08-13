@@ -6,9 +6,9 @@ include:
   - .vhosts
   - .users
   - .queues
-  - .policies
   - .plugins
   - .exchanges
   - .bindings
-  - .parameters
   - .clusters
+  - .policies
+  - .parameters
