@@ -2,6 +2,21 @@
 Changelog
 =========
 
+`2.2.1 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.0...v2.2.1>`_ (2021-08-13)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **clustering:** do clustering last (\ `ca99489 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/ca99489bde1e32aa8321ef683787908a5b039db7>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **suite:** fix and enable full ci again (\ `5af33ef <https://github.com/saltstack-formulas/rabbitmq-formula/commit/5af33ef58c545997d5729d9620e0413e306510ea>`_\ )
+
 `2.2.0 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.1.4...v2.2.0>`_ (2021-08-11)
 ----------------------------------------------------------------------------------------------------------
 
