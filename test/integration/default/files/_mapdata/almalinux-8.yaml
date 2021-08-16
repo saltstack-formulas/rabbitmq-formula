@@ -87,7 +87,7 @@ values:
           vhost: default_vhost
         my-federation-policy2:
           definition:
-            federation-upstream-set: all
+            federation-upstream-set: my-federation-upstream-set
           pattern: '^federated2\.'
           priority: 1
           vhost: default_vhost
@@ -196,7 +196,7 @@ values:
           vhost: rabbit2_vhost
         my-federation-policy2:
           definition:
-            federation-upstream-set: all
+            federation-upstream-set: my-federation-upstream-set
           pattern: '^federated2\.'
           priority: 1
           vhost: rabbit2_vhost
