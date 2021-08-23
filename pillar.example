@@ -8,6 +8,8 @@ rabbitmq:
       config:
         auth_backends.1: internal   # default
         listeners.tcp.1: 0.0.0.0:5672
+        # https://www.rabbitmq.com/consumers.html#acknowledgement-timeout
+        consumer_timeout: 3600000
         # https://www.rabbitmq.com/ldap.html
         # auth_backends.2: ldap
         # auth_ldap.servers.1: ldapserver.new
