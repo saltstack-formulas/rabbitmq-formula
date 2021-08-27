@@ -45,12 +45,17 @@ rabbitmq-package-repo-rabbitmq:
       - pkg: rabbitmq-package-install-pkg-installed
 
             {% elif grains['os_family'] == 'RedHat' %}
+              {%- if grains['os'] == 'Amazon' %}
+                {%- set releasever = salt['cmd.run']("rpm -E '%{rhel}'") %}
+              {%- else %}
+                {%- set releasever = grains['osmajorrelease'] %}
+              {%- endif %}
 
 rabbitmq-package-repo-erlang:
   pkgrepo.managed:
     - name: rabbitmq_rabbitmq-server
     # using cloudsmith.io for rabbitmq-erlang (recommended)
-    - baseurl: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/rpm/el/{{ grains.osmajorrelease }}/$basearch
+    - baseurl: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/rpm/el/{{ releasever }}/$basearch
     - gpgkey: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
     - repo_gpgcheck: 1
     - enabled: 1
@@ -68,7 +73,7 @@ rabbitmq-package-repo-rabbitmq:
   pkgrepo.managed:
     - name: rabbitmq-rabbitmq
     # using packagecloud for rabbitmq-server (recommended)
-    - baseurl: https://packagecloud.io/rabbitmq/rabbitmq-server/el/{{ grains.osmajorrelease }}/$basearch
+    - baseurl: https://packagecloud.io/rabbitmq/rabbitmq-server/el/{{ releasever }}/$basearch
     - gpgkey: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
     - enabled: 1
     - gpgcheck: 0
