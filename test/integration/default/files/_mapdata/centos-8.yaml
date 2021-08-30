@@ -45,6 +45,7 @@ values:
       clustered: false
       config:
         auth_backends.1: internal
+        consumer_timeout: 3600000
         listeners.tcp.1: 0.0.0.0:5672
       distport: 25672
       exchanges:

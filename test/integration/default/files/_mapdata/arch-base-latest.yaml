@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# consumer_timeout: 3600000
 # vim: ft=yaml
 # yamllint disable rule:indentation rule:line-length
 # Arch
