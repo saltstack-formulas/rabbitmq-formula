@@ -53,7 +53,7 @@ rabbitmq-package-repo-rabbitmq:
 
 rabbitmq-package-repo-erlang:
   pkgrepo.managed:
-    - name: rabbitmq_rabbitmq-server
+    - name: rabbitmq_erlang
     # using cloudsmith.io for rabbitmq-erlang (recommended)
     - baseurl: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/rpm/el/{{ releasever }}/$basearch
     - gpgkey: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
@@ -71,7 +71,7 @@ rabbitmq-package-repo-erlang:
 
 rabbitmq-package-repo-rabbitmq:
   pkgrepo.managed:
-    - name: rabbitmq-rabbitmq
+    - name: rabbitmq_rabbitmq-server
     # using packagecloud for rabbitmq-server (recommended)
     - baseurl: https://packagecloud.io/rabbitmq/rabbitmq-server/el/{{ releasever }}/$basearch
     - gpgkey: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
