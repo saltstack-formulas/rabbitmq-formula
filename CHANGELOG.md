@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.2.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.1...v2.2.2) (2021-09-01)
+
+
+### Bug Fixes
+
+* **package/repo/install:** add amazonlinux check ([6be2b5a](https://github.com/saltstack-formulas/rabbitmq-formula/commit/6be2b5a6e8bf7d2e7ab31633f17ae7c776bea50c))
+* **robustness:** use loopbackip instead of localhost ([f5b1e97](https://github.com/saltstack-formulas/rabbitmq-formula/commit/f5b1e97067a7b77396bc46bd1901cf186a5ab022))
+
+
+### Continuous Integration
+
+* **gitlab-ci:** reset instances to be tested [skip ci] ([c648d63](https://github.com/saltstack-formulas/rabbitmq-formula/commit/c648d6348a8259744aa965dd6e5265404c2cb896))
+* **kitchen+ci:** update with latest `3003.2` pre-salted images [skip ci] ([4fe9756](https://github.com/saltstack-formulas/rabbitmq-formula/commit/4fe975656e269773e7054da57b312a3b43b44c26))
+
+
+### Styles
+
+* **package/repo/install:** set more canonical names for yum repos ([1b923db](https://github.com/saltstack-formulas/rabbitmq-formula/commit/1b923db5d0d7f65bd18bc09352bf4bce7d100a3f))
+
+
+### Tests
+
+* **_mapdata:** update to include `consumer_timeout: 3600000` [skip ci] ([215188b](https://github.com/saltstack-formulas/rabbitmq-formula/commit/215188becc44483f93e765163e7b93ef7faadc80)), closes [#112](https://github.com/saltstack-formulas/rabbitmq-formula/issues/112)
+* **default:** fix verification file for `almalinux` [skip ci] ([63dc6ec](https://github.com/saltstack-formulas/rabbitmq-formula/commit/63dc6ec1a17cc2b129c9b51e170bfdbd746c52a7))
+
 ## [2.2.1](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.0...v2.2.1) (2021-08-13)
 
 
