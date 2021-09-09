@@ -12,7 +12,9 @@ include:
 
 rabbitmq-package-clean-pkg-removed:
   pkg.removed:
-    - name: {{ rabbitmq.pkg.name }}
+    - names:
+      - {{ rabbitmq.pkg.name }}
+      {{ '- erlang' if rabbitmq.pkg.remove_os_erlang else '' }}
     - require:
       - sls: {{ sls_repo_clean }}
       - sls: {{ sls_service_clean }}
