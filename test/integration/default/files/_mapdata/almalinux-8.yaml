@@ -261,6 +261,7 @@ values:
     - socat
     deps_disablerepo: ''
     name: rabbitmq-server
+    remove_os_erlang: true
     use_upstream: repo
   retry_option:
     attempts: 0
