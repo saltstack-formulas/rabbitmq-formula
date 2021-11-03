@@ -3,8 +3,8 @@
 #########################################################
 [Unit]
 Description=RabbitMQ broker {{ '' if name is not defined or name else name }}
-Wants=network-online.target
-After=syslog.target network.target
+After=network.target epmd@0.0.0.0.socket
+Wants=network.target epmd@0.0.0.0.socket
 
 [Service]
 Type=notify
