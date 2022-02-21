@@ -1,5 +1,38 @@
 # Changelog
 
+## [2.2.3](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.2...v2.2.3) (2022-02-21)
+
+
+### Bug Fixes
+
+* **default:** update systemd file with correct defaults ([be57ab9](https://github.com/saltstack-formulas/rabbitmq-formula/commit/be57ab9bbce941ac8f1dbdbfaf4f08516194fbff))
+* **libmapstack:** allow mapping by booleans and numbers ([679715c](https://github.com/saltstack-formulas/rabbitmq-formula/commit/679715ca67b432a1e85aac54daea0ee86656e51d))
+* **libsaltcli+libmatchers:** ensure Salt client API detection [skip ci] ([d2e8a01](https://github.com/saltstack-formulas/rabbitmq-formula/commit/d2e8a01c4535bcea72fbf0da20a2456405dd7820))
+
+
+### Code Refactoring
+
+* **map.jinja:** standardise v5 structure [skip ci] ([d436de7](https://github.com/saltstack-formulas/rabbitmq-formula/commit/d436de78f38a87748c0c5a225b42c3d5be34f264))
+
+
+### Continuous Integration
+
+* update linters to latest versions [skip ci] ([e63ff6d](https://github.com/saltstack-formulas/rabbitmq-formula/commit/e63ff6d86f1c72cc5201dcf694911ddbc0c36c47))
+* **gemfile:** allow rubygems proxy to be provided as an env var [skip ci] ([8dd2085](https://github.com/saltstack-formulas/rabbitmq-formula/commit/8dd20852c5aa886d876c9c1cf5cb8adb1513101c))
+* **kitchen+ci:** update with `3004` pre-salted images/boxes [skip ci] ([67855f8](https://github.com/saltstack-formulas/rabbitmq-formula/commit/67855f8ec9f7a261364f84ae7490b6c55e470c1f))
+* **kitchen+ci:** update with latest CVE pre-salted images [skip ci] ([a77347a](https://github.com/saltstack-formulas/rabbitmq-formula/commit/a77347a128a7896019002eddd716e08b2987dfde))
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] ([0a1e755](https://github.com/saltstack-formulas/rabbitmq-formula/commit/0a1e755f1a1a2be24f44baf0aac518473a0f21f8))
+
+
+### Styles
+
+* **libsaltcli:** fix comments to jinja comments [skip ci] ([63286b6](https://github.com/saltstack-formulas/rabbitmq-formula/commit/63286b61630797f7f5ecacd9e559f10745757c95))
+
+
+### Tests
+
+* **system:** add `build_platform_codename` [skip ci] ([7b0e31c](https://github.com/saltstack-formulas/rabbitmq-formula/commit/7b0e31c61f03a5b054829a761cec41c66eceef68))
+
 ## [2.2.2](https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.1...v2.2.2) (2021-09-01)
 
 
