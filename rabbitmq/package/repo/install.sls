@@ -20,12 +20,12 @@ rabbitmq-package-repo-pkg-deps:
       - pkgrepo: rabbitmq-package-repo-erlang
       - pkgrepo: rabbitmq-package-repo-rabbitmq
 
+{%- set osfullname = grains['osfullname'] %}
+{%- set oscodename = grains['oscodename'] %}
+
 rabbitmq-package-repo-erlang:
   pkgrepo.managed:
-    # using cloudsmith.io for rabbitmq-erlang (recommended)
-    - name: {{ rabbitmq.pkg.repo.erlang.name }}
-    - humanname: Erlang from CloudSmith Repository
-      # "ubuntu:bionic" as distribution may work for recent Ubuntu or Debian release
+    - name: deb {{ rabbitmq.pkg.repo.erlang.url }}/{{ osfullname|lower }} {{ oscodename }} main
     - file: /etc/apt/sources.list.d/erlang.list
     - key_url: {{ rabbitmq.pkg.repo.erlang.key_url }}
     - require_in:
@@ -33,12 +33,7 @@ rabbitmq-package-repo-erlang:
 
 rabbitmq-package-repo-rabbitmq:
   pkgrepo.managed:
-    # using packagecloud for rabbitmq-server (recommended)
-    - name: {{ rabbitmq.pkg.repo.rabbitmq.name }}
-    - humanname: RabbitMQ PackageCloud Repository
-       # https://www.rabbitmq.com/install-debian.html#apt
-       # "bionic" as distribution name should work for any reasonably recent Ubuntu or Debian release.
-       # See the release to distribution mapping table in RabbitMQ doc guides to learn more.
+    - name: deb {{ rabbitmq.pkg.repo.rabbitmq.url }}/{{ osfullname|lower }} {{ oscodename }} main
     - file: /etc/apt/sources.list.d/rabbitmq.list
     - key_url: {{ rabbitmq.pkg.repo.rabbitmq.key_url }}
     - require_in:
@@ -54,7 +49,6 @@ rabbitmq-package-repo-rabbitmq:
 rabbitmq-package-repo-erlang:
   pkgrepo.managed:
     - name: rabbitmq_erlang
-    # using cloudsmith.io for rabbitmq-erlang (recommended)
     - baseurl: {{ rabbitmq.pkg.repo.erlang.baseurl }}/{{ releasever }}/$basearch
     - gpgkey: {{ rabbitmq.pkg.repo.erlang.gpgkey }}
     - repo_gpgcheck: 1
@@ -72,7 +66,6 @@ rabbitmq-package-repo-erlang:
 rabbitmq-package-repo-rabbitmq:
   pkgrepo.managed:
     - name: rabbitmq_rabbitmq-server
-    # using packagecloud for rabbitmq-server (recommended)
     - baseurl: {{ rabbitmq.pkg.repo.rabbitmq.baseurl }}/{{ releasever }}/$basearch
     - gpgkey: {{ rabbitmq.pkg.repo.rabbitmq.gpgkey }}
     - enabled: 1
