@@ -16,4 +16,13 @@ values:
     deps:
       - libtinfo5
       - erlang-eldap
+    repo:
+      erlang:
+        # yamllint disable-line rule:line-length
+        name: deb https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/deb/ubuntu bionic main
+        # yamllint disable-line rule:line-length
+        key_url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
+      rabbitmq:
+        name: deb https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu bionic main
+        key_url: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
 ...
