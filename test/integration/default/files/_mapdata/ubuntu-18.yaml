@@ -264,6 +264,13 @@ values:
     deps_disablerepo: ''
     name: rabbitmq-server
     remove_os_erlang: true
+    repo:
+      erlang:
+        key_url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
+        url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/deb
+      rabbitmq:
+        key_url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/gpg.9F4587F226208342.key
+        url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/deb
     use_upstream: repo
   retry_option:
     attempts: 0
