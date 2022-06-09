@@ -16,4 +16,13 @@ values:
     deps:
       - libtinfo5
       - erlang-eldap
+    repo:
+      erlang:
+        # yamllint disable-line rule:line-length
+        key_url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
+        url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/deb
+      rabbitmq:
+        # yamllint disable-line rule:line-length
+        key_url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/gpg.9F4587F226208342.key
+        url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/deb
 ...

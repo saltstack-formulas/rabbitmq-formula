@@ -17,4 +17,12 @@ values:
   pkg:
     deps:
       - socat
+    repo:
+      erlang:
+        baseurl: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/rpm/el
+        # yamllint disable-line rule:line-length
+        gpgkey: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
+      rabbitmq:
+        baseurl: https://packagecloud.io/rabbitmq/rabbitmq-server/el
+        gpgkey: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
 ...
