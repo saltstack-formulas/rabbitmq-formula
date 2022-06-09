@@ -2,6 +2,37 @@
 Changelog
 =========
 
+`2.2.4 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.3...v2.2.4>`_ (2022-06-09)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* update Debian apt repositories to the recommended ones (\ `d1ed9d1 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/d1ed9d19cb573e10deecbf53ab4a4594f711cbd7>`_\ )
+
+Code Refactoring
+^^^^^^^^^^^^^^^^
+
+
+* move pkgrepo configuration in map.jinja (\ `36837cf <https://github.com/saltstack-formulas/rabbitmq-formula/commit/36837cfbbc37ad42d414d41f23a14fa65e0159f5>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* update ``pre-commit`` configuration inc. for pre-commit.ci [skip ci] (\ `b17e8e0 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/b17e8e05434730d0cc2faa5216916c16dda2e48d>`_\ )
+* **kitchen+gitlab:** update for new pre-salted images [skip ci] (\ `c1a6443 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/c1a6443b325fb45f6716af7d5f2fe9c34e0aedd0>`_\ )
+
+Tests
+^^^^^
+
+
+* update _mapdata files (\ `7eb87f3 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/7eb87f3cf1c6a16cd039aed2befa2fea74ea039b>`_\ )
+* **_mapdata:** add verification files for Fedora 35 [skip ci] (\ `c9b3d4a <https://github.com/saltstack-formulas/rabbitmq-formula/commit/c9b3d4ab10abade503fadd1d7131e588f4f72b87>`_\ )
+* **_mapdata:** add verification files for Fedora 36 [skip ci] (\ `4481f7b <https://github.com/saltstack-formulas/rabbitmq-formula/commit/4481f7b161276a79d676f1f6827c32b186bb083d>`_\ )
+* **system.rb:** add support for ``mac_os_x`` [skip ci] (\ `f1549ac <https://github.com/saltstack-formulas/rabbitmq-formula/commit/f1549ac6f9cc517baa2fa8e38414d2b7cd52eab6>`_\ )
+
 `2.2.3 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.2...v2.2.3>`_ (2022-02-21)
 ----------------------------------------------------------------------------------------------------------
 
