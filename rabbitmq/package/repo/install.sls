@@ -20,12 +20,12 @@ rabbitmq-package-repo-pkg-deps:
       - pkgrepo: rabbitmq-package-repo-erlang
       - pkgrepo: rabbitmq-package-repo-rabbitmq
 
-{%- set osfullname = grains['osfullname'] %}
+{%- set osname = grains['os'] %}
 {%- set oscodename = grains['oscodename'] %}
 
 rabbitmq-package-repo-erlang:
   pkgrepo.managed:
-    - name: deb {{ rabbitmq.pkg.repo.erlang.url }}/{{ osfullname|lower }} {{ oscodename }} main
+    - name: deb {{ rabbitmq.pkg.repo.erlang.url }}/{{ osname|lower }} {{ oscodename }} main
     - file: /etc/apt/sources.list.d/erlang.list
     - key_url: {{ rabbitmq.pkg.repo.erlang.key_url }}
     - require_in:
@@ -33,7 +33,7 @@ rabbitmq-package-repo-erlang:
 
 rabbitmq-package-repo-rabbitmq:
   pkgrepo.managed:
-    - name: deb {{ rabbitmq.pkg.repo.rabbitmq.url }}/{{ osfullname|lower }} {{ oscodename }} main
+    - name: deb {{ rabbitmq.pkg.repo.rabbitmq.url }}/{{ osname|lower }} {{ oscodename }} main
     - file: /etc/apt/sources.list.d/rabbitmq.list
     - key_url: {{ rabbitmq.pkg.repo.rabbitmq.key_url }}
     - require_in:
