@@ -18,7 +18,7 @@ rabbitmq-config-parameters-present-{{ name }}-{{ param }}:
                 {%- if p.component == 'federation-upstream' %}
             /usr/sbin/rabbitmqctl --node {{ name }} set_parameter --vhost={{ '/' if 'vhost' not in p else p.vhost }} {{ p.component }} '{{ param }}' '{{ p.definition|json }}'  # noqa 204
                 {%- else %}{# federation-upstream-set for now #}
-            /usr/sbin/rabbitmqctl --node {{ name }} set_parameter --vhost={{ '/' if 'vhost' not in p else p.vhost }} {{ p.component }} '{{ param }}' '[{{ p.definition|json }},]'  # noqa 204
+            /usr/sbin/rabbitmqctl --node {{ name }} set_parameter --vhost={{ '/' if 'vhost' not in p else p.vhost }} {{ p.component }} '{{ param }}' '[{{ p.definition|json }}]'  # noqa 204
                 {%- endif %}
     - runas: rabbitmq
     - onlyif: test -x /usr/sbin/rabbitmqctl
