@@ -149,7 +149,7 @@ rubocop:
 debian-11-master-py3: {extends: '.test_instance'}
 # default-debian-10-master-py3: {extends: '.test_instance'}
 # nopillars-debian-10-master-py3: {extends: '.test_instance'}
-debian-10-master-py3: {extends: '.test_instance'}
+# debian-10-master-py3: {extends: '.test_instance'}
 # default-debian-9-master-py3: {extends: '.test_instance'}
 # nopillars-debian-9-master-py3: {extends: '.test_instance'}
 # debian-9-master-py3: {extends: '.test_instance'}
@@ -167,7 +167,7 @@ ubuntu-1804-master-py3: {extends: '.test_instance'}
 centos-stream8-master-py3: {extends: '.test_instance_failure_permitted'}
 # default-centos-7-master-py3: {extends: '.test_instance'}
 # nopillars-centos-7-master-py3: {extends: '.test_instance'}
-centos-7-master-py3: {extends: '.test_instance'}
+# centos-7-master-py3: {extends: '.test_instance'}
 default-fedora-36-master-py3: {extends: '.test_instance_failure_permitted'}
 # nopillars-fedora-36-master-py3: {extends: '.test_instance_failure_permitted'}
 # fedora-36-master-py3: {extends: '.test_instance_failure_permitted'}
@@ -188,7 +188,7 @@ default-opensuse-tmbl-latest-master-py3: {extends: '.test_instance_failure_permi
 oraclelinux-8-master-py3: {extends: '.test_instance'}
 # default-oraclelinux-7-master-py3: {extends: '.test_instance'}
 # nopillars-oraclelinux-7-master-py3: {extends: '.test_instance'}
-oraclelinux-7-master-py3: {extends: '.test_instance'}
+# oraclelinux-7-master-py3: {extends: '.test_instance'}
 # default-arch-base-latest-master-py3: {extends: '.test_instance'}
 # nopillars-arch-base-latest-master-py3: {extends: '.test_instance'}
 # arch-base-latest-master-py3: {extends: '.test_instance'}
