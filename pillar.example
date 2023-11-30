@@ -250,7 +250,7 @@ rabbitmq:
 
   pkg:
     # https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.14
-    use_upstream: repo  # if available (i.e. packagecloud)
+    use_upstream: repo  # if available (i.e. novemberain.com Cloudsmith mirror)
   environ:
     locale_all: en_US.UTF-8
     values: {}

@@ -19,10 +19,10 @@ values:
       - socat
     repo:
       erlang:
-        baseurl: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/rpm/el
-        # yamllint disable-line rule:line-length
-        gpgkey: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
+        # yamllint disable rule:line-length
+        baseurl: https://yum1.novemberain.com/erlang/el
+        gpgkey: https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-erlang.E495BB49CC4BBE5B.key
       rabbitmq:
-        baseurl: https://packagecloud.io/rabbitmq/rabbitmq-server/el
-        gpgkey: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
+        baseurl: https://yum1.novemberain.com/rabbitmq/el
+        gpgkey: https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-server.9F4587F226208342.key
 ...
