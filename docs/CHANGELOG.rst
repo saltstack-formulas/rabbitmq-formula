@@ -2,6 +2,23 @@
 Changelog
 =========
 
+`2.2.5 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.4...v2.2.5>`_ (2023-12-06)
+----------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* federation upstream set (ci error) (\ `7628da2 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/7628da288d0dfc264aff2d6917bf0cb1c108687c>`_\ )
+* Remove usages of grains.osfullname (\ `27394b7 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/27394b7e04f0221a6e705ef0ad4fe75c977a761d>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* disable unsupported OS releases (\ `7c05807 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/7c0580759ade2cebd6266db94eed96c5d7a39c4e>`_\ )
+* update container images (\ `4a90fe1 <https://github.com/saltstack-formulas/rabbitmq-formula/commit/4a90fe16fb8cbcd487e56c1a077ab66bf0175b64>`_\ )
+
 `2.2.4 <https://github.com/saltstack-formulas/rabbitmq-formula/compare/v2.2.3...v2.2.4>`_ (2022-06-09)
 ----------------------------------------------------------------------------------------------------------
 
