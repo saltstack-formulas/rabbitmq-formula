@@ -153,7 +153,7 @@ debian-11-master-py3: {extends: '.test_instance'}
 # debian-9-master-py3: {extends: '.test_instance'}
 # default-ubuntu-2204-master-py3: {extends: '.test_instance_failure_permitted'}
 # nopillars-ubuntu-2204-master-py3: {extends: '.test_instance_failure_permitted'}
-ubuntu-2204-master-py3: {extends: '.test_instance_failure_permitted'}
+ubuntu-2204-master-py3: {extends: '.test_instance'}
 # default-ubuntu-2004-master-py3: {extends: '.test_instance'}
 # nopillars-ubuntu-2004-master-py3: {extends: '.test_instance'}
 ubuntu-2004-master-py3: {extends: '.test_instance'}
