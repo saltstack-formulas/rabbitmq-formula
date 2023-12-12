@@ -1,50 +1,266 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
 # yamllint disable rule:indentation rule:line-length
+# Ubuntu 22
 ---
 values:
   added_in_defaults: defaults_value
+  added_in_pillar: pillar_value
   arch: amd64
   dir:
-    base: "/usr/lib/rabbitmq"
+    base: "/var/lib/rabbitmq"
     cleanlist:
-      - "/usr/local/bin/rabbitmq-env"
-      - "/usr/local/bin/rabbitmq-plugins"
-      - "/var/run/rabbitmq"
+    - "/usr/local/bin/rabbitmq-env"
+    - "/usr/local/bin/rabbitmq-plugins"
+    - "/var/run/rabbitmq"
     config: "/etc/rabbitmq"
     data: "/var/lib/rabbitmq"
     service: "/usr/lib/systemd/system"
-  environ: {}
+  environ:
+    locale_all: en_US.UTF-8
+    values: {}
   erlang_cookie: shared-secret
   map_jinja:
     sources:
-      - Y:G@osarch
-      - Y:G@os_family
-      - Y:G@os
-      - Y:G@osfinger
-      - C@rabbitmq:lookup
-      - C@rabbitmq
-      - Y:G@id
+    - Y:G@osarch
+    - Y:G@os_family
+    - Y:G@os
+    - Y:G@osfinger
+    - C@rabbitmq:lookup
+    - C@rabbitmq
+    - Y:G@id
   nodes:
     rabbit:
+      bindings:
+        my-binding:
+          destination: my-queue
+          destination_type: queue
+          passwd: password
+          routing_key: a_routing_key_string
+          source: amq.topic
+          user: saltstack_mq
+          vhost: default_vhost
       clustered: false
-      config: {}
+      config:
+        auth_backends.1: internal
+        consumer_timeout: 3600000
+        listeners.tcp.1: 0.0.0.0:5672
       distport: 25672
+      exchanges:
+        my-exchange:
+          arguments:
+            alternate-**exchange: amq.fanout
+            test-header: testing
+          auto_delete: 'false'
+          durable: 'true'
+          internal: 'false'
+          passwd: password
+          type: fanout
+          user: saltstack_mq
+          vhost: default_vhost
       nodeport: 5672
-      parameters: {}
+      parameters:
+        my-federation-upstream-set:
+          component: federation-upstream-set
+          definition:
+            upstream: my-federation-upstream1
+          vhost: default_vhost
+        my-federation-upstream1:
+          component: federation-upstream
+          definition:
+            ack-mode: on-confirm
+            max-hops: 1
+            trust-user-id: true
+            uri: 'amqp://saltstack_mq:password@localhost'
+          vhost: default_vhost
       plugins:
         - rabbitmq_management
         - rabbitmq_federation
         - rabbitmq_federation_management
         - rabbitmq_auth_backend_ldap
-      policies: {}
-      queues: {}
+        - rabbitmq_shovel
+        - rabbitmq_shovel_management
+      policies:
+        my-federation-policy1:
+          definition:
+            federation-upstream-set: all
+          pattern: '^federated1\.'
+          priority: 1
+          vhost: default_vhost
+        my-federation-policy2:
+          definition:
+            federation-upstream-set: my-federation-upstream-set
+          pattern: '^federated2\.'
+          priority: 1
+          vhost: default_vhost
+        my-ha-policy:
+          definition:
+            ha-mode: nodes
+            ha-params: ["rabbit", "rabbit2"]
+          pattern: '.*'
+          priority: 1
+          vhost: default_vhost
+      queues:
+        my-queue:
+          auto_delete: 'false'
+          durable: 'true'
+          passwd: password
+          user: saltstack_mq
+          vhost: default_vhost
       remove_guest_user: true
       service: true
-      users: {}
-      vhosts: {}
+      users:
+        airflow:
+          force: true
+          password: airflow
+          perms:
+            default_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - management
+          - administrator
+        saltstack_mq:
+          force: false
+          password: password
+          perms:
+            default_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - administrator
+          - management
+        user1:
+          force: true
+          password: password
+          perms:
+            default_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - monitoring
+          - user
+      vhosts:
+      - default_vhost
+    rabbit2:
+      bindings:
+        my-binding:
+          destination: my-queue
+          destination_type: queue
+          passwd: password
+          routing_key: a_routing_key_string
+          source: amq.topic
+          user: saltstack_mq
+          vhost: rabbit2_vhost
+      clustered: false              # true
+      config:
+        auth_backends.1: internal
+        listeners.tcp.1: 0.0.0.0:5673
+      distport: 25673
+      exchanges:
+        my-exchange:
+          arguments:
+            alternate-**exchange: amq.fanout
+            test-header: testing
+          auto_delete: 'false'
+          durable: 'true'
+          internal: 'false'
+          passwd: password
+          type: fanout
+          user: saltstack_mq
+          vhost: rabbit2_vhost
+      join_node: rabbit   # create multinode cluster on localhost
+      nodeport: 5673
+      parameters:
+        my-federation-upstream-set:
+          component: federation-upstream-set
+          definition:
+            upstream: my-federation-upstream1
+          vhost: rabbit2_vhost
+        my-federation-upstream1:
+          component: federation-upstream
+          definition:
+            ack-mode: on-confirm
+            max-hops: 1
+            trust-user-id: true
+            uri: 'amqp://saltstack_mq:password@localhost'
+          vhost: rabbit2_vhost
+      plugins: []
+      policies:
+        my-federation-policy1:
+          definition:
+            federation-upstream-set: all
+          pattern: '^federated1\.'
+          priority: 1
+          vhost: rabbit2_vhost
+        my-federation-policy2:
+          definition:
+            federation-upstream-set: my-federation-upstream-set
+          pattern: '^federated2\.'
+          priority: 1
+          vhost: rabbit2_vhost
+        my-ha-policy:
+          definition:
+            ha-mode: nodes
+            ha-params: ["rabbit", "rabbit2"]
+          pattern: '.*'
+          priority: 1
+          vhost: rabbit2_vhost
+      queues:
+        my-queue:
+          arguments:
+            x-dead-letter-exchange: my-exchange
+            x-expires: 8640000
+            x-queue-type: quorum
+          auto_delete: 'false'
+          durable: 'true'
+          passwd: password
+          user: saltstack_mq
+          vhost: rabbit2_vhost
+      remove_guest_user: true
+      service: true
+      users:
+        airflow:
+          force: true
+          password: airflow
+          perms:
+            rabbit2_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - management
+          - administrator
+        saltstack_mq:
+          force: false
+          password: password
+          perms:
+            rabbit2_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - administrator
+        user1:
+          force: true
+          password: password
+          perms:
+            rabbit2_vhost:
+            - ".*"
+            - ".*"
+            - ".*"
+          tags:
+          - monitoring
+          - user
+      vhosts:
+      - rabbit2_vhost
   pkg:
     deps:
-      - libtinfo5
-      - erlang-eldap
+    - libtinfo5
+    - erlang-eldap
     deps_disablerepo: ''
     name: rabbitmq-server
     remove_os_erlang: true
@@ -62,4 +278,15 @@ values:
     splay: 10
     until: true
   rootgroup: root
-  winner: defaults
+  tofs:
+    files_switch:
+    - any/path/can/be/used/here
+    - id
+    - roles
+    - osfinger
+    - os
+    - os_family
+    source_files:
+      rabbitmq-config-file-file-managed:
+      - example.tmpl.jinja
+  winner: pillar
