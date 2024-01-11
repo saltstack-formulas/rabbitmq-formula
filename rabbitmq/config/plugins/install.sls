@@ -26,20 +26,15 @@ rabbitmq-config-plugins-enabled-{{ name }}-{{ plugin }}:
 
 rabbitmq-config-plugins-{{ name }}-rabbitmqadmin-install:
   cmd.run:
-    - name : curl -k -L http://127.0.0.1:15672/cli/rabbitmqadmin -o /usr/local/sbin/rabbitmqadmin
-    - unless: test -x /usr/local/sbin/rabbitmqadmin
+    {%- set rabbitmqadmin = "/usr/local/sbin/rabbitmqadmin" %}
+    - name: >
+        curl -k -L http://127.0.0.1:15672/cli/rabbitmqadmin -o {{ rabbitmqadmin }}
+        && chown root:{{ rabbitmq.rootgroup }} {{ rabbitmqadmin }}
+        && chmod 755 {{ rabbitmqadmin }}
+    - unless: test -x {{ rabbitmqadmin }}
     - onlyif: /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled rabbitmq_management
     - require:
       - sls: {{ sls_service_running }}
-  file.managed:
-   - name: /usr/local/sbin/rabbitmqadmin
-   - user: root
-   - force: false
-   - replace: false
-   - group: {{ rabbitmq.rootgroup }}
-   - mode: 755
-   - require:
-     - cmd : rabbitmq-config-plugins-{{ name }}-rabbitmqadmin-install
 
                 {%- endif %}
             {%- endfor %}
