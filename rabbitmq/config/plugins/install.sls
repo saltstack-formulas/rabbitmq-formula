@@ -30,7 +30,7 @@ rabbitmq-config-plugins-{{ name }}-rabbitmqadmin-install:
     - unless: test -x /usr/local/sbin/rabbitmqadmin
     - onlyif: /usr/sbin/rabbitmq-plugins --node {{ name }} is_enabled rabbitmq_management
     - require:
-      - rabbitmq-service-running-daemon-reload
+      - rabbitmq-service-running-managed-{{ name }}
   file.managed:
    - name: /usr/local/sbin/rabbitmqadmin
    - user: root
